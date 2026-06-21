@@ -1,0 +1,26 @@
+{
+  "name": "Ineva Resto-Bar - Pedidos Online",
+  "short_name": "Ineva",
+  "description": "Pedidos online de menús del día, pizzas, empanadas y más. Delivery en Orán, Salta.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#6c5ce7",
+  "orientation": "portrait",
+  "lang": "es-AR",
+  "categories": ["food", "restaurant", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
