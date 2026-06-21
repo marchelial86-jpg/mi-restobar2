@@ -3,7 +3,108 @@ import { collection, addDoc, query, where, getDocs, doc, updateDoc, setDoc, dele
 import { db } from './firebase'
 import './App.css'
 
-// Componente Acordeón Universal (Sirve para Día y Noche)
+// ============================================
+// ️ COMPONENTE GALERÍA DE FOTOS
+// ============================================
+function GaleriaProducto({ imagenes = [], nombreProducto }) {
+  const [fotoActiva, setFotoActiva] = useState(0);
+  const [lightboxAbierto, setLightboxAbierto] = useState(false);
+
+  if (!imagenes || imagenes.length === 0) {
+    return (
+      <div className="galeria-placeholder">
+        <span className="galeria-placeholder-icono">🍽️</span>
+        <span className="galeria-placeholder-texto">Sin foto</span>
+      </div>
+    );
+  }
+
+  const abrirLightbox = (index) => {
+    setFotoActiva(index);
+    setLightboxAbierto(true);
+  };
+
+  const cerrarLightbox = () => setLightboxAbierto(false);
+
+  const fotoAnterior = (e) => {
+    e.stopPropagation();
+    setFotoActiva((prev) => (prev === 0 ? imagenes.length - 1 : prev - 1));
+  };
+
+  const fotoSiguiente = (e) => {
+    e.stopPropagation();
+    setFotoActiva((prev) => (prev === imagenes.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <>
+      <div className="galeria-producto">
+        <div 
+          className="galeria-foto-principal" 
+          onClick={() => abrirLightbox(fotoActiva)}
+          role="button"
+          aria-label={`Ver foto ${fotoActiva + 1} de ${imagenes.length}`}
+        >
+          <img 
+            src={imagenes[fotoActiva]} 
+            alt={`${nombreProducto} - foto ${fotoActiva + 1}`}
+            className="galeria-img-principal"
+            onError={(e) => { e.target.src = 'https://via.placeholder.com/300x200?text=Sin+foto'; }}
+          />
+          {imagenes.length > 1 && (
+            <>
+              <button className="galeria-nav galeria-nav-izq" onClick={(e) => { e.stopPropagation(); fotoAnterior(e); }} aria-label="Foto anterior">‹</button>
+              <button className="galeria-nav galeria-nav-der" onClick={(e) => { e.stopPropagation(); fotoSiguiente(e); }} aria-label="Foto siguiente">›</button>
+              <div className="galeria-contador">{fotoActiva + 1} / {imagenes.length}</div>
+            </>
+          )}
+        </div>
+
+        {imagenes.length > 1 && (
+          <div className="galeria-miniaturas">
+            {imagenes.map((img, index) => (
+              <button
+                key={index}
+                className={`galeria-miniatura ${index === fotoActiva ? 'activa' : ''}`}
+                onClick={() => setFotoActiva(index)}
+                aria-label={`Ver foto ${index + 1}`}
+              >
+                <img 
+                  src={img} 
+                  alt={`Miniatura ${index + 1}`}
+                  onError={(e) => { e.target.src = 'https://via.placeholder.com/60x60?text=?'; }}
+                />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {lightboxAbierto && (
+        <div className="lightbox-overlay" onClick={cerrarLightbox} role="dialog" aria-modal="true">
+          <button className="lightbox-cerrar" onClick={cerrarLightbox} aria-label="Cerrar"></button>
+          
+          {imagenes.length > 1 && (
+            <>
+              <button className="lightbox-nav lightbox-nav-izq" onClick={fotoAnterior} aria-label="Anterior">‹</button>
+              <button className="lightbox-nav lightbox-nav-der" onClick={fotoSiguiente} aria-label="Siguiente">›</button>
+              <div className="lightbox-contador">{fotoActiva + 1} / {imagenes.length}</div>
+            </>
+          )}
+          
+          <img 
+            src={imagenes[fotoActiva]} 
+            alt={`${nombreProducto} - vista ampliada`}
+            className="lightbox-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
+    </>
+  );
+}
+
+// Componente Acordeón Universal (CON GALERÍA DE FOTOS)
 function AcordeonCategoria({ categoriaKey, titulo, emoji, getProductosPorCategoria, formatearPrecio, agregarPedido, compartirProducto }) {
   const [abierto, setAbierto] = useState(false);
   const productos = getProductosPorCategoria(categoriaKey);
@@ -23,19 +124,40 @@ function AcordeonCategoria({ categoriaKey, titulo, emoji, getProductosPorCategor
       
       <div className={`acordeon-content ${abierto ? 'visible' : ''}`}>
         <div className="products-grid">
-          {productos.map((producto) => (
-            <div key={producto.id} className="product-card">
-              <div className="product-info">
-                <h3>{producto.nombre}</h3>
-                {producto.ingredientes && <p className="product-ingredientes">{producto.ingredientes}</p>}
-                <div className="product-price">{formatearPrecio(producto.precio)}</div>
+          {productos.map((producto) => {
+            let imagenes = [];
+            if (producto.imagenes) {
+              if (Array.isArray(producto.imagenes)) {
+                imagenes = producto.imagenes;
+              } else if (typeof producto.imagenes === 'string') {
+                imagenes = producto.imagenes
+                  .split(',')
+                  .map(url => url.trim())
+                  .filter(url => url.length > 0);
+              }
+            } else if (producto.imagen) {
+              imagenes = [producto.imagen];
+            }
+
+            return (
+              <div key={producto.id} className="product-card">
+                <GaleriaProducto 
+                  imagenes={imagenes} 
+                  nombreProducto={producto.nombre} 
+                />
+                
+                <div className="product-info">
+                  <h3>{producto.nombre}</h3>
+                  {producto.ingredientes && <p className="product-ingredientes">{producto.ingredientes}</p>}
+                  <div className="product-price">{formatearPrecio(producto.precio)}</div>
+                </div>
+                <div className="product-actions">
+                  <button className="btn-primary" onClick={() => agregarPedido(producto)}>+ Agregar</button>
+                  <button className="btn-compartir" onClick={() => compartirProducto(producto)}>📤</button>
+                </div>
               </div>
-              <div className="product-actions">
-                <button className="btn-primary" onClick={() => agregarPedido(producto)}>+ Agregar</button>
-                <button className="btn-compartir" onClick={() => compartirProducto(producto)}>📤</button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
@@ -43,7 +165,6 @@ function AcordeonCategoria({ categoriaKey, titulo, emoji, getProductosPorCategor
 }
 
 function App() {
-  // Estados principales
   const [pedidos, setPedidos] = useState([])
   const [notasPorProducto, setNotasPorProducto] = useState({})
   const [tipoEntrega, setTipoEntrega] = useState('')
@@ -57,7 +178,7 @@ function App() {
   const [estaAbierto, setEstaAbierto] = useState(false)
   const [mensajeHorario, setMensajeHorario] = useState('')
   const [tiempoRestante, setTiempoRestante] = useState('')
-  const [turnoActual, setTurnoActual] = useState('dia') // 'dia', 'prevent', 'noche'
+  const [turnoActual, setTurnoActual] = useState('dia')
   
   const [esAdmin, setEsAdmin] = useState(false)
   const [mostrarLogin, setMostrarLogin] = useState(false)
@@ -112,7 +233,6 @@ function App() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches
   })
 
-  // FIDELIZACIÓN
   const [mostrarFidelidad, setMostrarFidelidad] = useState(false)
   const [puntosCliente, setPuntosCliente] = useState(null)
   const [nivelCliente, setNivelCliente] = useState('bronce')
@@ -131,7 +251,6 @@ function App() {
     nombre: '', descripcion: '', puntosRequeridos: 100, tipo: 'canje', cantidadDisponible: 1
   })
 
-  // RESERVAS
   const [mostrarReservas, setMostrarReservas] = useState(false)
   const [formReserva, setFormReserva] = useState({
     nombre: '', telefono: '', fecha: '', hora: '', personas: '2', mensaje: ''
@@ -144,12 +263,11 @@ function App() {
 
   const toggleModoOscuro = () => setModoOscuro(prev => !prev)
 
-  // DATOS DEL NEGOCIO SEGÚN TURNO
   const DATOS_DIA = {
     nombre: 'Ineva Resto-Bar',
     direccion: 'López y Planes Nº 470 - Orán',
     telefono: '3878541224',
-    telefonoFijo: '3878770614', // Agregado fijo diurno
+    telefonoFijo: '3878770614',
     telefonoWhatsApp: '5493878541224',
     horarios: 'Lunes a Sábados de 09:00 a 15:00 hs',
     deliveryCosto: 0,
@@ -174,7 +292,6 @@ function App() {
   const datosActuales = turnoActual === 'noche' ? DATOS_NOCHE : DATOS_DIA
   const WHATSAPP_NUMBER = datosActuales.telefonoWhatsApp
 
-  // PRODUCTOS NOCTURNOS ESTÁTICOS
   const coctelesClasicos = [
     { id: 'n1', nombre: 'Daiquiri', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Fruta a Elección (Frutilla, Durazno, Ananá)', orden: 1 },
     { id: 'n2', nombre: 'Primavera', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Jugo de Naranja - Frutilla - Durazno - Ananá', orden: 2 },
@@ -302,7 +419,6 @@ function App() {
     { id: 'bs13', nombre: 'Jugo de Naranja', precio: 2000, categoria: 'sinAlcohol', turno: 'noche', orden: 103 },
   ]
 
-  // Productos diurnos estáticos
   const menuDelDia = [
     { id: 1, nombre: 'Menú del Día #1 - Milanesa con Puré', precio: 12000, categoria: 'menuDelDia', turno: 'dia', orden: 1 },
     { id: 2, nombre: 'Menú del Día #2 - Pollo al Horno con Arroz', precio: 12000, categoria: 'menuDelDia', turno: 'dia', orden: 2 },
@@ -350,12 +466,11 @@ function App() {
     { id: 23, nombre: 'Vino Viña de Balbo', precio: 5000, categoria: 'bebidas', turno: 'ambos', orden: 34 },
   ]
 
-  // Categorías según turno
   const categoriasInfoDia = {
     menuDelDia: { nombre: 'Menú del Día', emoji: '📋', color: '#6c5ce7' },
     comidasFijas: { nombre: 'Comidas Fijas', emoji: '🍽️', color: '#00b894' },
     pizzas: { nombre: 'Pizzas', emoji: '🍕', color: '#e17055' },
-    empanadas: { nombre: 'Empanadas', emoji: '🥟', color: '#fdcb6e' },
+    empanadas: { nombre: 'Empanadas', emoji: '', color: '#fdcb6e' },
     desayunos: { nombre: 'Desayunos', emoji: '🥐', color: '#a29bfe' },
     bebidas: { nombre: 'Bebidas', emoji: '🥤', color: '#00cec9' }
   }
@@ -369,17 +484,16 @@ function App() {
     tequilas: { nombre: 'Tequilas & Shots', emoji: '🌵', color: '#10B981' },
     otros: { nombre: 'Otros', emoji: '🎲', color: '#EF4444' },
     cervezas: { nombre: 'Cervezas', emoji: '🍻', color: '#F59E0B' },
-    vinos: { nombre: 'Vinos', emoji: '🍷', color: '#7C3AED' },
+    vinos: { nombre: 'Vinos', emoji: '', color: '#7C3AED' },
     espumantes: { nombre: 'Espumantes', emoji: '🥂', color: '#EC4899' },
     sinAlcohol: { nombre: 'Sin Alcohol', emoji: '🧃', color: '#06B6D4' },
     pizzasNoche: { nombre: 'Pizzas', emoji: '🍕', color: '#EF4444' },
     empanadasNoche: { nombre: 'Empanadas', emoji: '🥟', color: '#F59E0B' },
-    minutas: { nombre: 'Minutas', emoji: '🥪', color: '#10B981' },
+    minutas: { nombre: 'Minutas', emoji: '', color: '#10B981' },
     extras: { nombre: 'Extras', emoji: '🍟', color: '#F97316' },
-    promosNoche: { nombre: 'Super Promos Delivery', emoji: '🔥', color: '#FF0000' }
+    promosNoche: { nombre: 'Super Promos Delivery', emoji: '', color: '#FF0000' }
   }
 
-  // Orden exacto solicitado para el menú nocturno
   const categoriasOrdenNoche = [
     { key: 'promosNoche', nombre: '🔥 Super Promos Delivery', emoji: '🔥' },
     { key: 'empanadasNoche', nombre: 'Empanadas', emoji: '🥟' },
@@ -393,12 +507,11 @@ function App() {
     { key: 'espumantes', nombre: 'Espumantes', emoji: '🥂' },
     { key: 'jarras', nombre: 'Jarras', emoji: '🍺' },
     { key: 'medidas', nombre: 'Medidas', emoji: '🥃' },
-    { key: 'ginTonic', nombre: 'Gin Tonic', emoji: '🍸' },
+    { key: 'ginTonic', nombre: 'Gin Tonic', emoji: '' },
     { key: 'tequilas', nombre: 'Tequila & Shots', emoji: '🌵' },
     { key: 'sinAlcohol', nombre: 'Sin Alcohol', emoji: '🧃' }
   ];
 
-  // Orden para el menú diurno (Acordeón)
   const categoriasOrdenDia = [
     { key: 'menuDelDia', nombre: 'Menú del Día', emoji: '📋' },
     { key: 'comidasFijas', nombre: 'Comidas Fijas', emoji: '🍽️' },
@@ -409,14 +522,13 @@ function App() {
   ];
 
   const pasosGuia = [
-    { id: 'buscador', titulo: '🔍 Buscá rápido', descripcion: 'Usá el buscador para encontrar tus productos favoritos.' },
+    { id: 'buscador', titulo: ' Buscá rápido', descripcion: 'Usá el buscador para encontrar tus productos favoritos.' },
     { id: 'categorias', titulo: '📂 Categorías', descripcion: 'Hacé clic en las categorías para navegar rápido.' },
     { id: 'productos', titulo: '🍔 Agregá al carrito', descripcion: 'Hacé clic en "+ Agregar" para añadir productos.' },
     { id: 'carrito', titulo: '🛒 Tu pedido', descripcion: 'El carrito flotante te muestra el total.' },
     { id: 'finalizar', titulo: '📱 Finalizá tu pedido', descripcion: 'Completá tus datos y enviá por WhatsApp.' }
   ]
 
-  // DETECCIÓN AUTOMÁTICA DE TURNO
   useEffect(() => {
     const verificarTurno = () => {
       const ahora = new Date()
@@ -424,10 +536,10 @@ function App() {
       const minutosActuales = ahora.getMinutes()
       const tiempoActualEnMinutos = horaActual * 60 + minutosActuales
       
-      const aperturaDia = 9 * 60       // 09:00
-      const cierreDia = 15 * 60         // 15:00
-      const aperturaNoche = 21 * 60     // 21:00
-      const cierreNoche = 4 * 60        // 04:00 (del día siguiente)
+      const aperturaDia = 9 * 60
+      const cierreDia = 15 * 60
+      const aperturaNoche = 21 * 60
+      const cierreNoche = 4 * 60
       
       let nuevoTurno = 'dia'
       let abierto = false
@@ -438,7 +550,7 @@ function App() {
         nuevoTurno = 'dia'
         abierto = true
         const minsHastaCierre = cierreDia - tiempoActualEnMinutos
-        msgHorario = '🟢 Abierto ahora'
+        msgHorario = ' Abierto ahora'
         tiempoRest = `Cierra en ${Math.floor(minsHastaCierre / 60)}h ${minsHastaCierre % 60}min`
       } else if (tiempoActualEnMinutos >= cierreDia && tiempoActualEnMinutos < aperturaNoche) {
         nuevoTurno = 'prevent'
@@ -477,13 +589,11 @@ function App() {
     return () => clearInterval(intervalo)
   }, [])
 
-  // Aplicar clase de turno al body
   useEffect(() => {
     document.body.classList.remove('turno-dia', 'turno-prevent', 'turno-noche')
     document.body.classList.add(`turno-${turnoActual}`)
   }, [turnoActual])
 
-  // Cargar config fidelidad
   useEffect(() => {
     const cargarConfigFidelidad = async () => {
       try {
@@ -494,7 +604,6 @@ function App() {
     cargarConfigFidelidad()
   }, [])
 
-  // Cargar período activo
   useEffect(() => {
     const cargarPeriodoActivo = async () => {
       try {
@@ -507,7 +616,6 @@ function App() {
     cargarPeriodoActivo()
   }, [])
 
-  // Cargar datos fidelidad cliente
   useEffect(() => {
     const cargarDatosFidelidad = async () => {
       if (!telefono || !periodoActivo) return
@@ -539,7 +647,6 @@ function App() {
     cargarDatosFidelidad()
   }, [telefono, periodoActivo])
 
-  // Cargar períodos admin
   useEffect(() => {
     const cargarPeriodos = async () => {
       try {
@@ -551,7 +658,6 @@ function App() {
     if (esAdmin && mostrarAdminFidelidad) cargarPeriodos()
   }, [esAdmin, mostrarAdminFidelidad])
 
-  // Cargar canjes admin
   useEffect(() => {
     const cargarCanjes = async () => {
       try {
@@ -563,7 +669,6 @@ function App() {
     if (esAdmin && mostrarAdminFidelidad) cargarCanjes()
   }, [esAdmin, mostrarAdminFidelidad])
 
-  // Cargar reseñas
   useEffect(() => {
     const cargarResenas = async () => {
       try {
@@ -581,13 +686,11 @@ function App() {
     cargarResenas()
   }, [])
 
-  // Guía
   useEffect(() => {
     const guiaVista = localStorage.getItem('ineva_guia_vista')
     if (!guiaVista) setTimeout(() => setMostrarGuia(true), 2000)
   }, [])
 
-  // Cargar cliente guardado
   useEffect(() => {
     const cargarCliente = async () => {
       const telefonoGuardado = localStorage.getItem('ineva_telefono')
@@ -607,19 +710,27 @@ function App() {
     cargarCliente()
   }, [])
 
-  // Cargar productos Firebase
+  // CARGAR PRODUCTOS FIREBASE
   useEffect(() => {
     const cargarProductos = async () => {
       try {
+        console.log('🔍 Cargando productos de Firebase...')
         const querySnapshot = await getDocs(collection(db, 'productos'))
-        const productos = querySnapshot.docs.map(doc => ({ ...doc.data(), firestoreId: doc.id, id: doc.data().id || doc.id }))
+        console.log('📦 Documentos encontrados:', querySnapshot.size)
+        const productos = querySnapshot.docs.map(doc => ({ 
+          ...doc.data(), 
+          firestoreId: doc.id, 
+          id: doc.data().id || doc.id 
+        }))
+        console.log('✅ Productos cargados:', productos.length)
         setProductosFirebase(productos)
-      } catch (error) { console.error('Error cargando productos:', error) }
+      } catch (error) { 
+        console.error('❌ Error cargando productos:', error) 
+      }
     }
     cargarProductos()
   }, [])
 
-  // Pedidos en tiempo real
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'pedidos'), (snapshot) => {
       const pedidosActualizados = []
@@ -634,12 +745,10 @@ function App() {
     return () => unsubscribe()
   }, [])
 
-  // Carrito flotante
   useEffect(() => {
     setMostrarCarritoFlotante(pedidos.reduce((sum, p) => sum + p.cantidad, 0) > 0)
   }, [pedidos])
 
-  // Click outside buscador
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (buscadorRef.current && !buscadorRef.current.contains(event.target)) setMostrarResultados(false)
@@ -648,7 +757,6 @@ function App() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  // PWA
   useEffect(() => {
     const manejarPrompt = (evento) => { evento.preventDefault(); setPuedeInstalar(true); window.deferredPrompt = evento }
     window.addEventListener('beforeinstallprompt', manejarPrompt)
@@ -662,7 +770,6 @@ function App() {
     }
   }
 
-  // FUNCIONES DE FIDELIZACIÓN
   const calcularPuntosPedido = (monto) => {
     if (!configFidelidad || !periodoActivo) return 0
     const puntosBase = Math.floor(monto / 100) * (periodoActivo.puntosPorCienPesos || configFidelidad.puntosPorCienPesos || 1)
@@ -700,7 +807,7 @@ function App() {
     try {
       const q = query(collection(db, 'clientes'), where('telefono', '==', telefono))
       const querySnapshot = await getDocs(q)
-      if (querySnapshot.empty) { alert('❌ Cliente no encontrado'); return }
+      if (querySnapshot.empty) { alert(' Cliente no encontrado'); return }
       const clienteId = querySnapshot.docs[0].id
       const nuevosPuntos = puntosCliente.totalPuntos - premio.puntosRequeridos
       const historialActual = [...historialPuntos]
@@ -743,7 +850,7 @@ function App() {
       const q = query(collection(db, 'fidelidad_periodos'), orderBy('fechaInicio', 'desc'))
       const qs = await getDocs(q)
       setPeriodosFidelidad(qs.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-    } catch (error) { alert('❌ Error: ' + error.message) }
+    } catch (error) { alert(' Error: ' + error.message) }
   }
 
   const marcarCanjeEntregado = async (canjeId) => {
@@ -753,10 +860,9 @@ function App() {
       const q = query(collection(db, 'fidelidad_canjes'), orderBy('fecha', 'desc'))
       const qs = await getDocs(q)
       setCanjesFidelidad(qs.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-    } catch (error) { alert('❌ Error: ' + error.message) }
+    } catch (error) { alert(' Error: ' + error.message) }
   }
 
-  // RESERVAS
   const enviarReserva = async () => {
     if (!formReserva.nombre || !formReserva.telefono || !formReserva.fecha || !formReserva.hora) {
       alert('❌ Completá todos los campos obligatorios')
@@ -770,14 +876,13 @@ function App() {
         turno: 'noche'
       })
       alert('✅ ¡Reserva enviada! Te confirmaremos por WhatsApp.')
-      const mensaje = encodeURIComponent(`🎉 *NUEVA RESERVA - Ineva Resto-Bar*\n\n👤 ${formReserva.nombre}\n📱 ${formReserva.telefono}\n📅 ${formReserva.fecha}\n🕐 ${formReserva.hora}\n👥 ${formReserva.personas} personas\n💬 ${formReserva.mensaje || 'Sin mensaje'}`)
+      const mensaje = encodeURIComponent(`🎉 *NUEVA RESERVA - Ineva Resto-Bar*\n\n👤 ${formReserva.nombre}\n📱 ${formReserva.telefono}\n ${formReserva.fecha}\n🕐 ${formReserva.hora}\n👥 ${formReserva.personas} personas\n💬 ${formReserva.mensaje || 'Sin mensaje'}`)
       window.open(`https://wa.me/${DATOS_NOCHE.telefonoWhatsApp}?text=${mensaje}`, '_blank')
       setMostrarReservas(false)
       setFormReserva({ nombre: '', telefono: '', fecha: '', hora: '', personas: '2', mensaje: '' })
     } catch (error) { alert('❌ Error al enviar la reserva') }
   }
 
-  // FUNCIONES COMUNES
   const renderizarEstrellas = (calificacionValor, tamano = 'normal', interactivo = false, onHover = null, onClick = null) => {
     const tamanoClase = tamano === 'grande' ? 'estrella-grande' : tamano === 'pequeno' ? 'estrella-pequeno' : 'estrella-normal'
     return (
@@ -828,16 +933,13 @@ function App() {
     } catch (error) { alert('❌ Error al actualizar el pedido') }
   }
 
-  // Obtener productos según turno
   const getProductosPorCategoria = (categoria) => {
-    // Primero buscar en Firebase productos dinámicos del turno actual
     const firebaseProducts = productosFirebase.filter(p => {
       const productoTurno = p.turno || 'ambos'
       return p.categoria === categoria && (productoTurno === turnoActual || productoTurno === 'ambos')
     })
     if (firebaseProducts.length > 0) return firebaseProducts.sort((a, b) => (a.orden || 999) - (b.orden || 999))
 
-    // Si no hay productos Firebase, usar estáticos según turno
     if (turnoActual === 'noche') {
       const productosNoche = {
         cocteles: coctelesClasicos, ginTonic: ginTonics, medidas: medidasYJarras.filter(p => p.categoria === 'medidas'),
@@ -847,7 +949,7 @@ function App() {
         espumantes: vinosYEspumantes.filter(p => p.categoria === 'espumantes'), sinAlcohol: bebidasSinAlcoholNoche,
         pizzasNoche: comidasNoche.filter(p => p.categoria === 'pizzasNoche'), empanadasNoche: comidasNoche.filter(p => p.categoria === 'empanadasNoche'),
         minutas: comidasNoche.filter(p => p.categoria === 'minutas'), extras: comidasNoche.filter(p => p.categoria === 'extras'),
-        promosNoche: [] // Las promos vienen solo de Firebase
+        promosNoche: []
       }
       return (productosNoche[categoria] || []).sort((a, b) => (a.orden || 999) - (b.orden || 999))
     } else {
@@ -870,7 +972,7 @@ function App() {
   const verificarLogin = async () => {
     const passwordGuardada = await getPasswordDesdeFirebase()
     if (passwordAdmin === passwordGuardada) { setEsAdmin(true); setMostrarLogin(false); setPasswordAdmin('') }
-    else alert('❌ Contraseña incorrecta')
+    else alert(' Contraseña incorrecta')
   }
 
   const logout = () => { setEsAdmin(false); setMostrarPanelAdmin(false) }
@@ -911,8 +1013,19 @@ function App() {
   }
 
   const recargarProductos = async () => {
-    const querySnapshot = await getDocs(collection(db, 'productos'))
-    setProductosFirebase(querySnapshot.docs.map(doc => ({ ...doc.data(), firestoreId: doc.id, id: doc.data().id || doc.id })))
+    try {
+      console.log('🔄 Recargando productos...')
+      const querySnapshot = await getDocs(collection(db, 'productos'))
+      const productos = querySnapshot.docs.map(doc => ({ 
+        ...doc.data(), 
+        firestoreId: doc.id, 
+        id: doc.data().id || doc.id 
+      }))
+      console.log('✅ Productos recargados:', productos.length)
+      setProductosFirebase(productos)
+    } catch (error) {
+      console.error('❌ Error recargando productos:', error)
+    }
   }
 
   const agregarProducto = async (producto) => {
@@ -1004,7 +1117,7 @@ function App() {
       setPedidoReciente(docRef.id)
       setPedidos([]); setNotasPorProducto({}); setTipoEntrega(''); setDireccion('')
       setTimeout(() => setMostrarCalificacion(true), 2000)
-    } catch (error) { setError('❌ Error al procesar el pedido') }
+    } catch (error) { setError(' Error al procesar el pedido') }
     finally { setCargando(false) }
   }
 
@@ -1039,7 +1152,6 @@ function App() {
   const costoEnvio = tipoEntrega === 'delivery' && turnoActual !== 'noche' ? 0 : 0
   const totalConEnvio = total + costoEnvio
 
-  // BUSCADOR
   const buscarProductos = (termino) => {
     if (!termino.trim()) { setResultadosBusqueda([]); setMostrarResultados(false); return }
     const terminoNormalizado = termino.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -1073,19 +1185,30 @@ function App() {
 
   // PANEL ADMIN
   const PanelAdministracion = () => {
-    const [nuevoProducto, setNuevoProducto] = useState({ nombre: '', precio: '', categoria: 'comidasFijas', turno: 'dia', orden: '' })
+    const [nuevoProducto, setNuevoProducto] = useState({ nombre: '', precio: '', categoria: 'comidasFijas', turno: 'dia', orden: '', imagenes: '' })
     const [tabActiva, setTabActiva] = useState('productos')
+    
+    console.log('📊 productosFirebase en admin:', productosFirebase.length)
+    
     const handleSubmit = (e) => {
       e.preventDefault()
       if (!nuevoProducto.nombre || !nuevoProducto.precio) { alert('Completá todos los campos'); return }
-      agregarProducto({ nombre: nuevoProducto.nombre, precio: Number(nuevoProducto.precio), categoria: nuevoProducto.categoria, turno: nuevoProducto.turno, orden: nuevoProducto.orden ? Number(nuevoProducto.orden) : 999 })
-      setNuevoProducto({ nombre: '', precio: '', categoria: 'comidasFijas', turno: 'dia', orden: '' })
+      agregarProducto({ 
+        nombre: nuevoProducto.nombre, 
+        precio: Number(nuevoProducto.precio), 
+        categoria: nuevoProducto.categoria, 
+        turno: nuevoProducto.turno, 
+        orden: nuevoProducto.orden ? Number(nuevoProducto.orden) : 999,
+        imagenes: nuevoProducto.imagenes || ''
+      })
+      setNuevoProducto({ nombre: '', precio: '', categoria: 'comidasFijas', turno: 'dia', orden: '', imagenes: '' })
     }
+    
     return (
       <div className="panel-admin-container" role="main" aria-label="Panel de administración">
         <div className="admin-tabs">
-          <button className={`admin-tab ${tabActiva === 'pedidos' ? 'activa' : ''}`} onClick={() => setTabActiva('pedidos')}> Pedidos</button>
-          <button className={`admin-tab ${tabActiva === 'productos' ? 'activa' : ''}`} onClick={() => setTabActiva('productos')}>🔧 Productos</button>
+          <button className={`admin-tab ${tabActiva === 'pedidos' ? 'activa' : ''}`} onClick={() => setTabActiva('pedidos')}>📋 Pedidos</button>
+          <button className={`admin-tab ${tabActiva === 'productos' ? 'activa' : ''}`} onClick={() => setTabActiva('productos')}> Productos</button>
           <button className={`admin-tab ${tabActiva === 'fidelidad' ? 'activa' : ''}`} onClick={() => setTabActiva('fidelidad')}>🏆 Fidelidad</button>
           <button className={`admin-tab ${tabActiva === 'reservas' ? 'activa' : ''}`} onClick={() => setTabActiva('reservas')}>📅 Reservas</button>
         </div>
@@ -1103,13 +1226,13 @@ function App() {
                 {pedidosNuevos.map((pedido) => (
                   <div key={pedido.id} className="pedido-card" style={{ borderLeft: `4px solid ${pedido.estado === 'pendiente' ? '#ffc107' : pedido.estado === 'en_preparacion' ? '#00b894' : '#6c5ce7'}` }}>
                     <div className="pedido-header">
-                      <div><strong> {pedido.cliente?.nombre}</strong><div>📱 {pedido.cliente?.telefono}</div><div>🕐 {new Date(pedido.fecha).toLocaleTimeString('es-AR')}</div></div>
+                      <div><strong>👤 {pedido.cliente?.nombre}</strong><div>📱 {pedido.cliente?.telefono}</div><div>🕐 {new Date(pedido.fecha).toLocaleTimeString('es-AR')}</div></div>
                       <div className="pedido-total"><div>{formatearPrecio(pedido.total)}</div><div className={`badge-entrega ${pedido.tipoEntrega === 'delivery' ? 'delivery' : 'retiro'}`}>{pedido.tipoEntrega === 'delivery' ? '🚚 Delivery' : '🏪 Retiro'}</div></div>
                     </div>
                     <div className="pedido-productos"><strong>📦 Productos:</strong><ul>{pedido.productos?.map((prod, idx) => (<li key={idx}>{prod.cantidad}x {prod.nombre}{prod.nota && <em> ({prod.nota})</em>}</li>))}</ul></div>
                     {pedido.direccion && <div className="pedido-direccion">🏠 {pedido.direccion}</div>}
                     <div className="pedido-botones">
-                      {pedido.estado === 'pendiente' && <button onClick={() => cambiarEstadoPedido(pedido.id, 'en_preparacion')} className="btn-estado btn-preparar">👨‍ Preparar</button>}
+                      {pedido.estado === 'pendiente' && <button onClick={() => cambiarEstadoPedido(pedido.id, 'en_preparacion')} className="btn-estado btn-preparar">👨‍🍳 Preparar</button>}
                       {pedido.estado === 'en_preparacion' && <button onClick={() => cambiarEstadoPedido(pedido.id, 'listo')} className="btn-estado btn-listo">✅ Listo</button>}
                       <button onClick={() => cambiarEstadoPedido(pedido.id, 'entregado')} className="btn-estado btn-entregado"> Entregado</button>
                     </div>
@@ -1122,41 +1245,186 @@ function App() {
 
         {tabActiva === 'productos' && (
           <>
-            <div className="panel-action verde"><h3>📩 Enviar Menú del Día</h3><button onClick={enviarMenuDiario} className="btn-action"> Enviar</button></div>
-            <div className="botones-seguridad"><button onClick={() => setMostrarCambiarPassword(true)} className="btn-seguridad verde">🔑 Cambiar Contraseña</button></div>
-            <h2 className="panel-titulo"> Agregar Producto</h2>
+            <div className="panel-action verde">
+              <h3> Enviar Menú del Día</h3>
+              <button onClick={enviarMenuDiario} className="btn-action">Enviar</button>
+            </div>
+            
+            <div className="botones-seguridad">
+              <button onClick={() => setMostrarCambiarPassword(true)} className="btn-seguridad verde">
+                🔑 Cambiar Contraseña
+              </button>
+            </div>
+            
+            <h2 className="panel-titulo">Agregar Producto</h2>
             <form onSubmit={handleSubmit} className="form-producto">
-              <input type="text" placeholder="Nombre" value={nuevoProducto.nombre} onChange={(e) => setNuevoProducto({...nuevoProducto, nombre: e.target.value})} className="input-neumo" required />
-              <input type="number" placeholder="Precio" value={nuevoProducto.precio} onChange={(e) => setNuevoProducto({...nuevoProducto, precio: e.target.value})} className="input-neumo" required />
-              <select value={nuevoProducto.categoria} onChange={(e) => setNuevoProducto({...nuevoProducto, categoria: e.target.value})} className="input-neumo">
-                <option value="menuDelDia">Menú del Día</option><option value="comidasFijas">Comidas Fijas</option><option value="pizzas">Pizzas</option><option value="empanadas">Empanadas</option><option value="desayunos">Desayunos</option><option value="bebidas">Bebidas</option>
-                <option value="cocteles">Cócteles</option><option value="ginTonic">Gin Tonic</option><option value="medidas">Medidas</option><option value="jarras">Jarras</option><option value="whiskys">Whiskys</option><option value="tequilas">Tequilas</option><option value="cervezas">Cervezas</option><option value="vinos">Vinos</option><option value="espumantes">Espumantes</option><option value="sinAlcohol">Sin Alcohol</option><option value="pizzasNoche">Pizzas Noche</option><option value="minutas">Minutas</option><option value="extras">Extras</option>
+              <input 
+                type="text" 
+                placeholder="Nombre" 
+                value={nuevoProducto.nombre} 
+                onChange={(e) => setNuevoProducto({...nuevoProducto, nombre: e.target.value})} 
+                className="input-neumo" 
+                required 
+              />
+              <input 
+                type="number" 
+                placeholder="Precio" 
+                value={nuevoProducto.precio} 
+                onChange={(e) => setNuevoProducto({...nuevoProducto, precio: e.target.value})} 
+                className="input-neumo" 
+                required 
+              />
+              <textarea 
+                placeholder="📷 URLs de imágenes (separadas por coma). Ej: https://foto1.jpg, https://foto2.jpg"
+                value={nuevoProducto.imagenes || ''}
+                onChange={(e) => setNuevoProducto({...nuevoProducto, imagenes: e.target.value})}
+                className="input-neumo textarea-neumo"
+                rows="2"
+              />
+              <select 
+                value={nuevoProducto.categoria} 
+                onChange={(e) => setNuevoProducto({...nuevoProducto, categoria: e.target.value})} 
+                className="input-neumo"
+              >
+                <option value="menuDelDia">Menú del Día</option>
+                <option value="comidasFijas">Comidas Fijas</option>
+                <option value="pizzas">Pizzas</option>
+                <option value="empanadas">Empanadas</option>
+                <option value="desayunos">Desayunos</option>
+                <option value="bebidas">Bebidas</option>
+                <option value="cocteles">Cócteles</option>
+                <option value="ginTonic">Gin Tonic</option>
+                <option value="medidas">Medidas</option>
+                <option value="jarras">Jarras</option>
+                <option value="whiskys">Whiskys</option>
+                <option value="tequilas">Tequilas</option>
+                <option value="cervezas">Cervezas</option>
+                <option value="vinos">Vinos</option>
+                <option value="espumantes">Espumantes</option>
+                <option value="sinAlcohol">Sin Alcohol</option>
+                <option value="pizzasNoche">Pizzas Noche</option>
+                <option value="minutas">Minutas</option>
+                <option value="extras">Extras</option>
                 <option value="promosNoche">🔥 Promos Noche Delivery</option>
               </select>
-              <select value={nuevoProducto.turno} onChange={(e) => setNuevoProducto({...nuevoProducto, turno: e.target.value})} className="input-neumo">
-                <option value="dia">☀️ Solo Día</option><option value="noche">🌙 Solo Noche</option><option value="ambos">🔄 Ambos Turnos</option>
+              <select 
+                value={nuevoProducto.turno} 
+                onChange={(e) => setNuevoProducto({...nuevoProducto, turno: e.target.value})} 
+                className="input-neumo"
+              >
+                <option value="dia">️ Solo Día</option>
+                <option value="noche">🌙 Solo Noche</option>
+                <option value="ambos">🔄 Ambos Turnos</option>
               </select>
               <button type="submit" className="btn-primary">➕ Agregar</button>
             </form>
-            <h3>📋 Productos Existentes (Todos los turnos)</h3>
-            {productosFirebase.length === 0 ? <div className="sin-productos"><p>⚠️ No hay productos</p></div> : (
+            
+            <h3>📋 Productos Existentes ({productosFirebase.length} en total)</h3>
+            
+            <div style={{ 
+              marginBottom: '1.5rem', 
+              padding: '1rem', 
+              background: 'rgba(0,0,0,0.2)', 
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem',
+              flexWrap: 'wrap'
+            }}>
+              <button 
+                onClick={recargarProductos} 
+                className="btn-primary"
+                style={{ margin: 0 }}
+              >
+                🔄 Recargar Productos
+              </button>
+              <span style={{ color: '#00b894', fontWeight: 'bold' }}>
+                {productosFirebase.length} productos cargados
+              </span>
+            </div>
+            
+            {productosFirebase.length === 0 ? (
+              <div className="sin-productos">
+                <p>⚠️ No hay productos en Firebase</p>
+                <p style={{ fontSize: '0.9rem', color: '#888' }}>
+                  Agregá tu primer producto con el formulario de arriba
+                </p>
+              </div>
+            ) : (
               <div className="productos-admin-grid">
-                {/* CORRECCIÓN: Mostrar TODOS los productos sin filtrar por turnoActual */}
-                {productosFirebase.sort((a, b) => (a.orden || 999) - (b.orden || 999)).map((prod) => (
-                  <div key={prod.id} className="producto-admin-card">
-                    <div className="producto-admin-info">
-                      <strong>{prod.nombre}</strong>
-                      <div className="precio">${prod.precio ? prod.precio.toLocaleString() : '0'}</div>
-                      <div className="meta">Categoría: {prod.categoria} • Turno: {prod.turno || 'ambos'}</div>
-                    </div>
-                    <div className="producto-admin-botones">
-                      <button onClick={() => { const n = prompt('Nuevo nombre:', prod.nombre); if (n && n.trim()) editarProducto(prod.id, { nombre: n.trim() }) }} className="btn-small azul">✏️ Nombre</button>
-                      <button onClick={() => { const p = prompt('Nuevo precio:', prod.precio); if (p && !isNaN(Number(p))) editarProducto(prod.id, { precio: Number(p) }) }} className="btn-small verde">💰 Precio</button>
-                      <button onClick={() => { const c = prompt('Nueva categoría:', prod.categoria); if (c && c.trim()) editarProducto(prod.id, { categoria: c.trim() }) }} className="btn-small purpura">📂 Categoría</button>
-                      <button onClick={() => eliminarProducto(prod.id)} className="btn-small rojo">🗑️ Eliminar</button>
-                    </div>
-                  </div>
-                ))}
+                {[...productosFirebase]
+                  .sort((a, b) => Number(a.orden || 999) - Number(b.orden || 999))
+                  .map((prod) => {
+                    const productId = prod.firestoreId || prod.id;
+                    const tieneFotos = prod.imagenes && prod.imagenes.toString().trim().length > 0;
+                    
+                    return (
+                      <div key={productId} className="producto-admin-card">
+                        <div className="producto-admin-info">
+                          <strong>{prod.nombre || 'Sin nombre'}</strong>
+                          <div className="precio">
+                            ${prod.precio ? Number(prod.precio).toLocaleString('es-AR') : '0'}
+                          </div>
+                          <div className="meta">
+                            📂 {prod.categoria || 'sin categoría'} • 
+                            🕐 {prod.turno || 'ambos'}
+                          </div>
+                          {tieneFotos && (
+                            <div className="meta" style={{ color: '#00b894', marginTop: '0.25rem' }}>
+                              📷 Tiene fotos
+                            </div>
+                          )}
+                        </div>
+                        <div className="producto-admin-botones">
+                          <button 
+                            onClick={() => { 
+                              const n = prompt('Nuevo nombre:', prod.nombre); 
+                              if (n && n.trim()) editarProducto(productId, { nombre: n.trim() }) 
+                            }} 
+                            className="btn-small azul"
+                          >
+                            ✏️ Nombre
+                          </button>
+                          <button 
+                            onClick={() => { 
+                              const p = prompt('Nuevo precio:', prod.precio); 
+                              if (p && !isNaN(Number(p))) editarProducto(productId, { precio: Number(p) }) 
+                            }} 
+                            className="btn-small verde"
+                          >
+                            💰 Precio
+                          </button>
+                          <button 
+                            onClick={() => { 
+                              const c = prompt('Nueva categoría:', prod.categoria); 
+                              if (c && c.trim()) editarProducto(productId, { categoria: c.trim() }) 
+                            }} 
+                            className="btn-small purpura"
+                          >
+                            📂 Categoría
+                          </button>
+                          <button 
+                            onClick={() => { 
+                              const imgs = prompt(
+                                'URLs de imágenes (separadas por coma):\n\nEjemplo:\nhttps://foto1.jpg, https://foto2.jpg', 
+                                prod.imagenes || ''
+                              ); 
+                              if (imgs !== null) editarProducto(productId, { imagenes: imgs.trim() }) 
+                            }} 
+                            className={`btn-small ${tieneFotos ? 'naranja' : 'gris'}`}
+                          >
+                             Fotos
+                          </button>
+                          <button 
+                            onClick={() => eliminarProducto(productId)} 
+                            className="btn-small rojo"
+                          >
+                            ️ Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
             )}
           </>
@@ -1251,42 +1519,31 @@ function App() {
 
         {tabActiva === 'reservas' && (
           <div className="panel-reservas">
-            <h2 className="panel-titulo">📅 Reservas Nocturnas</h2>
-            {/* Las reservas se muestran desde Firebase */}
+            <h2 className="panel-titulo"> Reservas Nocturnas</h2>
           </div>
         )}
       </div>
     )
   }
 
-  // ========== RENDER PRINCIPAL ==========
   const categoriasInfo = turnoActual === 'noche' ? categoriasInfoNoche : categoriasInfoDia
 
-  // Obtener plato especial (el primero de promosNoche con orden 0 o el más antiguo)
-  // LÓGICA CORREGIDA PARA FECHAS ESPECIALES
   const platoEspecial = productosFirebase.find(p => {
     if (p.categoria !== 'promosNoche') return false;
-    
-    // Si tiene flag especial explícito
     if (p.especial) return true;
-    
-    // Si tiene fechas de vigencia
     if (p.fechaInicio && p.fechaFin) {
       const ahora = new Date();
       const inicio = new Date(p.fechaInicio);
       const fin = new Date(p.fechaFin);
-      // Ajustar fin para que incluya todo el día
       fin.setHours(23, 59, 59, 999);
       return ahora >= inicio && ahora <= fin;
     }
-    
     return false;
   }) || null;
 
   return (
     <div className={`app-container ${turnoActual === 'noche' ? 'tema-noche' : turnoActual === 'prevent' ? 'tema-prevent' : 'tema-dia'}`} role="application" aria-label="Aplicación de pedidos Ineva Resto-Bar">
       
-      {/* BOTONES FLOTANTES */}
       <button className="btn-modo-oscuro" onClick={toggleModoOscuro} aria-label={modoOscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'} title={modoOscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}>
         {modoOscuro ? '☀️' : '🌙'}
       </button>
@@ -1298,7 +1555,6 @@ function App() {
       
       {telefono && <button className="btn-fidelidad-flotante" onClick={() => setMostrarFidelidad(true)} aria-label="Ver mis puntos" title="Ver programa de fidelidad">🏆</button>}
 
-      {/* 🧪 BOTÓN DE PRUEBA DE TURNOS (SOLO ADMIN) */}
       {esAdmin && (
         <div style={{ 
           position: 'fixed', 
@@ -1312,12 +1568,11 @@ function App() {
           gap: '5px'
         }}>
           <button onClick={() => setTurnoActual('dia')} style={{ padding: '5px 10px', cursor: 'pointer', background: turnoActual === 'dia' ? '#00b894' : '#333', color: 'white', border: 'none', borderRadius: '5px' }}>☀️ Día</button>
-          <button onClick={() => setTurnoActual('prevent')} style={{ padding: '5px 10px', cursor: 'pointer', background: turnoActual === 'prevent' ? '#ec4899' : '#333', color: 'white', border: 'none', borderRadius: '5px' }}>🌆 Prevent</button>
+          <button onClick={() => setTurnoActual('prevent')} style={{ padding: '5px 10px', cursor: 'pointer', background: turnoActual === 'prevent' ? '#ec4899' : '#333', color: 'white', border: 'none', borderRadius: '5px' }}> Prevent</button>
           <button onClick={() => setTurnoActual('noche')} style={{ padding: '5px 10px', cursor: 'pointer', background: turnoActual === 'noche' ? '#8b5cf6' : '#333', color: 'white', border: 'none', borderRadius: '5px' }}>🌙 Noche</button>
         </div>
       )}
 
-      {/* MODAL RESERVAS */}
       {mostrarReservas && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-reservas">
@@ -1333,12 +1588,12 @@ function App() {
                 <div className="form-field"><label>📅 Fecha:</label><input type="date" value={formReserva.fecha} onChange={(e) => setFormReserva({...formReserva, fecha: e.target.value})} className="input-neumo" /></div>
                 <div className="form-field"><label>🕐 Hora:</label><input type="time" value={formReserva.hora} onChange={(e) => setFormReserva({...formReserva, hora: e.target.value})} className="input-neumo" /></div>
               </div>
-              <div className="form-field"><label>👥 Personas:</label><select value={formReserva.personas} onChange={(e) => setFormReserva({...formReserva, personas: e.target.value})} className="input-neumo">
+              <div className="form-field"><label> Personas:</label><select value={formReserva.personas} onChange={(e) => setFormReserva({...formReserva, personas: e.target.value})} className="input-neumo">
                 <option value="1">1 persona</option><option value="2">2 personas</option><option value="3">3 personas</option><option value="4">4 personas</option><option value="5">5 personas</option><option value="6">6 personas</option><option value="7">7 personas</option><option value="8">8+ personas</option>
               </select></div>
               <div className="form-field"><label>💬 Mensaje (opcional):</label><textarea value={formReserva.mensaje} onChange={(e) => setFormReserva({...formReserva, mensaje: e.target.value})} className="input-neumo textarea-neumo" rows="3" placeholder="Cumpleaños, evento especial, etc." /></div>
               <div className="modal-buttons">
-                <button onClick={enviarReserva} className="btn-ingresar">📅 Enviar Reserva</button>
+                <button onClick={enviarReserva} className="btn-ingresar"> Enviar Reserva</button>
                 <button onClick={() => setMostrarReservas(false)} className="btn-cancelar">Cancelar</button>
               </div>
             </div>
@@ -1346,11 +1601,10 @@ function App() {
         </div>
       )}
 
-      {/* MODAL GUÍA */}
       {mostrarGuia && (
         <div className="guia-overlay" role="dialog" aria-modal="true">
           <div className="guia-modal">
-            <div className="guia-header"><h3>👋 Te ayudo a usar la app</h3><button className="guia-cerrar" onClick={saltarGuia}>✕</button></div>
+            <div className="guia-header"><h3> Te ayudo a usar la app</h3><button className="guia-cerrar" onClick={saltarGuia}>✕</button></div>
             <div className="guia-content">
               <div className="guia-paso-actual"><h4>{pasosGuia[pasoActual].titulo}</h4><p>{pasosGuia[pasoActual].descripcion}</p></div>
               <div className="guia-indicador">{pasosGuia.map((_, index) => (<div key={index} className={`guia-dot ${index === pasoActual ? 'activo' : ''} ${index < pasoActual ? 'completado' : ''}`} />))}</div>
@@ -1364,7 +1618,6 @@ function App() {
         </div>
       )}
 
-      {/* MODAL CALIFICACIÓN */}
       {mostrarCalificacion && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-calificacion">
@@ -1378,14 +1631,13 @@ function App() {
               </div>
             </div>
             <div className="modal-buttons">
-              <button onClick={() => { if (calificacion > 0) { /* enviar */ setMostrarCalificacion(false); setCalificacion(0); setComentarioResena('') } }} className="btn-ingresar" disabled={calificacion === 0}>✅ Enviar</button>
+              <button onClick={() => { if (calificacion > 0) { setMostrarCalificacion(false); setCalificacion(0); setComentarioResena('') } }} className="btn-ingresar" disabled={calificacion === 0}>✅ Enviar</button>
               <button onClick={() => { setMostrarCalificacion(false); setCalificacion(0); setComentarioResena('') }} className="btn-cancelar">Ahora no</button>
             </div>
           </div>
         </div>
       )}
 
-      {/* MODAL RESEÑA */}
       {mostrarFormResena && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-calificacion">
@@ -1406,7 +1658,6 @@ function App() {
         </div>
       )}
 
-      {/* MODAL REDES */}
       {mostrarRedes && (
         <div className="redes-overlay" role="dialog" aria-modal="true">
           <div className="redes-modal">
@@ -1426,7 +1677,6 @@ function App() {
         </div>
       )}
 
-      {/* MODAL TÉRMINOS */}
       {mostrarTerminos && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-terminos">
@@ -1442,7 +1692,6 @@ function App() {
         </div>
       )}
 
-      {/* MODAL ZONA DELIVERY */}
       {mostrarZonaDelivery && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-zona">
@@ -1456,7 +1705,6 @@ function App() {
         </div>
       )}
 
-      {/* MODAL FIDELIDAD */}
       {mostrarFidelidad && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-fidelidad">
@@ -1512,7 +1760,6 @@ function App() {
         </div>
       )}
 
-      {/* CARRITO FLOTANTE */}
       {mostrarCarritoFlotante && (
         <div className="carrito-flotante" onClick={scrollToCart} role="button" aria-label={`Ver carrito, ${totalItems} items`} tabIndex={0}>
           <div className="carrito-flotante-icono">🛒<span className="carrito-badge">{totalItems}</span></div>
@@ -1520,24 +1767,22 @@ function App() {
         </div>
       )}
 
-      {/* NOTIFICACIÓN PEDIDO */}
       {mostrarNotificacion && (
         <div className="notification-popup" role="alert">
           <div className="notification-header"><h3>🔔 ¡Nuevo Pedido!</h3><button onClick={() => setMostrarNotificacion(null)}>✕</button></div>
           <div className="notification-content">
             <p><strong>👤 Cliente:</strong> {mostrarNotificacion.cliente?.nombre}</p>
             <p><strong>📱 Tel:</strong> {mostrarNotificacion.cliente?.telefono}</p>
-            <p className="total"><strong>💰 Total:</strong> {formatearPrecio(mostrarNotificacion.total)}</p>
+            <p className="total"><strong> Total:</strong> {formatearPrecio(mostrarNotificacion.total)}</p>
           </div>
           <button onClick={() => { setMostrarNotificacion(null); if (!esAdmin) setMostrarLogin(true); else setMostrarPanelAdmin(true) }} className="btn-ver-detalles">👁️ Ver Detalles</button>
         </div>
       )}
 
-      {/* BUSCADOR */}
       <div className="buscador-inteligente" ref={buscadorRef} role="search">
         <div className="buscador-header"><span className="buscador-titulo">🔍 ¿Qué querés comer hoy?</span></div>
         <div className="buscador-input-wrapper">
-          <span className="buscador-icono">🔎</span>
+          <span className="buscador-icono"></span>
           <input type="text" placeholder="Buscá: milanesa, fernet, pizza..." value={terminoBusqueda} onChange={handleBusquedaChange} className="buscador-input" />
           {terminoBusqueda && <button className="buscador-limpiar" onClick={() => { setTerminoBusqueda(''); setMostrarResultados(false); setCategoriaActiva(null) }}>✕</button>}
         </div>
@@ -1564,7 +1809,6 @@ function App() {
         )}
       </div>
 
-      {/* BOTONES ADMIN */}
       <div className="admin-buttons">
         {esAdmin ? (
           <div className="admin-buttons-group">
@@ -1574,7 +1818,6 @@ function App() {
         ) : <button onClick={() => setMostrarLogin(true)} className="btn-admin">👤 Admin</button>}
       </div>
 
-      {/* LOGIN */}
       {mostrarLogin && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content">
@@ -1585,7 +1828,6 @@ function App() {
         </div>
       )}
 
-      {/* CAMBIAR PASSWORD */}
       {mostrarCambiarPassword && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content">
@@ -1598,7 +1840,6 @@ function App() {
         </div>
       )}
 
-      {/* HEADER CON FONDO SEGÚN TURNO */}
       <div className={`header ${turnoActual === 'noche' ? 'header-noche' : turnoActual === 'prevent' ? 'header-prevent' : 'header-dia'}`}>
         <div className="header-title">
           <div className="logo-circle"><span className="logo-text" translate="no">IN</span></div>
@@ -1610,47 +1851,41 @@ function App() {
         <p>Horario: {datosActuales.horarios}</p>
       </div>
 
-      {/* STATUS BANNER */}
       <div className={`status-banner ${estaAbierto ? 'abierto' : 'cerrado'} ${turnoActual === 'noche' ? 'banner-noche' : ''}`} role="status">
         <div className="status-indicator"><span className={`status-dot ${estaAbierto ? 'verde' : 'rojo'}`}></span><strong>{mensajeHorario}</strong></div>
-        <div className="status-timer"><span> {tiempoRestante}</span></div>
+        <div className="status-timer"><span>️ {tiempoRestante}</span></div>
       </div>
 
-      {/* TIME BANNER */}
       <div className="time-banner">
         <p>⏱️ Tiempo estimado: <strong>20 a 40 minutos</strong></p>
         <p className="horario-info">🕐 {datosActuales.horarios}</p>
         {turnoActual === 'noche' && <p className="horario-info neon-text">🎉 Noche de Tragos & Música en Vivo</p>}
       </div>
 
-      {/* LOCAL CERRADO */}
       {!estaAbierto && turnoActual !== 'prevent' && (
         <div className="cerrado-warning" role="alert">
-          <p>⚠️ <strong>El local está cerrado.</strong></p>
+          <p>️ <strong>El local está cerrado.</strong></p>
           <p>Podés armar tu pedido, se enviará cuando abramos.</p>
         </div>
       )}
 
-      {/* PREVENTA */}
       {turnoActual === 'prevent' && (
         <div className="prevent-banner">
           <div className="prevent-content">
             <h2>🌆 ¡Preparando la Noche!</h2>
             <p>Abrimos a las 21:00 hs con la mejor noche de tragos y música</p>
             <div className="prevent-actions">
-              <button className="btn-reservar-prevent" onClick={() => setMostrarReservas(true)}>📅 Reservar Mesa</button>
+              <button className="btn-reservar-prevent" onClick={() => setMostrarReservas(true)}> Reservar Mesa</button>
               <p className="prevent-info">📞 Consultas: {DATOS_NOCHE.telefono}</p>
             </div>
           </div>
         </div>
       )}
 
-      {/* PANEL ADMIN O APP NORMAL */}
       {esAdmin && mostrarPanelAdmin ? (
         <PanelAdministracion />
       ) : turnoActual !== 'prevent' ? (
         <>
-          {/* PLATO ESPECIAL (Solo noche y si existe) */}
           {turnoActual === 'noche' && platoEspecial && (
             <div className="plato-especial-banner">
               <div className="plato-especial-content">
@@ -1663,7 +1898,6 @@ function App() {
             </div>
           )}
 
-          {/* SECCIONES DE MENÚ SEGÚN TURNO */}
           {turnoActual === 'noche' ? (
             <div className="menu-acordeon-container">
               {categoriasOrdenNoche.map((cat) => (
@@ -1680,7 +1914,6 @@ function App() {
               ))}
             </div>
           ) : (
-            // ACORDEÓN PARA EL DÍA
             <div className="menu-acordeon-container">
               {categoriasOrdenDia.map((cat) => (
                 <AcordeonCategoria 
@@ -1697,15 +1930,14 @@ function App() {
             </div>
           )}
 
-          {/* FORMULARIO CLIENTE */}
           <div className="form-section">
-            <h2> Datos del Cliente</h2>
+            <h2>📝 Datos del Cliente</h2>
             <div className="form-group">
               <label htmlFor="nombre-completo">👤 Nombre: <span className="required">*</span></label>
               <input id="nombre-completo" type="text" className="form-input" value={nombreCompleto} onChange={(e) => { setNombreCompleto(e.target.value); setError(''); }} placeholder="Ej: Juan Pérez" />
             </div>
             <div className="form-group">
-              <label htmlFor="telefono">📱 Teléfono: <span className="required">*</span></label>
+              <label htmlFor="telefono"> Teléfono: <span className="required">*</span></label>
               <input id="telefono" type="tel" className="form-input" value={telefono} onChange={(e) => { setTelefono(e.target.value); setError(''); }} placeholder="Ej: 3878123456" />
             </div>
             <div className="subscribe-box">
@@ -1713,18 +1945,17 @@ function App() {
             </div>
           </div>
 
-          {/* TIPO DE ENTREGA */}
           <div className="form-section">
-            <h2> Tipo de Entrega</h2>
+            <h2>🚚 Tipo de Entrega</h2>
             <div className="delivery-buttons">
               <button className={`delivery-btn ${tipoEntrega === 'delivery' ? 'active' : ''}`} onClick={() => { setTipoEntrega('delivery'); setError(''); }}>🚚 Delivery</button>
               <button className={`delivery-btn ${tipoEntrega === 'retirar' ? 'active' : ''}`} onClick={() => { setTipoEntrega('retirar'); setError(''); }}>🏪 Retirar</button>
             </div>
-            <button className="btn-ver-zona" onClick={() => setMostrarZonaDelivery(true)}>️ Ver zona de delivery</button>
+            <button className="btn-ver-zona" onClick={() => setMostrarZonaDelivery(true)}>🗺️ Ver zona de delivery</button>
             
             {tipoEntrega === 'delivery' && turnoActual === 'noche' && (
               <div className="delivery-noche-info">
-                <p>📍 <strong>Delivery Nocturno:</strong> {datosActuales.deliveryTexto}</p>
+                <p> <strong>Delivery Nocturno:</strong> {datosActuales.deliveryTexto}</p>
                 <p>💬 Para conocer el precio exacto según tu zona, consultanos por WhatsApp después de enviar tu pedido.</p>
               </div>
             )}
@@ -1742,7 +1973,6 @@ function App() {
             )}
           </div>
 
-          {/* CARRITO */}
           <div className="cart-section" id="cart-section">
             <h2>🛒 Pedidos ({totalItems} items)</h2>
             {pedidos.length === 0 ? <div className="empty-cart">No hay pedidos aún</div> : (
@@ -1759,7 +1989,7 @@ function App() {
                       </div>
                       <div className="cart-item-total">{formatearPrecio(pedido.precio * pedido.cantidad)}</div>
                     </div>
-                    <input type="text" className="cart-item-note" value={notasPorProducto[pedido.id] || ''} onChange={(e) => actualizarNota(pedido.id, e.target.value)} placeholder=" Nota" />
+                    <input type="text" className="cart-item-note" value={notasPorProducto[pedido.id] || ''} onChange={(e) => actualizarNota(pedido.id, e.target.value)} placeholder="📝 Nota" />
                   </div>
                 ))}
                 <div className="resumen-pedido">
@@ -1779,13 +2009,12 @@ function App() {
                 {error && <div className="error-message">{error}</div>}
                 <div className="cart-footer">
                   <div className="total-amount">Total: <span>{formatearPrecio(totalConEnvio)}</span></div>
-                  <button className="btn-whatsapp" onClick={enviarPorWhatsApp} disabled={cargando}>{cargando ? ' Enviando...' : '📱 Enviar Pedido'}</button>
+                  <button className="btn-whatsapp" onClick={enviarPorWhatsApp} disabled={cargando}>{cargando ? '⏳ Enviando...' : ' Enviar Pedido'}</button>
                 </div>
               </div>
             )}
           </div>
 
-          {/* RESEÑAS */}
           <div className="seccion-resenas">
             <div className="resenas-header"><h2>⭐ Lo que dicen nuestros clientes</h2></div>
             <div className="resenas-resumen">
@@ -1799,14 +2028,13 @@ function App() {
             </div>
           </div>
 
-          {/* CONTACTO */}
           <div className="seccion-contacto">
             <h2>📞 Contacto</h2>
             <div className="contacto-grid">
               <div className="contacto-card"><div className="contacto-icono">📍</div><h3>Dirección</h3><p>{datosActuales.direccion}</p><button className="btn-contacto" onClick={abrirGoogleMaps}>🗺️ Ver</button></div>
               
               <div className="contacto-card">
-                <div className="contacto-icono">📞</div>
+                <div className="contacto-icono"></div>
                 <h3>Teléfonos</h3>
                 <p><strong>Cel/WhatsApp:</strong> {datosActuales.telefono}</p>
                 {datosActuales.telefonoFijo && (
@@ -1824,7 +2052,6 @@ function App() {
             </div>
           </div>
 
-          {/* FOOTER */}
           <footer className="footer-app">
             <div className="footer-content">
               <div className="footer-info"><h4>{datosActuales.nombre}</h4><p>📍 {datosActuales.direccion}</p><p>📞 {datosActuales.telefono}</p></div>
