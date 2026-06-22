@@ -3,12 +3,12 @@ import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAhaqx8Wkn6MOtkCdJK--WhfTy3ZcULOeo",
-  authDomain: "pagina-ineva.firebaseapp.com",
-  projectId: "pagina-ineva",
-  storageBucket: "pagina-ineva.firebasestorage.app",
-  messagingSenderId: "634812168080",
-  appId: "1:634812168080:web:ebf993399d546c36bc6515"
+  apiKey: "AIzaSyDQ0ttmojsPWvLmO5_zQbEtcDZU-kdyrA4",
+  authDomain: "ineva-resto-bar.firebaseapp.com",
+  projectId: "ineva-resto-bar",
+  storageBucket: "ineva-resto-bar.firebasestorage.app",
+  messagingSenderId: "187881514354",
+  appId: "1:187881514354:web:5e1b8e3b0428afb6c769eb"
 }
 
 const app = initializeApp(firebaseConfig)
