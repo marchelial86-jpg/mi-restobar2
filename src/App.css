@@ -8320,6 +8320,22 @@ body {
 }/* ============================================
    FONDO CON IMAGEN DEL LOCAL - INEVA
    ============================================ */
+/* ============================================
+   FONDO CON IMAGEN DEL LOCAL - INEVA
+   ============================================ */
+body {
+  background-image: url('/fachada-ineva.jpg.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.app-container {
+  position: relative;
+  background: transparent !important;
+}
+
 .app-container::before {
   content: '';
   position: fixed;
@@ -8331,12 +8347,18 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   opacity: 0.15;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
 }
 
-/* Para el tema nocturno */
+.app-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Tema nocturno - un poco más visible */
 .tema-noche .app-container::before {
   opacity: 0.2;
 }
