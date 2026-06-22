@@ -763,4 +763,28 @@ CORRECCIÓN: Categorías texto visible en modo oscuro
 
 .modo-oscuro .producto-admin-card {
   background: #1e293b;
+}/* ============================================
+CORRECCIÓN: MANTENER PROPORCIÓN DE FOTOS
+============================================ */
+.product-card .galeria-producto,
+.product-card .galeria-foto-principal {
+  width: 120px !important;
+  height: 120px !important;
+  flex-shrink: 0;
+}
+
+.product-card .galeria-img-principal {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 8px;
+}
+
+/* Responsive para celular */
+@media (max-width: 600px) {
+  .product-card .galeria-producto,
+  .product-card .galeria-foto-principal {
+    width: 100px !important;
+    height: 100px !important;
+  }
 }

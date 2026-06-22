@@ -1814,6 +1814,14 @@ registrarServiceWorker()
         </div>
       )}
 
+      <div className={`header ${turnoActual === 'noche' ? 'header-noche' : turnoActual === 'prevent' ? 'header-prevent' : 'header-dia'}`}>
+        <div className="header-title">
+          <div className="logo-circle"><span className="logo-text" translate="no">IN</span></div>
+          <div>
+            <h1>{datosActuales.nombre}</h1>
+            <p className="subtitulo-turno">{datosActuales.subtitulo}</p>
+          </div>
+        </div>
       <div className="buscador-inteligente" ref={buscadorRef} role="search">
         <div className="buscador-header"><span className="buscador-titulo">🔍 ¿Qué querés comer hoy?</span></div>
         <div className="buscador-input-wrapper">
@@ -1875,14 +1883,7 @@ registrarServiceWorker()
         </div>
       )}
 
-      <div className={`header ${turnoActual === 'noche' ? 'header-noche' : turnoActual === 'prevent' ? 'header-prevent' : 'header-dia'}`}>
-        <div className="header-title">
-          <div className="logo-circle"><span className="logo-text" translate="no">IN</span></div>
-          <div>
-            <h1>{datosActuales.nombre}</h1>
-            <p className="subtitulo-turno">{datosActuales.subtitulo}</p>
-          </div>
-        </div>
+      
         <p>Horario: {datosActuales.horarios}</p>
       </div>
 
