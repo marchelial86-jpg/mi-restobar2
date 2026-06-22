@@ -8331,12 +8331,12 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.05;
+  opacity: 0.15;
   z-index: -1;
   pointer-events: none;
 }
 
 /* Para el tema nocturno */
 .tema-noche .app-container::before {
-  opacity: 0.08;
+  opacity: 0.2;
 }
