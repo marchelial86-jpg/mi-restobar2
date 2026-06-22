@@ -4,7 +4,7 @@ import { db } from './firebase'
 import './App.css'
 
 // ============================================
-// ️ COMPONENTE GALERÍA DE FOTOS
+// 🖼️ COMPONENTE GALERÍA DE FOTOS
 // ============================================
 function GaleriaProducto({ imagenes = [], nombreProducto }) {
   const [fotoActiva, setFotoActiva] = useState(0);
@@ -82,7 +82,7 @@ function GaleriaProducto({ imagenes = [], nombreProducto }) {
 
       {lightboxAbierto && (
         <div className="lightbox-overlay" onClick={cerrarLightbox} role="dialog" aria-modal="true">
-          <button className="lightbox-cerrar" onClick={cerrarLightbox} aria-label="Cerrar"></button>
+          <button className="lightbox-cerrar" onClick={cerrarLightbox} aria-label="Cerrar">✕</button>
           
           {imagenes.length > 1 && (
             <>
@@ -470,7 +470,7 @@ function App() {
     menuDelDia: { nombre: 'Menú del Día', emoji: '📋', color: '#6c5ce7' },
     comidasFijas: { nombre: 'Comidas Fijas', emoji: '🍽️', color: '#00b894' },
     pizzas: { nombre: 'Pizzas', emoji: '🍕', color: '#e17055' },
-    empanadas: { nombre: 'Empanadas', emoji: '', color: '#fdcb6e' },
+    empanadas: { nombre: 'Empanadas', emoji: '🥟', color: '#fdcb6e' },
     desayunos: { nombre: 'Desayunos', emoji: '🥐', color: '#a29bfe' },
     bebidas: { nombre: 'Bebidas', emoji: '🥤', color: '#00cec9' }
   }
@@ -484,14 +484,14 @@ function App() {
     tequilas: { nombre: 'Tequilas & Shots', emoji: '🌵', color: '#10B981' },
     otros: { nombre: 'Otros', emoji: '🎲', color: '#EF4444' },
     cervezas: { nombre: 'Cervezas', emoji: '🍻', color: '#F59E0B' },
-    vinos: { nombre: 'Vinos', emoji: '', color: '#7C3AED' },
+    vinos: { nombre: 'Vinos', emoji: '🍷', color: '#7C3AED' },
     espumantes: { nombre: 'Espumantes', emoji: '🥂', color: '#EC4899' },
     sinAlcohol: { nombre: 'Sin Alcohol', emoji: '🧃', color: '#06B6D4' },
     pizzasNoche: { nombre: 'Pizzas', emoji: '🍕', color: '#EF4444' },
     empanadasNoche: { nombre: 'Empanadas', emoji: '🥟', color: '#F59E0B' },
-    minutas: { nombre: 'Minutas', emoji: '', color: '#10B981' },
+    minutas: { nombre: 'Minutas', emoji: '🥪', color: '#10B981' },
     extras: { nombre: 'Extras', emoji: '🍟', color: '#F97316' },
-    promosNoche: { nombre: 'Super Promos Delivery', emoji: '', color: '#FF0000' }
+    promosNoche: { nombre: 'Super Promos Delivery', emoji: '🔥', color: '#FF0000' }
   }
 
   const categoriasOrdenNoche = [
@@ -507,7 +507,7 @@ function App() {
     { key: 'espumantes', nombre: 'Espumantes', emoji: '🥂' },
     { key: 'jarras', nombre: 'Jarras', emoji: '🍺' },
     { key: 'medidas', nombre: 'Medidas', emoji: '🥃' },
-    { key: 'ginTonic', nombre: 'Gin Tonic', emoji: '' },
+    { key: 'ginTonic', nombre: 'Gin Tonic', emoji: '🍸' },
     { key: 'tequilas', nombre: 'Tequila & Shots', emoji: '🌵' },
     { key: 'sinAlcohol', nombre: 'Sin Alcohol', emoji: '🧃' }
   ];
@@ -522,7 +522,7 @@ function App() {
   ];
 
   const pasosGuia = [
-    { id: 'buscador', titulo: ' Buscá rápido', descripcion: 'Usá el buscador para encontrar tus productos favoritos.' },
+    { id: 'buscador', titulo: '🔍 Buscá rápido', descripcion: 'Usá el buscador para encontrar tus productos favoritos.' },
     { id: 'categorias', titulo: '📂 Categorías', descripcion: 'Hacé clic en las categorías para navegar rápido.' },
     { id: 'productos', titulo: '🍔 Agregá al carrito', descripcion: 'Hacé clic en "+ Agregar" para añadir productos.' },
     { id: 'carrito', titulo: '🛒 Tu pedido', descripcion: 'El carrito flotante te muestra el total.' },
@@ -550,7 +550,7 @@ function App() {
         nuevoTurno = 'dia'
         abierto = true
         const minsHastaCierre = cierreDia - tiempoActualEnMinutos
-        msgHorario = ' Abierto ahora'
+        msgHorario = '🟢 Abierto ahora'
         tiempoRest = `Cierra en ${Math.floor(minsHastaCierre / 60)}h ${minsHastaCierre % 60}min`
       } else if (tiempoActualEnMinutos >= cierreDia && tiempoActualEnMinutos < aperturaNoche) {
         nuevoTurno = 'prevent'
@@ -807,7 +807,7 @@ function App() {
     try {
       const q = query(collection(db, 'clientes'), where('telefono', '==', telefono))
       const querySnapshot = await getDocs(q)
-      if (querySnapshot.empty) { alert(' Cliente no encontrado'); return }
+      if (querySnapshot.empty) { alert('❌ Cliente no encontrado'); return }
       const clienteId = querySnapshot.docs[0].id
       const nuevosPuntos = puntosCliente.totalPuntos - premio.puntosRequeridos
       const historialActual = [...historialPuntos]
@@ -850,7 +850,7 @@ function App() {
       const q = query(collection(db, 'fidelidad_periodos'), orderBy('fechaInicio', 'desc'))
       const qs = await getDocs(q)
       setPeriodosFidelidad(qs.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-    } catch (error) { alert(' Error: ' + error.message) }
+    } catch (error) { alert('❌ Error: ' + error.message) }
   }
 
   const marcarCanjeEntregado = async (canjeId) => {
@@ -860,7 +860,7 @@ function App() {
       const q = query(collection(db, 'fidelidad_canjes'), orderBy('fecha', 'desc'))
       const qs = await getDocs(q)
       setCanjesFidelidad(qs.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-    } catch (error) { alert(' Error: ' + error.message) }
+    } catch (error) { alert('❌ Error: ' + error.message) }
   }
 
   const enviarReserva = async () => {
@@ -876,7 +876,7 @@ function App() {
         turno: 'noche'
       })
       alert('✅ ¡Reserva enviada! Te confirmaremos por WhatsApp.')
-      const mensaje = encodeURIComponent(`🎉 *NUEVA RESERVA - Ineva Resto-Bar*\n\n👤 ${formReserva.nombre}\n📱 ${formReserva.telefono}\n ${formReserva.fecha}\n🕐 ${formReserva.hora}\n👥 ${formReserva.personas} personas\n💬 ${formReserva.mensaje || 'Sin mensaje'}`)
+      const mensaje = encodeURIComponent(`🎉 *NUEVA RESERVA - Ineva Resto-Bar*\n\n👤 ${formReserva.nombre}\n📱 ${formReserva.telefono}\n📅 ${formReserva.fecha}\n🕐 ${formReserva.hora}\n👥 ${formReserva.personas} personas\n💬 ${formReserva.mensaje || 'Sin mensaje'}`)
       window.open(`https://wa.me/${DATOS_NOCHE.telefonoWhatsApp}?text=${mensaje}`, '_blank')
       setMostrarReservas(false)
       setFormReserva({ nombre: '', telefono: '', fecha: '', hora: '', personas: '2', mensaje: '' })
@@ -907,7 +907,7 @@ function App() {
   }
 
   const validarZonaDelivery = () => {
-    if (!direccion.trim()) { setError(' Debes ingresar la dirección'); return false }
+    if (!direccion.trim()) { setError('❌ Debes ingresar la dirección'); return false }
     setDireccionValida(true); return true
   }
 
@@ -972,7 +972,7 @@ function App() {
   const verificarLogin = async () => {
     const passwordGuardada = await getPasswordDesdeFirebase()
     if (passwordAdmin === passwordGuardada) { setEsAdmin(true); setMostrarLogin(false); setPasswordAdmin('') }
-    else alert(' Contraseña incorrecta')
+    else alert('❌ Contraseña incorrecta')
   }
 
   const logout = () => { setEsAdmin(false); setMostrarPanelAdmin(false) }
@@ -1032,7 +1032,7 @@ function App() {
     try {
       await addDoc(collection(db, 'productos'), { ...producto, disponible: true, fechaCreacion: new Date().toISOString() })
       alert('✅ Producto agregado'); await recargarProductos()
-    } catch (error) { alert(' Error al agregar producto') }
+    } catch (error) { alert('❌ Error al agregar producto') }
   }
 
   const editarProducto = async (id, datosActualizados) => {
@@ -1071,7 +1071,7 @@ function App() {
 
   const generarMensajeWhatsApp = () => {
     let mensaje = `* NUEVO PEDIDO - ${datosActuales.nombre}*\n\n`
-    mensaje += `* Cliente:* ${nombreCompleto}\n* Teléfono:* ${telefono}\n* Tipo:* ${tipoEntrega === 'delivery' ? ' Delivery' : ' Retiro en local'}\n`
+    mensaje += `* Cliente:* ${nombreCompleto}\n* Teléfono:* ${telefono}\n* Tipo:* ${tipoEntrega === 'delivery' ? '🚚 Delivery' : '🏪 Retiro en local'}\n`
     if (tipoEntrega === 'delivery') mensaje += `* Dirección:* ${direccion}\n`
     mensaje += `\n* PEDIDO:*\n`
     pedidos.forEach((p) => {
@@ -1085,7 +1085,7 @@ function App() {
   }
 
   const enviarPorWhatsApp = async () => {
-    if (pedidos.length === 0) { setError(' No hay productos'); return }
+    if (pedidos.length === 0) { setError('❌ No hay productos'); return }
     if (!nombreCompleto.trim()) { setError('❌ Ingresá tu nombre'); return }
     if (!telefono.trim()) { setError('❌ Ingresá tu teléfono'); return }
     if (!tipoEntrega) { setError('❌ Seleccioná tipo de entrega'); return }
@@ -1117,7 +1117,7 @@ function App() {
       setPedidoReciente(docRef.id)
       setPedidos([]); setNotasPorProducto({}); setTipoEntrega(''); setDireccion('')
       setTimeout(() => setMostrarCalificacion(true), 2000)
-    } catch (error) { setError(' Error al procesar el pedido') }
+    } catch (error) { setError('❌ Error al procesar el pedido') }
     finally { setCargando(false) }
   }
 
@@ -1208,7 +1208,7 @@ function App() {
       <div className="panel-admin-container" role="main" aria-label="Panel de administración">
         <div className="admin-tabs">
           <button className={`admin-tab ${tabActiva === 'pedidos' ? 'activa' : ''}`} onClick={() => setTabActiva('pedidos')}>📋 Pedidos</button>
-          <button className={`admin-tab ${tabActiva === 'productos' ? 'activa' : ''}`} onClick={() => setTabActiva('productos')}> Productos</button>
+          <button className={`admin-tab ${tabActiva === 'productos' ? 'activa' : ''}`} onClick={() => setTabActiva('productos')}>🔧 Productos</button>
           <button className={`admin-tab ${tabActiva === 'fidelidad' ? 'activa' : ''}`} onClick={() => setTabActiva('fidelidad')}>🏆 Fidelidad</button>
           <button className={`admin-tab ${tabActiva === 'reservas' ? 'activa' : ''}`} onClick={() => setTabActiva('reservas')}>📅 Reservas</button>
         </div>
@@ -1234,7 +1234,7 @@ function App() {
                     <div className="pedido-botones">
                       {pedido.estado === 'pendiente' && <button onClick={() => cambiarEstadoPedido(pedido.id, 'en_preparacion')} className="btn-estado btn-preparar">👨‍🍳 Preparar</button>}
                       {pedido.estado === 'en_preparacion' && <button onClick={() => cambiarEstadoPedido(pedido.id, 'listo')} className="btn-estado btn-listo">✅ Listo</button>}
-                      <button onClick={() => cambiarEstadoPedido(pedido.id, 'entregado')} className="btn-estado btn-entregado"> Entregado</button>
+                      <button onClick={() => cambiarEstadoPedido(pedido.id, 'entregado')} className="btn-estado btn-entregado">📦 Entregado</button>
                     </div>
                   </div>
                 ))}
@@ -1246,8 +1246,8 @@ function App() {
         {tabActiva === 'productos' && (
           <>
             <div className="panel-action verde">
-              <h3> Enviar Menú del Día</h3>
-              <button onClick={enviarMenuDiario} className="btn-action">Enviar</button>
+              <h3>📩 Enviar Menú del Día</h3>
+              <button onClick={enviarMenuDiario} className="btn-action">📩 Enviar</button>
             </div>
             
             <div className="botones-seguridad">
@@ -1256,7 +1256,7 @@ function App() {
               </button>
             </div>
             
-            <h2 className="panel-titulo">Agregar Producto</h2>
+            <h2 className="panel-titulo">➕ Agregar Producto</h2>
             <form onSubmit={handleSubmit} className="form-producto">
               <input 
                 type="text" 
@@ -1312,7 +1312,7 @@ function App() {
                 onChange={(e) => setNuevoProducto({...nuevoProducto, turno: e.target.value})} 
                 className="input-neumo"
               >
-                <option value="dia">️ Solo Día</option>
+                <option value="dia">☀️ Solo Día</option>
                 <option value="noche">🌙 Solo Noche</option>
                 <option value="ambos">🔄 Ambos Turnos</option>
               </select>
@@ -1352,113 +1352,58 @@ function App() {
               </div>
             ) : (
               <div className="productos-admin-grid">
-  {[...productosFirebase]
-    .sort((a, b) => {
-      // Orden personalizado por categoría
-      const ordenCategorias = {
-        'menuDelDia': 1,
-        'comidasFijas': 2,
-        'pizzas': 3,
-        'empanadas': 4,
-        'desayunos': 5,
-        'bebidas': 6,
-        'cocteles': 7,
-        'ginTonic': 8,
-        'medidas': 9,
-        'jarras': 10,
-        'whiskys': 11,
-        'tequilas': 12,
-        'cervezas': 13,
-        'vinos': 14,
-        'espumantes': 15,
-        'sinAlcohol': 16,
-        'pizzasNoche': 17,
-        'empanadasNoche': 18,
-        'minutas': 19,
-        'extras': 20,
-        'promosNoche': 21,
-        'otros': 22
-      };
-      
-      const ordenA = ordenCategorias[a.categoria] || 999;
-      const ordenB = ordenCategorias[b.categoria] || 999;
-      
-      // Primero ordenar por categoría, luego por orden dentro de la categoría
-      if (ordenA !== ordenB) return ordenA - ordenB;
-      return Number(a.orden || 999) - Number(b.orden || 999);
-    })
-    .map((prod) => {
-      const productId = prod.firestoreId || prod.id;
-      const tieneFotos = prod.imagenes && prod.imagenes.toString().trim().length > 0;
-      
-      return (
-        <div key={productId} className="producto-admin-card">
-          <div className="producto-admin-info">
-            <strong>{prod.nombre || 'Sin nombre'}</strong>
-            <div className="precio">
-              ${prod.precio ? Number(prod.precio).toLocaleString('es-AR') : '0'}
-            </div>
-            <div className="meta">
-              📂 {prod.categoria || 'sin categoría'} • 
-              🕐 {prod.turno || 'ambos'}
-            </div>
-            {tieneFotos && (
-              <div className="meta" style={{ color: '#00b894', marginTop: '0.25rem' }}>
-                📷 Tiene fotos
-              </div>
-            )}
-          </div>
-          <div className="producto-admin-botones">
-            <button 
-              onClick={() => { 
-                const n = prompt('Nuevo nombre:', prod.nombre); 
-                if (n && n.trim()) editarProducto(productId, { nombre: n.trim() }) 
-              }} 
-              className="btn-small azul"
-            >
-              ✏️ Nombre
-            </button>
-            <button 
-              onClick={() => { 
-                const p = prompt('Nuevo precio:', prod.precio); 
-                if (p && !isNaN(Number(p))) editarProducto(productId, { precio: Number(p) }) 
-              }} 
-              className="btn-small verde"
-            >
-              💰 Precio
-            </button>
-            <button 
-              onClick={() => { 
-                const c = prompt('Nueva categoría:', prod.categoria); 
-                if (c && c.trim()) editarProducto(productId, { categoria: c.trim() }) 
-              }} 
-              className="btn-small purpura"
-            >
-              📂 Categoría
-            </button>
-            <button 
-              onClick={() => { 
-                const imgs = prompt(
-                  'URLs de imágenes (separadas por coma):\n\nEjemplo:\nhttps://foto1.jpg, https://foto2.jpg', 
-                  prod.imagenes || ''
-                ); 
-                if (imgs !== null) editarProducto(productId, { imagenes: imgs.trim() }) 
-              }} 
-              className={`btn-small ${tieneFotos ? 'naranja' : 'gris'}`}
-            >
-              📷 Fotos
-            </button>
-            <button 
-              onClick={() => eliminarProducto(productId)} 
-              className="btn-small rojo"
-            >
-              🗑️ Eliminar
-            </button>
-          </div>
-        </div>
-      );
-    })}
-</div>
+                {[...productosFirebase]
+                  .sort((a, b) => {
+                    const ordenCategorias = {
+                      'menuDelDia': 1,
+                      'comidasFijas': 2,
+                      'pizzas': 3,
+                      'empanadas': 4,
+                      'desayunos': 5,
+                      'bebidas': 6,
+                      'cocteles': 7,
+                      'ginTonic': 8,
+                      'medidas': 9,
+                      'jarras': 10,
+                      'whiskys': 11,
+                      'tequilas': 12,
+                      'cervezas': 13,
+                      'vinos': 14,
+                      'espumantes': 15,
+                      'sinAlcohol': 16,
+                      'pizzasNoche': 17,
+                      'empanadasNoche': 18,
+                      'minutas': 19,
+                      'extras': 20,
+                      'promosNoche': 21,
+                      'otros': 22
+                    };
+                    
+                    const ordenA = ordenCategorias[a.categoria] || 999;
+                    const ordenB = ordenCategorias[b.categoria] || 999;
+                    
+                    if (ordenA !== ordenB) return ordenA - ordenB;
+                    return Number(a.orden || 999) - Number(b.orden || 999);
+                  })
+                  .map((prod) => {
+                    const productId = prod.firestoreId || prod.id;
+                    const tieneFotos = prod.imagenes && prod.imagenes.toString().trim().length > 0;
+                    
+                    return (
+                      <div key={productId} className="producto-admin-card">
+                        <div className="producto-admin-info">
+                          <strong>{prod.nombre || 'Sin nombre'}</strong>
+                          <div className="precio">
+                            ${prod.precio ? Number(prod.precio).toLocaleString('es-AR') : '0'}
+                          </div>
+                          <div className="meta">
+                            📂 {prod.categoria || 'sin categoría'} • 
+                            🕐 {prod.turno || 'ambos'}
+                          </div>
+                          {tieneFotos && (
+                            <div className="meta" style={{ color: '#00b894', marginTop: '0.25rem' }}>
+                              📷 Tiene fotos
+                            </div>
                           )}
                         </div>
                         <div className="producto-admin-botones">
@@ -1499,13 +1444,13 @@ function App() {
                             }} 
                             className={`btn-small ${tieneFotos ? 'naranja' : 'gris'}`}
                           >
-                             Fotos
+                            📷 Fotos
                           </button>
                           <button 
                             onClick={() => eliminarProducto(productId)} 
                             className="btn-small rojo"
                           >
-                            ️ Eliminar
+                            🗑️ Eliminar
                           </button>
                         </div>
                       </div>
@@ -1525,7 +1470,7 @@ function App() {
                 <div className="config-cards">
                   <div className="config-card"><strong>Puntos por $100:</strong><span>{configFidelidad.puntosPorCienPesos || 1}</span></div>
                   <div className="config-card"><strong>Bonus cada {configFidelidad.bonusPedidos?.cantidad || 5} pedidos:</strong><span>+{configFidelidad.bonusPedidos?.puntos || 10} pts</span></div>
-                  <div className="config-card nivel-bronce-config"> Bronce: 0-200 pts (1x)</div>
+                  <div className="config-card nivel-bronce-config">🥉 Bronce: 0-200 pts (1x)</div>
                   <div className="config-card nivel-plata-config">🥈 Plata: 201-500 pts (1.5x)</div>
                   <div className="config-card nivel-oro-config">🥇 Oro: 501+ pts (2x)</div>
                 </div>
@@ -1605,7 +1550,7 @@ function App() {
 
         {tabActiva === 'reservas' && (
           <div className="panel-reservas">
-            <h2 className="panel-titulo"> Reservas Nocturnas</h2>
+            <h2 className="panel-titulo">📅 Reservas Nocturnas</h2>
           </div>
         )}
       </div>
@@ -1654,7 +1599,7 @@ function App() {
           gap: '5px'
         }}>
           <button onClick={() => setTurnoActual('dia')} style={{ padding: '5px 10px', cursor: 'pointer', background: turnoActual === 'dia' ? '#00b894' : '#333', color: 'white', border: 'none', borderRadius: '5px' }}>☀️ Día</button>
-          <button onClick={() => setTurnoActual('prevent')} style={{ padding: '5px 10px', cursor: 'pointer', background: turnoActual === 'prevent' ? '#ec4899' : '#333', color: 'white', border: 'none', borderRadius: '5px' }}> Prevent</button>
+          <button onClick={() => setTurnoActual('prevent')} style={{ padding: '5px 10px', cursor: 'pointer', background: turnoActual === 'prevent' ? '#ec4899' : '#333', color: 'white', border: 'none', borderRadius: '5px' }}>🌆 Prevent</button>
           <button onClick={() => setTurnoActual('noche')} style={{ padding: '5px 10px', cursor: 'pointer', background: turnoActual === 'noche' ? '#8b5cf6' : '#333', color: 'white', border: 'none', borderRadius: '5px' }}>🌙 Noche</button>
         </div>
       )}
@@ -1667,19 +1612,19 @@ function App() {
               <button className="guia-cerrar" onClick={() => setMostrarReservas(false)}>✕</button>
             </div>
             <div className="reservas-form">
-              <p className="reservas-info"> Reservá tu mesa para la noche. Te confirmaremos por WhatsApp.</p>
+              <p className="reservas-info">🌙 Reservá tu mesa para la noche. Te confirmaremos por WhatsApp.</p>
               <div className="form-field"><label>👤 Nombre:</label><input type="text" value={formReserva.nombre} onChange={(e) => setFormReserva({...formReserva, nombre: e.target.value})} className="input-neumo" placeholder="Tu nombre" /></div>
               <div className="form-field"><label>📱 Teléfono:</label><input type="tel" value={formReserva.telefono} onChange={(e) => setFormReserva({...formReserva, telefono: e.target.value})} className="input-neumo" placeholder="Tu teléfono" /></div>
               <div className="form-row">
                 <div className="form-field"><label>📅 Fecha:</label><input type="date" value={formReserva.fecha} onChange={(e) => setFormReserva({...formReserva, fecha: e.target.value})} className="input-neumo" /></div>
                 <div className="form-field"><label>🕐 Hora:</label><input type="time" value={formReserva.hora} onChange={(e) => setFormReserva({...formReserva, hora: e.target.value})} className="input-neumo" /></div>
               </div>
-              <div className="form-field"><label> Personas:</label><select value={formReserva.personas} onChange={(e) => setFormReserva({...formReserva, personas: e.target.value})} className="input-neumo">
+              <div className="form-field"><label>👥 Personas:</label><select value={formReserva.personas} onChange={(e) => setFormReserva({...formReserva, personas: e.target.value})} className="input-neumo">
                 <option value="1">1 persona</option><option value="2">2 personas</option><option value="3">3 personas</option><option value="4">4 personas</option><option value="5">5 personas</option><option value="6">6 personas</option><option value="7">7 personas</option><option value="8">8+ personas</option>
               </select></div>
               <div className="form-field"><label>💬 Mensaje (opcional):</label><textarea value={formReserva.mensaje} onChange={(e) => setFormReserva({...formReserva, mensaje: e.target.value})} className="input-neumo textarea-neumo" rows="3" placeholder="Cumpleaños, evento especial, etc." /></div>
               <div className="modal-buttons">
-                <button onClick={enviarReserva} className="btn-ingresar"> Enviar Reserva</button>
+                <button onClick={enviarReserva} className="btn-ingresar">📅 Enviar Reserva</button>
                 <button onClick={() => setMostrarReservas(false)} className="btn-cancelar">Cancelar</button>
               </div>
             </div>
@@ -1690,7 +1635,7 @@ function App() {
       {mostrarGuia && (
         <div className="guia-overlay" role="dialog" aria-modal="true">
           <div className="guia-modal">
-            <div className="guia-header"><h3> Te ayudo a usar la app</h3><button className="guia-cerrar" onClick={saltarGuia}>✕</button></div>
+            <div className="guia-header"><h3>👋 Te ayudo a usar la app</h3><button className="guia-cerrar" onClick={saltarGuia}>✕</button></div>
             <div className="guia-content">
               <div className="guia-paso-actual"><h4>{pasosGuia[pasoActual].titulo}</h4><p>{pasosGuia[pasoActual].descripcion}</p></div>
               <div className="guia-indicador">{pasosGuia.map((_, index) => (<div key={index} className={`guia-dot ${index === pasoActual ? 'activo' : ''} ${index < pasoActual ? 'completado' : ''}`} />))}</div>
@@ -1750,7 +1695,7 @@ function App() {
             <div className="redes-header"><h3>📱 Seguinos en redes</h3><button className="redes-cerrar" onClick={() => setMostrarRedes(false)}>✕</button></div>
             <div className="redes-content">
               <div className="redes-lista">
-                {Object.entries({ instagram: { nombre: 'Instagram', url: DATOS_DIA.redesSociales.instagram, seguidores: '2.4K', color: '#E4405F', gradiente: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', icono: '', promocion: '🎁 10% OFF mencionando este post' }, facebook: { nombre: 'Facebook', url: DATOS_DIA.redesSociales.facebook, seguidores: '1.8K', color: '#1877F2', gradiente: 'linear-gradient(145deg, #1877F2, #0d5bbf)', icono: '', promocion: '🎉 Sorteo semanal' }, tiktok: { nombre: 'TikTok', url: DATOS_DIA.redesSociales.tiktok, seguidores: '5.2K', color: '#000000', gradiente: 'linear-gradient(145deg, #000000, #25F4EE)', icono: '', promocion: '🎬 Videos exclusivos' } }).map(([key, red]) => (
+                {Object.entries({ instagram: { nombre: 'Instagram', url: DATOS_DIA.redesSociales.instagram, seguidores: '2.4K', color: '#E4405F', gradiente: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', icono: '📷', promocion: '🎁 10% OFF mencionando este post' }, facebook: { nombre: 'Facebook', url: DATOS_DIA.redesSociales.facebook, seguidores: '1.8K', color: '#1877F2', gradiente: 'linear-gradient(145deg, #1877F2, #0d5bbf)', icono: '👍', promocion: '🎉 Sorteo semanal' }, tiktok: { nombre: 'TikTok', url: DATOS_DIA.redesSociales.tiktok, seguidores: '5.2K', color: '#000000', gradiente: 'linear-gradient(145deg, #000000, #25F4EE)', icono: '🎵', promocion: '🎬 Videos exclusivos' } }).map(([key, red]) => (
                   <div key={key} className="redes-card" style={{ '--color-red': red.color }}>
                     <div className="redes-info"><div className="redes-icono" style={{ background: red.gradiente }}><span>{red.icono}</span></div><div className="redes-detalles"><h4>{red.nombre}</h4><div className="redes-seguidores"><span className="seguidores-numero">{red.seguidores} seguidores</span></div></div></div>
                     <div className="redes-promocion"><p>{red.promocion}</p></div>
@@ -1803,7 +1748,7 @@ function App() {
                     <>
                       <div className="fidelidad-puntos">
                         <div className="puntos-total"><span className="puntos-numero">{puntosCliente.totalPuntos || 0}</span><span className="puntos-label">puntos</span></div>
-                        <div className={`nivel-badge nivel-${nivelCliente}`}>{nivelCliente === 'oro' ? '' : nivelCliente === 'plata' ? '🥈' : '🥉'} {nivelCliente.charAt(0).toUpperCase() + nivelCliente.slice(1)}</div>
+                        <div className={`nivel-badge nivel-${nivelCliente}`}>{nivelCliente === 'oro' ? '🥇' : nivelCliente === 'plata' ? '🥈' : '🥉'} {nivelCliente.charAt(0).toUpperCase() + nivelCliente.slice(1)}</div>
                       </div>
                       <div className="fidelidad-progreso">
                         <div className="progreso-barra"><div className="progreso-fill" style={{ width: `${Math.min((puntosCliente.totalPuntos / 500) * 100, 100)}%` }}></div></div>
@@ -1859,7 +1804,7 @@ function App() {
           <div className="notification-content">
             <p><strong>👤 Cliente:</strong> {mostrarNotificacion.cliente?.nombre}</p>
             <p><strong>📱 Tel:</strong> {mostrarNotificacion.cliente?.telefono}</p>
-            <p className="total"><strong> Total:</strong> {formatearPrecio(mostrarNotificacion.total)}</p>
+            <p className="total"><strong>💰 Total:</strong> {formatearPrecio(mostrarNotificacion.total)}</p>
           </div>
           <button onClick={() => { setMostrarNotificacion(null); if (!esAdmin) setMostrarLogin(true); else setMostrarPanelAdmin(true) }} className="btn-ver-detalles">👁️ Ver Detalles</button>
         </div>
@@ -1868,7 +1813,7 @@ function App() {
       <div className="buscador-inteligente" ref={buscadorRef} role="search">
         <div className="buscador-header"><span className="buscador-titulo">🔍 ¿Qué querés comer hoy?</span></div>
         <div className="buscador-input-wrapper">
-          <span className="buscador-icono"></span>
+          <span className="buscador-icono">🔎</span>
           <input type="text" placeholder="Buscá: milanesa, fernet, pizza..." value={terminoBusqueda} onChange={handleBusquedaChange} className="buscador-input" />
           {terminoBusqueda && <button className="buscador-limpiar" onClick={() => { setTerminoBusqueda(''); setMostrarResultados(false); setCategoriaActiva(null) }}>✕</button>}
         </div>
@@ -1939,7 +1884,7 @@ function App() {
 
       <div className={`status-banner ${estaAbierto ? 'abierto' : 'cerrado'} ${turnoActual === 'noche' ? 'banner-noche' : ''}`} role="status">
         <div className="status-indicator"><span className={`status-dot ${estaAbierto ? 'verde' : 'rojo'}`}></span><strong>{mensajeHorario}</strong></div>
-        <div className="status-timer"><span>️ {tiempoRestante}</span></div>
+        <div className="status-timer"><span>⏱️ {tiempoRestante}</span></div>
       </div>
 
       <div className="time-banner">
@@ -1950,7 +1895,7 @@ function App() {
 
       {!estaAbierto && turnoActual !== 'prevent' && (
         <div className="cerrado-warning" role="alert">
-          <p>️ <strong>El local está cerrado.</strong></p>
+          <p>⚠️ <strong>El local está cerrado.</strong></p>
           <p>Podés armar tu pedido, se enviará cuando abramos.</p>
         </div>
       )}
@@ -1961,7 +1906,7 @@ function App() {
             <h2>🌆 ¡Preparando la Noche!</h2>
             <p>Abrimos a las 21:00 hs con la mejor noche de tragos y música</p>
             <div className="prevent-actions">
-              <button className="btn-reservar-prevent" onClick={() => setMostrarReservas(true)}> Reservar Mesa</button>
+              <button className="btn-reservar-prevent" onClick={() => setMostrarReservas(true)}>📅 Reservar Mesa</button>
               <p className="prevent-info">📞 Consultas: {DATOS_NOCHE.telefono}</p>
             </div>
           </div>
@@ -2023,7 +1968,7 @@ function App() {
               <input id="nombre-completo" type="text" className="form-input" value={nombreCompleto} onChange={(e) => { setNombreCompleto(e.target.value); setError(''); }} placeholder="Ej: Juan Pérez" />
             </div>
             <div className="form-group">
-              <label htmlFor="telefono"> Teléfono: <span className="required">*</span></label>
+              <label htmlFor="telefono">📱 Teléfono: <span className="required">*</span></label>
               <input id="telefono" type="tel" className="form-input" value={telefono} onChange={(e) => { setTelefono(e.target.value); setError(''); }} placeholder="Ej: 3878123456" />
             </div>
             <div className="subscribe-box">
@@ -2041,7 +1986,7 @@ function App() {
             
             {tipoEntrega === 'delivery' && turnoActual === 'noche' && (
               <div className="delivery-noche-info">
-                <p> <strong>Delivery Nocturno:</strong> {datosActuales.deliveryTexto}</p>
+                <p>📍 <strong>Delivery Nocturno:</strong> {datosActuales.deliveryTexto}</p>
                 <p>💬 Para conocer el precio exacto según tu zona, consultanos por WhatsApp después de enviar tu pedido.</p>
               </div>
             )}
@@ -2095,7 +2040,7 @@ function App() {
                 {error && <div className="error-message">{error}</div>}
                 <div className="cart-footer">
                   <div className="total-amount">Total: <span>{formatearPrecio(totalConEnvio)}</span></div>
-                  <button className="btn-whatsapp" onClick={enviarPorWhatsApp} disabled={cargando}>{cargando ? '⏳ Enviando...' : ' Enviar Pedido'}</button>
+                  <button className="btn-whatsapp" onClick={enviarPorWhatsApp} disabled={cargando}>{cargando ? '⏳ Enviando...' : '📱 Enviar Pedido'}</button>
                 </div>
               </div>
             )}
@@ -2120,7 +2065,7 @@ function App() {
               <div className="contacto-card"><div className="contacto-icono">📍</div><h3>Dirección</h3><p>{datosActuales.direccion}</p><button className="btn-contacto" onClick={abrirGoogleMaps}>🗺️ Ver</button></div>
               
               <div className="contacto-card">
-                <div className="contacto-icono"></div>
+                <div className="contacto-icono">📞</div>
                 <h3>Teléfonos</h3>
                 <p><strong>Cel/WhatsApp:</strong> {datosActuales.telefono}</p>
                 {datosActuales.telefonoFijo && (
