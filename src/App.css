@@ -583,4 +583,184 @@ CORRECCIÓN: Categorías texto visible en modo oscuro
 .modo-oscuro .categoria-chip.activo {
   background: #f59e0b !important;
   color: #0f172a !important;
+}/* ============================================
+🔧 CORRECCIÓN: TAMAÑO DE IMÁGENES EN PRODUCTOS
+============================================ */
+
+/* Limitar el tamaño de las imágenes dentro de las tarjetas de producto */
+.product-card .galeria-producto,
+.product-card .galeria-foto-principal {
+  max-width: 200px;
+  max-height: 150px;
+  flex-shrink: 0;
+}
+
+.product-card .galeria-img-principal {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Asegurar que el layout de la tarjeta sea correcto */
+.product-card {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 15px !important;
+  padding: 15px !important;
+}
+
+/* La imagen a la izquierda */
+.product-card .galeria-producto {
+  flex: 0 0 180px;
+}
+
+/* El contenido (nombre, precio, botón) a la derecha */
+.product-card .product-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.product-card .product-actions {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Botón agregar visible */
+.product-card .btn-primary {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+}
+
+/* Responsive para celular */
+@media (max-width: 600px) {
+  .product-card {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  .product-card .galeria-producto,
+  .product-card .galeria-foto-principal {
+    max-width: 100% !important;
+    max-height: 180px !important;
+    flex: none !important;
+  }
+  
+  .product-card .product-info {
+    text-align: center;
+  }
+  
+  .product-card .product-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}/* ============================================
+🔧 CORRECCIÓN: PANEL DE ADMINISTRACIÓN
+============================================ */
+
+/* Asegurar que el panel admin tenga fondo y tamaño correcto */
+.panel-admin-container {
+  background: #f8f9fa !important;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  padding: 20px !important;
+  border-radius: 0 !important;
+}
+
+/* Modo oscuro para el panel admin */
+.modo-oscuro .panel-admin-container {
+  background: #0f172a !important;
+}
+
+/* Las secciones dentro del panel admin */
+.panel-admin-container .panel-section {
+  background: #ffffff !important;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.modo-oscuro .panel-admin-container .panel-section {
+  background: #1e293b !important;
+}
+
+/* Asegurar que los tabs del admin se vean bien */
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.admin-tab {
+  padding: 10px 15px;
+  background: #e2e8f0;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.admin-tab.activa {
+  background: #6c5ce7;
+  color: white;
+}
+
+/* Formularios dentro del admin */
+.form-producto {
+  display: grid;
+  gap: 10px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.modo-oscuro .form-producto {
+  background: #1e293b;
+}
+
+/* Inputs del formulario */
+.form-producto .input-neumo {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  font-size: 1rem;
+}
+
+.modo-oscuro .form-producto .input-neumo {
+  background: #0f172a;
+  border-color: #475569;
+  color: #f8fafc;
+}
+
+/* Grid de productos admin */
+.productos-admin-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.producto-admin-card {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.modo-oscuro .producto-admin-card {
+  background: #1e293b;
 }
