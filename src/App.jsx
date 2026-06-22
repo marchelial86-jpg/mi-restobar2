@@ -1352,27 +1352,113 @@ function App() {
               </div>
             ) : (
               <div className="productos-admin-grid">
-                {[...productosFirebase]
-                  .sort((a, b) => Number(a.orden || 999) - Number(b.orden || 999))
-                  .map((prod) => {
-                    const productId = prod.firestoreId || prod.id;
-                    const tieneFotos = prod.imagenes && prod.imagenes.toString().trim().length > 0;
-                    
-                    return (
-                      <div key={productId} className="producto-admin-card">
-                        <div className="producto-admin-info">
-                          <strong>{prod.nombre || 'Sin nombre'}</strong>
-                          <div className="precio">
-                            ${prod.precio ? Number(prod.precio).toLocaleString('es-AR') : '0'}
-                          </div>
-                          <div className="meta">
-                            📂 {prod.categoria || 'sin categoría'} • 
-                            🕐 {prod.turno || 'ambos'}
-                          </div>
-                          {tieneFotos && (
-                            <div className="meta" style={{ color: '#00b894', marginTop: '0.25rem' }}>
-                              📷 Tiene fotos
-                            </div>
+  {[...productosFirebase]
+    .sort((a, b) => {
+      // Orden personalizado por categoría
+      const ordenCategorias = {
+        'menuDelDia': 1,
+        'comidasFijas': 2,
+        'pizzas': 3,
+        'empanadas': 4,
+        'desayunos': 5,
+        'bebidas': 6,
+        'cocteles': 7,
+        'ginTonic': 8,
+        'medidas': 9,
+        'jarras': 10,
+        'whiskys': 11,
+        'tequilas': 12,
+        'cervezas': 13,
+        'vinos': 14,
+        'espumantes': 15,
+        'sinAlcohol': 16,
+        'pizzasNoche': 17,
+        'empanadasNoche': 18,
+        'minutas': 19,
+        'extras': 20,
+        'promosNoche': 21,
+        'otros': 22
+      };
+      
+      const ordenA = ordenCategorias[a.categoria] || 999;
+      const ordenB = ordenCategorias[b.categoria] || 999;
+      
+      // Primero ordenar por categoría, luego por orden dentro de la categoría
+      if (ordenA !== ordenB) return ordenA - ordenB;
+      return Number(a.orden || 999) - Number(b.orden || 999);
+    })
+    .map((prod) => {
+      const productId = prod.firestoreId || prod.id;
+      const tieneFotos = prod.imagenes && prod.imagenes.toString().trim().length > 0;
+      
+      return (
+        <div key={productId} className="producto-admin-card">
+          <div className="producto-admin-info">
+            <strong>{prod.nombre || 'Sin nombre'}</strong>
+            <div className="precio">
+              ${prod.precio ? Number(prod.precio).toLocaleString('es-AR') : '0'}
+            </div>
+            <div className="meta">
+              📂 {prod.categoria || 'sin categoría'} • 
+              🕐 {prod.turno || 'ambos'}
+            </div>
+            {tieneFotos && (
+              <div className="meta" style={{ color: '#00b894', marginTop: '0.25rem' }}>
+                📷 Tiene fotos
+              </div>
+            )}
+          </div>
+          <div className="producto-admin-botones">
+            <button 
+              onClick={() => { 
+                const n = prompt('Nuevo nombre:', prod.nombre); 
+                if (n && n.trim()) editarProducto(productId, { nombre: n.trim() }) 
+              }} 
+              className="btn-small azul"
+            >
+              ✏️ Nombre
+            </button>
+            <button 
+              onClick={() => { 
+                const p = prompt('Nuevo precio:', prod.precio); 
+                if (p && !isNaN(Number(p))) editarProducto(productId, { precio: Number(p) }) 
+              }} 
+              className="btn-small verde"
+            >
+              💰 Precio
+            </button>
+            <button 
+              onClick={() => { 
+                const c = prompt('Nueva categoría:', prod.categoria); 
+                if (c && c.trim()) editarProducto(productId, { categoria: c.trim() }) 
+              }} 
+              className="btn-small purpura"
+            >
+              📂 Categoría
+            </button>
+            <button 
+              onClick={() => { 
+                const imgs = prompt(
+                  'URLs de imágenes (separadas por coma):\n\nEjemplo:\nhttps://foto1.jpg, https://foto2.jpg', 
+                  prod.imagenes || ''
+                ); 
+                if (imgs !== null) editarProducto(productId, { imagenes: imgs.trim() }) 
+              }} 
+              className={`btn-small ${tieneFotos ? 'naranja' : 'gris'}`}
+            >
+              📷 Fotos
+            </button>
+            <button 
+              onClick={() => eliminarProducto(productId)} 
+              className="btn-small rojo"
+            >
+              🗑️ Eliminar
+            </button>
+          </div>
+        </div>
+      );
+    })}
+</div>
                           )}
                         </div>
                         <div className="producto-admin-botones">
