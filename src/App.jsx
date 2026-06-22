@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { collection, addDoc, query, where, getDocs, doc, updateDoc, setDoc, deleteDoc, onSnapshot, orderBy, getDoc } from 'firebase/firestore'
 import { db } from './firebase'
 import './App.css'
+import { registrarServiceWorker } from './registerSW'
 
 // ============================================
 // 🖼️ COMPONENTE GALERÍA DE FOTOS
@@ -165,6 +166,9 @@ function AcordeonCategoria({ categoriaKey, titulo, emoji, getProductosPorCategor
 }
 
 function App() {
+  // Registrar Service Worker para actualizaciones automáticas
+registrarServiceWorker()
+
   const [pedidos, setPedidos] = useState([])
   const [notasPorProducto, setNotasPorProducto] = useState({})
   const [tipoEntrega, setTipoEntrega] = useState('')

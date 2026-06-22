@@ -1,8 +1,4 @@
-// ============================================
-// SERVICE WORKER - INEVA RESTO-BAR
-// ============================================
-
-const CACHE_NAME = 'ineva-cache-v1';
+const CACHE_NAME = 'ineva-restobar-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -10,85 +6,66 @@ const urlsToCache = [
 ];
 
 // ============================================
-// 1. INSTALACIÓN: Guardar archivos en caché
+// 1. INSTALACIÓN
 // ============================================
 self.addEventListener('install', (event) => {
-  console.log('📦 [SW] Instalando Service Worker...');
-  
+  console.log('[SW] Instalando nueva versión...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('💾 [SW] Guardando archivos en caché');
+        console.log('[SW] Cache abierto');
         return cache.addAll(urlsToCache);
       })
-      .then(() => {
-        console.log('✅ [SW] Service Worker instalado');
-        return self.skipWaiting();
-      })
-      .catch((error) => {
-        console.error('❌ [SW] Error en instalación:', error);
-      })
+      .then(() => self.skipWaiting())
   );
 });
 
 // ============================================
-// 2. ACTIVACIÓN: Limpiar caché viejo
+// 2. ACTIVACIÓN - Limpiar caché viejo
 // ============================================
 self.addEventListener('activate', (event) => {
-  console.log('🚀 [SW] Activando Service Worker...');
-  
+  console.log('[SW] Activando nueva versión...');
   event.waitUntil(
-    caches.keys()
-      .then((cacheNames) => {
-        return Promise.all(
-          cacheNames
-            .filter((cacheName) => cacheName !== CACHE_NAME)
-            .map((cacheName) => {
-              console.log('🗑️ [SW] Borrando caché viejo:', cacheName);
-              return caches.delete(cacheName);
-            })
-        );
-      })
-      .then(() => {
-        console.log('✅ [SW] Service Worker activado');
-        return self.clients.claim();
-      })
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames
+          .filter((name) => name !== CACHE_NAME)
+          .map((name) => caches.delete(name))
+      );
+    }).then(() => self.clients.claim())
   );
 });
 
 // ============================================
-// 3. FETCH: Servir desde caché o red
+// 3. FETCH - Network First (prioridad internet)
 // ============================================
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   
   event.respondWith(
-    caches.match(event.request)
+    fetch(event.request)
       .then((response) => {
-        if (response) {
-          console.log('⚡ [SW] Sirviendo desde caché:', event.request.url);
+        if (!response || response.status !== 200 || response.type !== 'basic') {
           return response;
         }
-        
-        console.log('🌐 [SW] Pidiendo a red:', event.request.url);
-        return fetch(event.request)
-          .then((response) => {
-            if (!response || response.status !== 200) {
-              return response;
-            }
-            
-            const responseToCache = response.clone();
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-            
-            return response;
-          })
-          .catch((error) => {
-            console.error('❌ [SW] Error de red:', error);
-            return caches.match('/index.html');
+        const responseToCache = response.clone();
+        caches.open(CACHE_NAME)
+          .then((cache) => {
+            cache.put(event.request, responseToCache);
           });
+        return response;
+      })
+      .catch(() => {
+        return caches.match(event.request);
       })
   );
+});
+
+// ============================================
+// 4. MENSAJES - Forzar actualización
+// ============================================
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });

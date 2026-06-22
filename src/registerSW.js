@@ -1,54 +1,38 @@
-// ============================================
-// REGISTRO DEL SERVICE WORKER
-// ============================================
-
 export function registrarServiceWorker() {
-  // Verificar si el navegador soporta Service Workers
-  if (!('serviceWorker' in navigator)) {
-    console.log('❌ Tu navegador no soporta PWA');
-    return;
-  }
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then((registration) => {
+          console.log('[SW] Service Worker registrado correctamente');
+          
+          // Verificar actualizaciones cada 5 minutos
+          setInterval(() => {
+            registration.update();
+          }, 5 * 60 * 1000);
 
-  // Esperar a que la página cargue completamente
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('/sw.js')
-      .then((registro) => {
-        console.log('✅ [PWA] Service Worker registrado con éxito');
-        console.log('📍 Scope:', registro.scope);
-        
-        // Verificar actualizaciones periódicamente
-        setInterval(() => {
-          registro.update();
-        }, 60 * 60 * 1000); // Cada 1 hora
-      })
-      .catch((error) => {
-        console.error('❌ [PWA] Error al registrar:', error);
-      });
-  });
-}
+          // Cuando hay una nueva versión disponible
+          registration.addEventListener('updatefound', () => {
+            const newWorker = registration.installing;
+            console.log('[SW] Nueva versión detectada, instalando...');
 
-// ============================================
-// DETECTAR SI SE PUEDE INSTALAR
-// ============================================
-let deferredPrompt;
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                console.log('[SW] Nueva versión instalada, activando...');
+                newWorker.postMessage({ type: 'SKIP_WAITING' });
+              }
+            });
+          });
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  console.log('📱 [PWA] App lista para instalar');
-});
+          // Cuando el Service Worker cambia, recargar automáticamente
+          navigator.serviceWorker.addEventListener('controllerchange', () => {
+            console.log('[SW] Actualización activada, recargando página...');
+            window.location.reload();
+          });
 
-export function instalarApp() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('✅ Usuario instaló la app');
-      } else {
-        console.log('❌ Usuario canceló la instalación');
-      }
-      deferredPrompt = null;
+        })
+        .catch((error) => {
+          console.error('[SW] Error al registrar:', error);
+        });
     });
   }
 }
