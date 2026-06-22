@@ -1,5 +1,5 @@
 /* ============================================
-INEVA RESTO-BAR - CSS COMPLETO CORREGIDO
+INEVA RESTO-BAR - CSS CORREGIDO Y LIMPIO
 ============================================ */
 
 /* Importar fuentes */
@@ -22,7 +22,6 @@ body {
   padding: 20px;
 }
 
-/* Contenedor principal */
 .app-container {
   max-width: 850px;
   margin: 0 auto;
@@ -31,7 +30,7 @@ body {
 }
 
 /* ============================================
-HEADER CON IMAGEN DE FONDO - SIN SUPERPOSICIÓN
+HEADER CON IMAGEN DE FONDO - CORREGIDO
 ============================================ */
 .header {
   text-align: center;
@@ -46,6 +45,7 @@ HEADER CON IMAGEN DE FONDO - SIN SUPERPOSICIÓN
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 
 .header::before {
@@ -133,7 +133,7 @@ HEADER CON IMAGEN DE FONDO - SIN SUPERPOSICIÓN
 }
 
 /* ============================================
-BUSCADOR INTELIGENTE
+BUSCADOR INTELIGENTE - SIN SUPERPOSICIÓN
 ============================================ */
 .buscador-inteligente {
   margin-bottom: 30px;
@@ -141,6 +141,8 @@ BUSCADOR INTELIGENTE
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff;
+  position: relative;
+  z-index: 5;
 }
 
 .buscador-header {
@@ -614,7 +616,7 @@ CARRITO
 }
 
 /* ============================================
-PANEL DE ADMINISTRACIÓN - COMPLETO
+PANEL DE ADMINISTRACIÓN - CORREGIDO
 ============================================ */
 .panel-admin-container {
   padding: 20px;
@@ -659,10 +661,12 @@ PANEL DE ADMINISTRACIÓN - COMPLETO
   color: #636e72;
 }
 
-/* BOTONES DE ADMIN - AGREGADOS */
+/* BOTONES DE ADMIN - POSICIÓN CORRECTA */
 .admin-buttons {
   text-align: right;
   margin-bottom: 20px;
+  position: relative;
+  z-index: 100;
 }
 
 .admin-buttons-group {
