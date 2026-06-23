@@ -745,9 +745,38 @@ function App() {
         const diferenciaMinutos = (new Date() - new Date(pedido.fecha)) / (1000 * 60)
         if (pedido.estado === 'pendiente' && diferenciaMinutos < 30) pedidosActualizados.push(pedido)
       })
-      pedidosActualizados.sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
-      setPedidosNuevos(pedidosActualizados)
-    })
+      .sort((a, b) => {
+  // Orden dinámico según el turno actual
+  const ordenCategoriasDia = {
+    'menuDelDia': 1, 'comidasFijas': 2, 'desayunos': 3,
+    'pizzas': 4, 'empanadas': 5, 'bebidas': 6,
+    'cocteles': 7, 'ginTonic': 8, 'medidas': 9, 'jarras': 10,
+    'whiskys': 11, 'tequilas': 12, 'cervezas': 13,
+    'vinos': 14, 'espumantes': 15, 'sinAlcohol': 16,
+    'pizzasNoche': 17, 'empanadasNoche': 18, 'minutas': 19,
+    'extras': 20, 'promosNoche': 21, 'otros': 22
+  }
+  
+  const ordenCategoriasNoche = {
+    'promosNoche': 1, 'cocteles': 2, 'ginTonic': 3,
+    'medidas': 4, 'jarras': 5, 'whiskys': 6,
+    'tequilas': 7, 'cervezas': 8, 'vinos': 9,
+    'espumantes': 10, 'sinAlcohol': 11,
+    'pizzasNoche': 12, 'empanadasNoche': 13,
+    'minutas': 14, 'extras': 15,
+    'pizzas': 16, 'empanadas': 17, 'bebidas': 18,
+    'menuDelDia': 19, 'comidasFijas': 20, 'desayunos': 21, 'otros': 22
+  }
+  
+  // Usar el orden según el turno
+  const ordenCategorias = turnoActual === 'noche' ? ordenCategoriasNoche : ordenCategoriasDia
+  
+  const ordenA = ordenCategorias[a.categoria] || 999
+  const ordenB = ordenCategorias[b.categoria] || 999
+  
+  if (ordenA !== ordenB) return ordenA - ordenB
+  return Number(a.orden || 999) - Number(b.orden || 999)
+})
     return () => unsubscribe()
   }, [])
 
