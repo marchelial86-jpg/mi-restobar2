@@ -166,8 +166,7 @@ function AcordeonCategoria({ categoriaKey, titulo, emoji, getProductosPorCategor
 }
 
 function App() {
-  // Registrar Service Worker para actualizaciones automáticas
-registrarServiceWorker()
+  registrarServiceWorker()
 
   const [pedidos, setPedidos] = useState([])
   const [notasPorProducto, setNotasPorProducto] = useState({})
@@ -714,7 +713,6 @@ registrarServiceWorker()
     cargarCliente()
   }, [])
 
-  // CARGAR PRODUCTOS FIREBASE
   useEffect(() => {
     const cargarProductos = async () => {
       try {
@@ -1094,7 +1092,6 @@ registrarServiceWorker()
     if (!telefono.trim()) { setError('❌ Ingresá tu teléfono'); return }
     if (!tipoEntrega) { setError('❌ Seleccioná tipo de entrega'); return }
     if (tipoEntrega === 'delivery' && turnoActual === 'noche') {
-      // Noche: solo consultar, no validar dirección
     } else if (tipoEntrega === 'delivery' && !direccion.trim()) {
       setError('❌ Ingresá la dirección'); return
     }
@@ -1187,7 +1184,6 @@ registrarServiceWorker()
     else { setCategoriaActiva(categoria); navegarASeccion(categoria) }
   }
 
-  // PANEL ADMIN
   const PanelAdministracion = () => {
     const [nuevoProducto, setNuevoProducto] = useState({ nombre: '', precio: '', categoria: 'comidasFijas', turno: 'dia', orden: '', imagenes: '' })
     const [tabActiva, setTabActiva] = useState('productos')
@@ -1359,33 +1355,15 @@ registrarServiceWorker()
                 {[...productosFirebase]
                   .sort((a, b) => {
                     const ordenCategorias = {
-                      'menuDelDia': 1,
-                      'comidasFijas': 2,
-                      'pizzas': 3,
-                      'empanadas': 4,
-                      'desayunos': 5,
-                      'bebidas': 6,
-                      'cocteles': 7,
-                      'ginTonic': 8,
-                      'medidas': 9,
-                      'jarras': 10,
-                      'whiskys': 11,
-                      'tequilas': 12,
-                      'cervezas': 13,
-                      'vinos': 14,
-                      'espumantes': 15,
-                      'sinAlcohol': 16,
-                      'pizzasNoche': 17,
-                      'empanadasNoche': 18,
-                      'minutas': 19,
-                      'extras': 20,
-                      'promosNoche': 21,
-                      'otros': 22
+                      'menuDelDia': 1, 'comidasFijas': 2, 'pizzas': 3, 'empanadas': 4,
+                      'desayunos': 5, 'bebidas': 6, 'cocteles': 7, 'ginTonic': 8,
+                      'medidas': 9, 'jarras': 10, 'whiskys': 11, 'tequilas': 12,
+                      'cervezas': 13, 'vinos': 14, 'espumantes': 15, 'sinAlcohol': 16,
+                      'pizzasNoche': 17, 'empanadasNoche': 18, 'minutas': 19,
+                      'extras': 20, 'promosNoche': 21, 'otros': 22
                     };
-                    
                     const ordenA = ordenCategorias[a.categoria] || 999;
                     const ordenB = ordenCategorias[b.categoria] || 999;
-                    
                     if (ordenA !== ordenB) return ordenA - ordenB;
                     return Number(a.orden || 999) - Number(b.orden || 999);
                   })
@@ -1699,7 +1677,7 @@ registrarServiceWorker()
             <div className="redes-header"><h3>📱 Seguinos en redes</h3><button className="redes-cerrar" onClick={() => setMostrarRedes(false)}>✕</button></div>
             <div className="redes-content">
               <div className="redes-lista">
-                {Object.entries({ instagram: { nombre: 'Instagram', url: DATOS_DIA.redesSociales.instagram, seguidores: '2.4K', color: '#E4405F', gradiente: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', icono: '📷', promocion: '🎁 10% OFF mencionando este post' }, facebook: { nombre: 'Facebook', url: DATOS_DIA.redesSociales.facebook, seguidores: '1.8K', color: '#1877F2', gradiente: 'linear-gradient(145deg, #1877F2, #0d5bbf)', icono: '👍', promocion: '🎉 Sorteo semanal' }, tiktok: { nombre: 'TikTok', url: DATOS_DIA.redesSociales.tiktok, seguidores: '5.2K', color: '#000000', gradiente: 'linear-gradient(145deg, #000000, #25F4EE)', icono: '🎵', promocion: '🎬 Videos exclusivos' } }).map(([key, red]) => (
+                {Object.entries({ instagram: { nombre: 'Instagram', url: DATOS_DIA.redesSociales?.instagram || '#', seguidores: '2.4K', color: '#E4405F', gradiente: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', icono: '📷', promocion: '🎁 10% OFF mencionando este post' }, facebook: { nombre: 'Facebook', url: DATOS_DIA.redesSociales?.facebook || '#', seguidores: '1.8K', color: '#1877F2', gradiente: 'linear-gradient(145deg, #1877F2, #0d5bbf)', icono: '👍', promocion: '🎉 Sorteo semanal' }, tiktok: { nombre: 'TikTok', url: DATOS_DIA.redesSociales?.tiktok || '#', seguidores: '5.2K', color: '#000000', gradiente: 'linear-gradient(145deg, #000000, #25F4EE)', icono: '🎵', promocion: '🎬 Videos exclusivos' } }).map(([key, red]) => (
                   <div key={key} className="redes-card" style={{ '--color-red': red.color }}>
                     <div className="redes-info"><div className="redes-icono" style={{ background: red.gradiente }}><span>{red.icono}</span></div><div className="redes-detalles"><h4>{red.nombre}</h4><div className="redes-seguidores"><span className="seguidores-numero">{red.seguidores} seguidores</span></div></div></div>
                     <div className="redes-promocion"><p>{red.promocion}</p></div>
@@ -1814,6 +1792,7 @@ registrarServiceWorker()
         </div>
       )}
 
+      {/* HEADER - BANNER INEVA */}
       <div className={`header ${turnoActual === 'noche' ? 'header-noche' : turnoActual === 'prevent' ? 'header-prevent' : 'header-dia'}`}>
         <div className="header-title">
           <div className="logo-circle"><span className="logo-text" translate="no">IN</span></div>
@@ -1822,36 +1801,11 @@ registrarServiceWorker()
             <p className="subtitulo-turno">{datosActuales.subtitulo}</p>
           </div>
         </div>
-      <div className="buscador-inteligente" ref={buscadorRef} role="search">
-        <div className="buscador-header"><span className="buscador-titulo">🔍 ¿Qué querés comer hoy?</span></div>
-        <div className="buscador-input-wrapper">
-          <span className="buscador-icono">🔎</span>
-          <input type="text" placeholder="Buscá: milanesa, fernet, pizza..." value={terminoBusqueda} onChange={handleBusquedaChange} className="buscador-input" />
-          {terminoBusqueda && <button className="buscador-limpiar" onClick={() => { setTerminoBusqueda(''); setMostrarResultados(false); setCategoriaActiva(null) }}>✕</button>}
-        </div>
-        <div className="categorias-rapidas" role="navigation">
-          {Object.entries(categoriasInfo).map(([key, info]) => (
-            <button key={key} className={`categoria-chip ${categoriaActiva === key ? 'activo' : ''}`} onClick={() => handleCategoriaClick(key)} style={{ '--color-categoria': info.color }}>
-              <span className="categoria-emoji">{info.emoji}</span><span className="categoria-nombre">{info.nombre}</span>
-            </button>
-          ))}
-        </div>
-        {mostrarResultados && (
-          <div className="resultados-busqueda">
-            <div className="resultados-header"><span>{resultadosBusqueda.length} resultado{resultadosBusqueda.length !== 1 ? 's' : ''}</span></div>
-            <div className="resultados-lista">
-              {resultadosBusqueda.map((producto, index) => (
-                <div key={`${producto.id}-${index}`} className="resultado-item" onClick={() => navegarASeccion(producto.categoria)}>
-                  <div className="resultado-info"><span className="resultado-emoji">{producto.categoriaInfo.emoji}</span><div className="resultado-detalles"><strong>{producto.nombre}</strong><span>{producto.categoriaInfo.nombre}</span></div></div>
-                  <div className="resultado-precio">{formatearPrecio(producto.precio)}</div>
-                  <button className="btn-agregar-rapido" onClick={(e) => { e.stopPropagation(); agregarPedido(producto) }}>+ Agregar</button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
+      {/* BUSCADOR - ELIMINADO TEMPORALMENTE */}
+
+      {/* BOTONES ADMIN */}
       <div className="admin-buttons">
         {esAdmin ? (
           <div className="admin-buttons-group">
@@ -1882,10 +1836,6 @@ registrarServiceWorker()
           </div>
         </div>
       )}
-
-      
-        <p>Horario: {datosActuales.horarios}</p>
-      </div>
 
       <div className={`status-banner ${estaAbierto ? 'abierto' : 'cerrado'} ${turnoActual === 'noche' ? 'banner-noche' : ''}`} role="status">
         <div className="status-indicator"><span className={`status-dot ${estaAbierto ? 'verde' : 'rojo'}`}></span><strong>{mensajeHorario}</strong></div>
