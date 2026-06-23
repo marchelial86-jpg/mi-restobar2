@@ -5620,4 +5620,280 @@ RESPONSIVE MÓVIL - SIN SCROLL HORIZONTAL
     right: 10px !important;
     padding: 8px 12px !important;
   }
+}/* ============================================
+🔧 MEJORAR LEGIBILIDAD MODO CLARO - FORMULARIOS
+============================================ */
+
+/* Títulos de secciones en modo claro */
+.form-section h2 {
+  color: #2d3436 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Labels de formularios */
+.form-group label,
+.form-field label {
+  color: #2d3436 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Placeholders más visibles */
+.form-input::placeholder,
+.input-neumo::placeholder {
+  color: #636e72 !important;
+  opacity: 0.8 !important;
+}
+
+/* Textos de suscripción */
+.subscribe-text {
+  color: #2d3436 !important;
+  font-weight: 600 !important;
+}
+
+/* Títulos de tipo de entrega */
+.delivery-buttons {
+  color: #2d3436 !important;
+}
+
+.delivery-btn {
+  color: #2d3436 !important;
+  font-weight: 600 !important;
+  background: #ffffff !important;
+  border: 2px solid #d1d9e6 !important;
+}
+
+.delivery-btn.active {
+  background: linear-gradient(145deg, #00b894, #00a383) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+/* Botón ver zona */
+.btn-ver-zona {
+  color: #6c5ce7 !important;
+  font-weight: 600 !important;
+  background: #f8f9fa !important;
+  border: 2px solid #6c5ce7 !important;
+}
+
+/* Carrito - títulos */
+.cart-section h2 {
+  color: #2d3436 !important;
+  font-weight: 700 !important;
+}
+
+.cart-item-info strong {
+  color: #2d3436 !important;
+}
+
+.unit-price {
+  color: #636e72 !important;
+}
+
+/* Reseñas */
+.seccion-resenas h2 {
+  color: #2d3436 !important;
+  font-weight: 700 !important;
+}
+
+.promedio-numero {
+  color: #6c5ce7 !important;
+  font-weight: 900 !important;
+}
+
+.promedio-texto {
+  color: #2d3436 !important;
+  font-weight: 600 !important;
+}
+
+/* Contacto */
+.seccion-contacto h2 {
+  color: #2d3436 !important;
+  font-weight: 700 !important;
+}
+
+.contacto-card h3 {
+  color: #2d3436 !important;
+  font-weight: 700 !important;
+}
+
+.contacto-card p {
+  color: #636e72 !important;
+}
+
+.contacto-card strong {
+  color: #2d3436 !important;
+}
+
+/* Modo claro específico - mejorar contraste */
+.tema-dia .form-section,
+.tema-dia .cart-section,
+.tema-dia .seccion-resenas,
+.tema-dia .seccion-contacto {
+  background: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Inputs con mejor contraste */
+.tema-dia .form-input,
+.tema-dia .input-neumo {
+  background: #ffffff !important;
+  color: #2d3436 !important;
+  border: 2px solid #d1d9e6 !important;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+.tema-dia .form-input:focus,
+.tema-dia .input-neumo:focus {
+  border-color: #6c5ce7 !important;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2) !important;
+}
+
+/* Footer en modo claro */
+.tema-dia .footer-app {
+  background: linear-gradient(145deg, #2d3436, #1e272e) !important;
+  color: #ffffff !important;
+}
+
+.tema-dia .footer-info h4,
+.tema-dia .footer-legal h4 {
+  color: #ffffff !important;
+}
+
+.tema-dia .footer-info p {
+  color: #dfe6e9 !important;
+}
+
+/* Banner de estado en modo claro */
+.tema-dia .status-banner {
+  background: #ffffff !important;
+  color: #2d3436 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.tema-dia .status-banner.abierto {
+  background: linear-gradient(145deg, #e8f5e9, #c8e6c9) !important;
+  border: 2px solid #00b894 !important;
+  color: #2d3436 !important;
+}
+
+.tema-dia .status-banner.cerrado {
+  background: linear-gradient(145deg, #ffebee, #ffcdd2) !important;
+  border: 2px solid #e74c3c !important;
+  color: #2d3436 !important;
+}
+
+/* Time banner en modo claro */
+.tema-dia .time-banner {
+  background: #ffffff !important;
+  color: #2d3436 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.tema-dia .time-banner p {
+  color: #2d3436 !important;
+}
+
+.tema-dia .time-banner strong {
+  color: #00b894 !important;
+}
+
+/* Acordeón en modo claro */
+.tema-dia .acordeon-item {
+  background: #ffffff !important;
+  border: 2px solid #d1d9e6 !important;
+}
+
+.tema-dia .acordeon-header {
+  color: #2d3436 !important;
+  font-weight: 700 !important;
+}
+
+.tema-dia .acordeon-content {
+  background: #f8f9fa !important;
+}
+
+/* Producto cards en modo claro */
+.tema-dia .product-card {
+  background: #ffffff !important;
+  border: 2px solid #d1d9e6 !important;
+}
+
+.tema-dia .product-info h3 {
+  color: #2d3436 !important;
+  font-weight: 700 !important;
+}
+
+.tema-dia .product-price {
+  color: #00b894 !important;
+  font-weight: 800 !important;
+}
+
+/* Transfer section */
+.transfer-section h3 {
+  color: #6c5ce7 !important;
+  font-weight: 700 !important;
+}
+
+.alias-input {
+  color: #6c5ce7 !important;
+  font-weight: 700 !important;
+  background: #f8f9fa !important;
+  border: 2px solid #d1d9e6 !important;
+}
+
+/* Botones primarios en modo claro */
+.tema-dia .btn-primary {
+  background: linear-gradient(145deg, #6c5ce7, #5f3dc4) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* WhatsApp button */
+.btn-whatsapp {
+  background: linear-gradient(145deg, #2ecc71, #27ae60) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+/* Error messages */
+.error-message {
+  background: #ffebee !important;
+  color: #c0392b !important;
+  border: 2px solid #e74c3c !important;
+  font-weight: 700 !important;
+}
+
+/* Empty cart */
+.empty-cart {
+  color: #636e72 !important;
+  font-weight: 600 !important;
+}
+
+/* Admin buttons en modo claro */
+.tema-dia .admin-buttons-group {
+  background: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+.tema-dia .btn-admin {
+  background: #ffffff !important;
+  color: #2d3436 !important;
+  font-weight: 700 !important;
+}
+
+/* Mejorar visibilidad de iconos */
+.contacto-icono,
+.galeria-placeholder-icono,
+.calificacion-icono,
+.zona-icono {
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2)) !important;
+}
+
+/* Required asterisk */
+.required {
+  color: #e74c3c !important;
+  font-weight: 700 !important;
 }
