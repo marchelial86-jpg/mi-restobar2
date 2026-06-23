@@ -5303,4 +5303,112 @@ RESPONSIVE
   .plato-especial-price { font-size: 2rem; }
   .btn-especial-agregar { padding: 0.75rem 2rem; font-size: 1rem; }
   .tema-noche .product-price { font-size: 1.1rem; }
+}/* ============================================
+🔧 CORRECCIÓN DEFINITIVA - SUPERPOSICIÓN Y SCROLL
+============================================ */
+
+/* 1. HEADER ARRIBA CON Z-INDEX CORRECTO */
+.header {
+  position: relative !important;
+  z-index: 10 !important;
+  margin-bottom: 30px !important;
+  min-height: 220px !important;
+}
+
+/* 2. BUSCADOR DEBAJO DEL HEADER */
+.buscador-inteligente {
+  position: relative !important;
+  z-index: 5 !important;
+  margin-top: 0 !important;
+  margin-bottom: 30px !important;
+}
+
+/* 3. ELIMINAR SCROLL INFINITO - Tema noche */
+.tema-noche::before {
+  display: none !important;
+}
+
+/* 4. CORREGIR IMAGEN DESPROPORCIONADA EN MÓVIL */
+@media (max-width: 600px) {
+  .header {
+    min-height: 180px !important;
+    max-height: 250px !important;
+  }
+  
+  .header h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  .header p {
+    font-size: 1rem !important;
+  }
+  
+  .logo-circle {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  .logo-text {
+    font-size: 1.2rem !important;
+  }
+  
+  .buscador-inteligente {
+    max-width: 100% !important;
+    margin: 0 10px 20px 10px !important;
+  }
+}
+
+/* 5. ASEGURAR QUE NADA SE SUPERPONGA */
+.app-container > * {
+  position: relative;
+}
+
+/* 6. HEADER DÍA/NOCHE/PREVENT SIN CONFLICTOS */
+.header-dia,
+.header-noche,
+.header-prevent {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* 7. ADMIN BUTTONS AL COSTADO SUPERIOR */
+.admin-buttons {
+  position: fixed !important;
+  top: 20px !important;
+  right: 80px !important;
+  z-index: 1000 !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  padding: 10px 15px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+}
+
+/* 8. MODO OSCURO PARA ADMIN BUTTONS */
+.modo-oscuro .admin-buttons {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid #475569 !important;
+}/* ============================================
+🔧 CORRECCIÓN FINAL - BUSCADOR ARRIBA, HEADER DEBAJO
+============================================ */
+
+/* El buscador va PRIMERO (arriba) */
+.buscador-inteligente {
+  position: relative !important;
+  z-index: 100 !important;
+  margin-bottom: 30px !important;
+  order: -1 !important;
+}
+
+/* El header va DESPUÉS (debajo del buscador) */
+.header {
+  position: relative !important;
+  z-index: 50 !important;
+  margin-top: 0 !important;
+  order: 0 !important;
+}
+
+/* Asegurar que el contenedor use flex para respetar el orden */
+.app-container {
+  display: flex !important;
+  flex-direction: column !important;
 }
