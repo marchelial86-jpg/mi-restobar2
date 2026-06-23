@@ -1062,6 +1062,76 @@ function App() {
       console.error('❌ Error recargando productos:', error)
     }
   }
+  const actualizarProductosParaNoche = async () => {
+  if (!window.confirm('⚠️ Esto actualizará los productos de día para que aparezcan en la noche.\n\n¿Continuar?')) return;
+  
+  try {
+    console.log('🔄 Actualizando productos para turno noche...');
+    
+    // Mapeo de categorías día → noche
+    const categoriasMap = {
+      'pizzas': 'pizzasNoche',
+      'empanadas': 'empanadasNoche',
+      'comidasFijas': 'minutas',
+      'menuDelDia': 'minutas'
+    };
+    
+    // Precios sugeridos para la noche
+    const preciosNoche = {
+      'Carne': 1100,
+      'Pollo': 1100,
+      'Árabe': 1100,
+      'Jamón y Queso': 1100,
+      'Queso y Cebolla': 1100,
+      'Verdura': 1100,
+      'Choclo': 1100,
+      'Muzza': 7000,
+      'Napo': 8500,
+      'Especial': 9000,
+      'Fugazza': 7500,
+      'Fugazzeta': 8000,
+      'Calabresa': 8500,
+      'Doble Queso': 7000
+    };
+    
+    let actualizados = 0;
+    
+    for (const producto of productosFirebase) {
+      const turnoActual = producto.turno || 'ambos';
+      const categoriaActual = producto.categoria;
+      
+      // Solo actualizar si no tiene turno o es día
+      if (turnoActual === 'dia' || !producto.turno) {
+        const nuevaCategoria = categoriasMap[categoriaActual];
+        
+        if (nuevaCategoria) {
+          const firestoreId = producto.firestoreId || producto.id;
+          const nuevosDatos = {
+            categoria: nuevaCategoria,
+            turno: 'noche'
+          };
+          
+          // Actualizar precio si el nombre coincide
+          const nombreProducto = producto.nombre.split(' ')[0]; // Primera palabra
+          if (preciosNoche[nombreProducto]) {
+            nuevosDatos.precio = preciosNoche[nombreProducto];
+          }
+          
+          await setDoc(doc(db, 'productos', firestoreId), nuevosDatos, { merge: true });
+          console.log(`✅ ${producto.nombre}: ${categoriaActual} → ${nuevaCategoria}`);
+          actualizados++;
+        }
+      }
+    }
+    
+    alert(`✨ ¡Actualización completada!\n\n${actualizados} productos actualizados para turno noche.`);
+    await recargarProductos();
+    
+  } catch (error) {
+    console.error('❌ Error:', error);
+    alert('❌ Error al actualizar: ' + error.message);
+  }
+};
 
   const agregarProducto = async (producto) => {
     try {
@@ -1386,6 +1456,34 @@ function App() {
       return false
     }).length} productos)
   </span>
+</div>
+<div style={{ 
+  marginBottom: '1rem', 
+  padding: '1rem', 
+  background: 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)',
+  borderRadius: '10px',
+  textAlign: 'center',
+  boxShadow: '0 4px 15px rgba(236, 72, 153, 0.4)'
+}}>
+  <button 
+    onClick={actualizarProductosParaNoche} 
+    style={{
+      padding: '12px 24px',
+      background: 'white',
+      color: '#8b5cf6',
+      border: 'none',
+      borderRadius: '8px',
+      fontWeight: 'bold',
+      fontSize: '1rem',
+      cursor: 'pointer',
+      boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+    }}
+  >
+    🌙 Actualizar productos para turno NOCHE
+  </button>
+  <p style={{ color: 'white', marginTop: '10px', fontSize: '0.9rem', margin: '10px 0 0 0' }}>
+    Convierte productos de día (pizzas, empanadas) a productos de noche
+  </p>
 </div>
             <h3>📋 Productos Existentes ({productosFirebase.length} en total)</h3>
             
