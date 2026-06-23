@@ -5,7 +5,7 @@ import './App.css'
 import { registrarServiceWorker } from './registerSW'
 
 // ============================================
-// 🖼️ COMPONENTE GALERÍA DE FOTOS
+// ️ COMPONENTE GALERÍA DE FOTOS
 // ============================================
 function GaleriaProducto({ imagenes = [], nombreProducto }) {
   const [fotoActiva, setFotoActiva] = useState(0);
@@ -14,7 +14,7 @@ function GaleriaProducto({ imagenes = [], nombreProducto }) {
   if (!imagenes || imagenes.length === 0) {
     return (
       <div className="galeria-placeholder">
-        <span className="galeria-placeholder-icono">🍽️</span>
+        <span className="galeria-placeholder-icono">️</span>
         <span className="galeria-placeholder-texto">Sin foto</span>
       </div>
     );
@@ -83,7 +83,7 @@ function GaleriaProducto({ imagenes = [], nombreProducto }) {
 
       {lightboxAbierto && (
         <div className="lightbox-overlay" onClick={cerrarLightbox} role="dialog" aria-modal="true">
-          <button className="lightbox-cerrar" onClick={cerrarLightbox} aria-label="Cerrar">✕</button>
+          <button className="lightbox-cerrar" onClick={cerrarLightbox} aria-label="Cerrar"></button>
           
           {imagenes.length > 1 && (
             <>
@@ -300,36 +300,36 @@ function App() {
   const WHATSAPP_NUMBER = datosActuales.telefonoWhatsApp
 
   // ============================================
-  // 📋 CATEGORÍAS - TURNO DÍA
+  // 📋 CATEGORÍAS - TURNO DÍA (SOLO FIREBASE)
   // ============================================
   const categoriasInfoDia = {
     promosDia: { nombre: 'Promos Día', emoji: '🔥', color: '#FF0000' },
     menuDelDia: { nombre: 'Menú del Día', emoji: '📋', color: '#6c5ce7' },
-    comidasFijas: { nombre: 'Comidas Fijas', emoji: '🍽️', color: '#00b894' },
+    comidasFijas: { nombre: 'Comidas Fijas', emoji: '️', color: '#00b894' },
     pizzas: { nombre: 'Pizzas', emoji: '🍕', color: '#e17055' },
-    empanadas: { nombre: 'Empanadas', emoji: '', color: '#fdcb6e' },
+    empanadas: { nombre: 'Empanadas', emoji: '🥟', color: '#fdcb6e' },
     desayunos: { nombre: 'Desayunos', emoji: '🥐', color: '#a29bfe' },
-    bebidas: { nombre: 'Bebidas', emoji: '🥤', color: '#00cec9' }
+    bebidas: { nombre: 'Bebidas', emoji: '', color: '#00cec9' }
   }
 
   // ============================================
-  // 📋 CATEGORÍAS - TURNO NOCHE
+  //  CATEGORÍAS - TURNO NOCHE (SOLO FIREBASE)
   // ============================================
   const categoriasInfoNoche = {
     promosNoche: { nombre: 'Promos Noche', emoji: '🔥', color: '#FF0000' },
     cocteles: { nombre: 'Cócteles Clásicos', emoji: '🍹', color: '#EC4899' },
-    ginTonic: { nombre: 'Gin Tonic', emoji: '', color: '#06B6D4' },
+    ginTonic: { nombre: 'Gin Tonic', emoji: '🍸', color: '#06B6D4' },
     medidas: { nombre: 'Medidas', emoji: '🥃', color: '#F59E0B' },
-    jarras: { nombre: 'Jarras', emoji: '🍺', color: '#8B5CF6' },
+    jarras: { nombre: 'Jarras', emoji: '', color: '#8B5CF6' },
     whiskys: { nombre: 'Whiskys', emoji: '🥃', color: '#D97706' },
     tequilas: { nombre: 'Tequilas & Shots', emoji: '🌵', color: '#10B981' },
-    cervezas: { nombre: 'Cervezas', emoji: '', color: '#F59E0B' },
+    cervezas: { nombre: 'Cervezas', emoji: '🍻', color: '#F59E0B' },
     vinos: { nombre: 'Vinos', emoji: '🍷', color: '#7C3AED' },
-    espumantes: { nombre: 'Espumantes', emoji: '', color: '#EC4899' },
+    espumantes: { nombre: 'Espumantes', emoji: '🥂', color: '#EC4899' },
     sinAlcohol: { nombre: 'Sin Alcohol', emoji: '🧃', color: '#06B6D4' },
-    pizzas: { nombre: 'Pizzas', emoji: '', color: '#EF4444' },
+    pizzas: { nombre: 'Pizzas', emoji: '🍕', color: '#EF4444' },
     empanadas: { nombre: 'Empanadas', emoji: '🥟', color: '#F59E0B' },
-    minutas: { nombre: 'Minutas', emoji: '', color: '#10B981' },
+    minutas: { nombre: 'Minutas', emoji: '🥪', color: '#10B981' },
     extras: { nombre: 'Extras', emoji: '🍟', color: '#F97316' }
   }
 
@@ -337,7 +337,7 @@ function App() {
     { key: 'promosNoche', nombre: '🔥 Promos Noche', emoji: '🔥' },
     { key: 'cocteles', nombre: 'Cócteles Clásicos', emoji: '' },
     { key: 'ginTonic', nombre: 'Gin Tonic', emoji: '🍸' },
-    { key: 'medidas', nombre: 'Medidas', emoji: '🥃' },
+    { key: 'medidas', nombre: 'Medidas', emoji: '' },
     { key: 'jarras', nombre: 'Jarras', emoji: '🍺' },
     { key: 'whiskys', nombre: 'Whiskys', emoji: '🥃' },
     { key: 'tequilas', nombre: 'Tequila & Shots', emoji: '🌵' },
@@ -354,17 +354,17 @@ function App() {
   const categoriasOrdenDia = [
     { key: 'promosDia', nombre: '🔥 Promos Día', emoji: '🔥' },
     { key: 'menuDelDia', nombre: 'Menú del Día', emoji: '📋' },
-    { key: 'comidasFijas', nombre: 'Comidas Fijas', emoji: '️' },
-    { key: 'pizzas', nombre: 'Pizzas', emoji: '' },
+    { key: 'comidasFijas', nombre: 'Comidas Fijas', emoji: '🍽️' },
+    { key: 'pizzas', nombre: 'Pizzas', emoji: '🍕' },
     { key: 'empanadas', nombre: 'Empanadas', emoji: '' },
-    { key: 'desayunos', nombre: 'Desayunos', emoji: '🥐' },
+    { key: 'desayunos', nombre: 'Desayunos', emoji: '' },
     { key: 'bebidas', nombre: 'Bebidas', emoji: '' }
   ];
 
   const pasosGuia = [
     { id: 'buscador', titulo: '🔍 Buscá rápido', descripcion: 'Usá el buscador para encontrar tus productos favoritos.' },
     { id: 'categorias', titulo: '📂 Categorías', descripcion: 'Hacé clic en las categorías para navegar rápido.' },
-    { id: 'productos', titulo: ' Agregá al carrito', descripcion: 'Hacé clic en "+ Agregar" para añadir productos.' },
+    { id: 'productos', titulo: '🍔 Agregá al carrito', descripcion: 'Hacé clic en "+ Agregar" para añadir productos.' },
     { id: 'carrito', titulo: ' Tu pedido', descripcion: 'El carrito flotante te muestra el total.' },
     { id: 'finalizar', titulo: '📱 Finalizá tu pedido', descripcion: 'Completá tus datos y enviá por WhatsApp.' }
   ]
@@ -414,7 +414,7 @@ function App() {
         nuevoTurno = 'dia'
         abierto = false
         const minsHastaApertura = aperturaDia - tiempoActualEnMinutos
-        msgHorario = '🔴 Cerrado'
+        msgHorario = ' Cerrado'
         tiempoRest = `Abrimos a las 09:00 (en ${Math.floor(minsHastaApertura / 60)}h ${minsHastaApertura % 60}min)`
       }
       
@@ -550,10 +550,13 @@ function App() {
     cargarCliente()
   }, [])
 
+  // ============================================
+  //  CARGAR PRODUCTOS DESDE FIREBASE
+  // ============================================
   useEffect(() => {
     const cargarProductos = async () => {
       try {
-        console.log(' Cargando productos de Firebase...')
+        console.log('🔍 Cargando productos de Firebase...')
         const querySnapshot = await getDocs(collection(db, 'productos'))
         console.log('📦 Documentos encontrados:', querySnapshot.size)
         const productos = querySnapshot.docs.map(doc => ({ 
@@ -659,7 +662,7 @@ function App() {
   }
 
   const guardarPeriodo = async () => {
-    if (!nuevoPeriodo.nombre || !nuevoPeriodo.fechaInicio || !nuevoPeriodo.fechaCierre) { alert('❌ Completá todos los campos'); return }
+    if (!nuevoPeriodo.nombre || !nuevoPeriodo.fechaInicio || !nuevoPeriodo.fechaCierre) { alert(' Completá todos los campos'); return }
     try {
       await addDoc(collection(db, 'fidelidad_periodos'), { nombre: nuevoPeriodo.nombre, fechaInicio: new Date(nuevoPeriodo.fechaInicio).toISOString(), fechaCierre: new Date(nuevoPeriodo.fechaCierre).toISOString(), puntosPorCienPesos: Number(nuevoPeriodo.puntosPorCienPesos), bonusPedidos: { cantidad: Number(nuevoPeriodo.bonusCantidad), puntos: Number(nuevoPeriodo.bonusPuntos) }, activo: nuevoPeriodo.activo })
       alert('✅ Período creado')
@@ -689,7 +692,7 @@ function App() {
       const q = query(collection(db, 'fidelidad_periodos'), orderBy('fechaInicio', 'desc'))
       const qs = await getDocs(q)
       setPeriodosFidelidad(qs.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-    } catch (error) { alert(' Error: ' + error.message) }
+    } catch (error) { alert('❌ Error: ' + error.message) }
   }
 
   const marcarCanjeEntregado = async (canjeId) => {
@@ -699,7 +702,7 @@ function App() {
       const q = query(collection(db, 'fidelidad_canjes'), orderBy('fecha', 'desc'))
       const qs = await getDocs(q)
       setCanjesFidelidad(qs.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-    } catch (error) { alert(' Error: ' + error.message) }
+    } catch (error) { alert('❌ Error: ' + error.message) }
   }
 
   const enviarReserva = async () => {
@@ -715,7 +718,7 @@ function App() {
         turno: 'noche'
       })
       alert('✅ ¡Reserva enviada! Te confirmaremos por WhatsApp.')
-      const mensaje = encodeURIComponent(`🎉 *NUEVA RESERVA - Ineva Resto-Bar*\n\n👤 ${formReserva.nombre}\n📱 ${formReserva.telefono}\n ${formReserva.fecha}\n🕐 ${formReserva.hora}\n👥 ${formReserva.personas} personas\n💬 ${formReserva.mensaje || 'Sin mensaje'}`)
+      const mensaje = encodeURIComponent(`🎉 *NUEVA RESERVA - Ineva Resto-Bar*\n\n ${formReserva.nombre}\n📱 ${formReserva.telefono}\n📅 ${formReserva.fecha}\n🕐 ${formReserva.hora}\n👥 ${formReserva.personas} personas\n💬 ${formReserva.mensaje || 'Sin mensaje'}`)
       window.open(`https://wa.me/${DATOS_NOCHE.telefonoWhatsApp}?text=${mensaje}`, '_blank')
       setMostrarReservas(false)
       setFormReserva({ nombre: '', telefono: '', fecha: '', hora: '', personas: '2', mensaje: '' })
@@ -773,7 +776,7 @@ function App() {
   }
 
   // ============================================
-  // 🍔 OBTENER PRODUCTOS POR CATEGORÍA (SOLO FIREBASE)
+  // 🍔 OBTENER PRODUCTOS POR CATEGORÍA (SOLO FIREBASE - SIN HARDCODED)
   // ============================================
   const getProductosPorCategoria = (categoria) => {
     const productosFiltrados = productosFirebase.filter(p => {
@@ -865,7 +868,7 @@ function App() {
       alert('✅ Producto agregado')
       await recargarProductos()
     } catch (error) { 
-      alert(' Error al agregar producto') 
+      alert('❌ Error al agregar producto') 
     }
   }
 
@@ -925,7 +928,7 @@ function App() {
       const firestoreId = producto?.firestoreId || id
       await setDoc(doc(db, 'productos', firestoreId), { turno: nuevoTurno }, { merge: true })
       setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, turno: nuevoTurno } : p))
-      const iconos = { dia: '️', noche: '🌙' }
+      const iconos = { dia: '☀️', noche: '' }
       alert(`✅ Turno cambiado a: ${iconos[nuevoTurno]} ${nuevoTurno.toUpperCase()}`)
     } catch (error) {
       alert('❌ Error: ' + error.message)
@@ -967,9 +970,9 @@ function App() {
     if (!tipoEntrega) { setError('❌ Seleccioná tipo de entrega'); return }
     if (tipoEntrega === 'delivery' && turnoActual === 'noche') {
     } else if (tipoEntrega === 'delivery' && !direccion.trim()) {
-      setError('❌ Ingresá la dirección'); return
+      setError(' Ingresá la dirección'); return
     }
-    if (!aceptoTerminos) { setError('⚠️ Aceptá los Términos'); setMostrarTerminos(true); return }
+    if (!aceptoTerminos) { setError('️ Aceptá los Términos'); setMostrarTerminos(true); return }
     setCargando(true)
     try {
       await guardarDatosCliente()
@@ -1065,7 +1068,7 @@ function App() {
     const [nuevoProducto, setNuevoProducto] = useState({ nombre: '', precio: '', categoria: 'menuDelDia', turno: 'dia', orden: '', imagenes: '' })
     const [tabActiva, setTabActiva] = useState('productosDia')
     
-    console.log(' productosFirebase en admin:', productosFirebase.length)
+    console.log('📊 productosFirebase en admin:', productosFirebase.length)
     
     const handleSubmit = (e) => {
       e.preventDefault()
@@ -1098,9 +1101,9 @@ function App() {
         {tabActiva === 'pedidos' && (
           <div className="panel-section">
             <div className="panel-header">
-              <h2>📋 Pedidos Pendientes ({pedidosNuevos.length})</h2>
+              <h2> Pedidos Pendientes ({pedidosNuevos.length})</h2>
               <button onClick={() => setSonidoActivado(!sonidoActivado)} className="btn-sonido" style={{ background: sonidoActivado ? '#00b894' : '#e74c3c' }}>
-                {sonidoActivado ? ' Sonido ON' : '🔕 Sonido OFF'}
+                {sonidoActivado ? '🔔 Sonido ON' : '🔕 Sonido OFF'}
               </button>
             </div>
             {pedidosNuevos.length === 0 ? <p className="no-pedidos">✅ No hay pedidos pendientes</p> : (
@@ -1108,13 +1111,13 @@ function App() {
                 {pedidosNuevos.map((pedido) => (
                   <div key={pedido.id} className="pedido-card" style={{ borderLeft: `4px solid ${pedido.estado === 'pendiente' ? '#ffc107' : pedido.estado === 'en_preparacion' ? '#00b894' : '#6c5ce7'}` }}>
                     <div className="pedido-header">
-                      <div><strong>👤 {pedido.cliente?.nombre}</strong><div> {pedido.cliente?.telefono}</div><div>🕐 {new Date(pedido.fecha).toLocaleTimeString('es-AR')}</div></div>
-                      <div className="pedido-total"><div>{formatearPrecio(pedido.total)}</div><div className={`badge-entrega ${pedido.tipoEntrega === 'delivery' ? 'delivery' : 'retiro'}`}>{pedido.tipoEntrega === 'delivery' ? '🚚 Delivery' : '🏪 Retiro'}</div></div>
+                      <div><strong>👤 {pedido.cliente?.nombre}</strong><div>📱 {pedido.cliente?.telefono}</div><div>🕐 {new Date(pedido.fecha).toLocaleTimeString('es-AR')}</div></div>
+                      <div className="pedido-total"><div>{formatearPrecio(pedido.total)}</div><div className={`badge-entrega ${pedido.tipoEntrega === 'delivery' ? 'delivery' : 'retiro'}`}>{pedido.tipoEntrega === 'delivery' ? '🚚 Delivery' : ' Retiro'}</div></div>
                     </div>
                     <div className="pedido-productos"><strong>📦 Productos:</strong><ul>{pedido.productos?.map((prod, idx) => (<li key={idx}>{prod.cantidad}x {prod.nombre}{prod.nota && <em> ({prod.nota})</em>}</li>))}</ul></div>
                     {pedido.direccion && <div className="pedido-direccion">🏠 {pedido.direccion}</div>}
                     <div className="pedido-botones">
-                      {pedido.estado === 'pendiente' && <button onClick={() => cambiarEstadoPedido(pedido.id, 'en_preparacion')} className="btn-estado btn-preparar">👨‍🍳 Preparar</button>}
+                      {pedido.estado === 'pendiente' && <button onClick={() => cambiarEstadoPedido(pedido.id, 'en_preparacion')} className="btn-estado btn-preparar">👨‍ Preparar</button>}
                       {pedido.estado === 'en_preparacion' && <button onClick={() => cambiarEstadoPedido(pedido.id, 'listo')} className="btn-estado btn-listo">✅ Listo</button>}
                       <button onClick={() => cambiarEstadoPedido(pedido.id, 'entregado')} className="btn-estado btn-entregado">📦 Entregado</button>
                     </div>
@@ -1137,7 +1140,7 @@ function App() {
             
             <div className="botones-seguridad">
               <button onClick={() => setMostrarCambiarPassword(true)} className="btn-seguridad verde">
-                 Cambiar Contraseña
+                🔑 Cambiar Contraseña
               </button>
             </div>
             
@@ -1160,7 +1163,7 @@ function App() {
                 required 
               />
               <textarea 
-                placeholder="📷 URLs de imágenes (separadas por coma). Ej: https://foto1.jpg, https://foto2.jpg"
+                placeholder=" URLs de imágenes (separadas por coma). Ej: https://foto1.jpg, https://foto2.jpg"
                 value={nuevoProducto.imagenes || ''}
                 onChange={(e) => setNuevoProducto({...nuevoProducto, imagenes: e.target.value})}
                 className="input-neumo textarea-neumo"
@@ -1176,7 +1179,7 @@ function App() {
                 <option value="comidasFijas">🍽️ Comidas Fijas</option>
                 <option value="pizzas">🍕 Pizzas</option>
                 <option value="empanadas">🥟 Empanadas</option>
-                <option value="desayunos"> Desayunos</option>
+                <option value="desayunos">🥐 Desayunos</option>
                 <option value="bebidas">🥤 Bebidas</option>
               </select>
               <input type="hidden" value="dia" />
@@ -1330,11 +1333,11 @@ function App() {
           <>
             <div className="botones-seguridad">
               <button onClick={() => setMostrarCambiarPassword(true)} className="btn-seguridad verde">
-                🔑 Cambiar Contraseña
+                 Cambiar Contraseña
               </button>
             </div>
             
-            <h2 className="panel-titulo"> Agregar Producto - Turno Noche</h2>
+            <h2 className="panel-titulo">🌙 Agregar Producto - Turno Noche</h2>
             <form onSubmit={handleSubmit} className="form-producto">
               <input 
                 type="text" 
@@ -1364,19 +1367,19 @@ function App() {
                 onChange={(e) => setNuevoProducto({...nuevoProducto, categoria: e.target.value})} 
                 className="input-neumo"
               >
-                <option value="promosNoche"> Promos Noche</option>
+                <option value="promosNoche">🔥 Promos Noche</option>
                 <option value="cocteles">🍹 Cócteles Clásicos</option>
-                <option value="ginTonic">🍸 Gin Tonic</option>
-                <option value="medidas"> Medidas</option>
+                <option value="ginTonic"> Gin Tonic</option>
+                <option value="medidas">🥃 Medidas</option>
                 <option value="jarras">🍺 Jarras</option>
                 <option value="whiskys">🥃 Whiskys</option>
-                <option value="tequilas">🌵 Tequilas & Shots</option>
+                <option value="tequilas"> Tequilas & Shots</option>
                 <option value="cervezas">🍻 Cervezas</option>
-                <option value="vinos"> Vinos</option>
+                <option value="vinos">🍷 Vinos</option>
                 <option value="espumantes">🥂 Espumantes</option>
                 <option value="sinAlcohol">🧃 Sin Alcohol</option>
                 <option value="pizzas">🍕 Pizzas</option>
-                <option value="empanadas"> Empanadas</option>
+                <option value="empanadas">🥟 Empanadas</option>
                 <option value="minutas">🥪 Minutas</option>
                 <option value="extras">🍟 Extras</option>
               </select>
@@ -1527,7 +1530,7 @@ function App() {
 
         {tabActiva === 'fidelidad' && (
           <div className="panel-fidelidad">
-            <h2 className="panel-titulo"> Programa de Fidelidad</h2>
+            <h2 className="panel-titulo">🏆 Programa de Fidelidad</h2>
             <div className="fidelidad-config-info">
               <h3>⚙️ Configuración Actual</h3>
               {configFidelidad ? (
@@ -1536,12 +1539,12 @@ function App() {
                   <div className="config-card"><strong>Bonus cada {configFidelidad.bonusPedidos?.cantidad || 5} pedidos:</strong><span>+{configFidelidad.bonusPedidos?.puntos || 10} pts</span></div>
                   <div className="config-card nivel-bronce-config">🥉 Bronce: 0-200 pts (1x)</div>
                   <div className="config-card nivel-plata-config">🥈 Plata: 201-500 pts (1.5x)</div>
-                  <div className="config-card nivel-oro-config">🥇 Oro: 501+ pts (2x)</div>
+                  <div className="config-card nivel-oro-config"> Oro: 501+ pts (2x)</div>
                 </div>
               ) : <p>Cargando configuración...</p>}
             </div>
             <div className="fidelidad-seccion">
-              <h3>📅 Períodos</h3>
+              <h3> Períodos</h3>
               <div className="form-periodo">
                 <input type="text" placeholder="Nombre del período" value={nuevoPeriodo.nombre} onChange={(e) => setNuevoPeriodo({...nuevoPeriodo, nombre: e.target.value})} className="input-neumo" />
                 <div className="form-row">
@@ -1581,7 +1584,7 @@ function App() {
                       <div><label>Tipo:</label><select value={nuevoPremio.tipo} onChange={(e) => setNuevoPremio({...nuevoPremio, tipo: e.target.value})} className="input-neumo"><option value="canje">Canje directo</option><option value="sorteo">Sorteo</option></select></div>
                       <div><label>Cantidad disponible:</label><input type="number" value={nuevoPremio.cantidadDisponible} onChange={(e) => setNuevoPremio({...nuevoPremio, cantidadDisponible: e.target.value})} className="input-neumo" /></div>
                     </div>
-                    <button onClick={guardarPremio} className="btn-primary"> Guardar Premio</button>
+                    <button onClick={guardarPremio} className="btn-primary">🎁 Guardar Premio</button>
                   </div>
                   {premiosDisponibles.length > 0 && (
                     <div className="lista-premios">
@@ -1614,7 +1617,7 @@ function App() {
 
         {tabActiva === 'reservas' && (
           <div className="panel-reservas">
-            <h2 className="panel-titulo">📅 Reservas Nocturnas</h2>
+            <h2 className="panel-titulo"> Reservas Nocturnas</h2>
           </div>
         )}
       </div>
@@ -1640,13 +1643,13 @@ function App() {
     <div className={`app-container ${turnoActual === 'noche' ? 'tema-noche' : turnoActual === 'prevent' ? 'tema-prevent' : 'tema-dia'}`} role="application" aria-label="Aplicación de pedidos Ineva Resto-Bar">
       
       <button className="btn-modo-oscuro" onClick={toggleModoOscuro} aria-label={modoOscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'} title={modoOscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}>
-        {modoOscuro ? '☀️' : '🌙'}
+        {modoOscuro ? '☀️' : ''}
       </button>
 
       {puedeInstalar && <button className="btn-instalar-flotante" onClick={instalarPWA} aria-label="Instalar app">📲</button>}
       <button className="btn-ayuda-flotante" onClick={() => setMostrarGuia(true)} aria-label="Ayuda">❓</button>
       <button className="btn-whatsapp-flotante" onClick={abrirWhatsAppConsulta} aria-label="WhatsApp">💬</button>
-      <button className="btn-redes-flotante" onClick={() => setMostrarRedes(true)} aria-label="Redes">📱</button>
+      <button className="btn-redes-flotante" onClick={() => setMostrarRedes(true)} aria-label="Redes"></button>
       
       {telefono && <button className="btn-fidelidad-flotante" onClick={() => setMostrarFidelidad(true)} aria-label="Ver mis puntos" title="Ver programa de fidelidad">🏆</button>}
 
@@ -1673,11 +1676,11 @@ function App() {
           <div className="modal-content modal-reservas">
             <div className="modal-header-reservas">
               <h3>📅 Reservar Mesa - Noche</h3>
-              <button className="guia-cerrar" onClick={() => setMostrarReservas(false)}>✕</button>
+              <button className="guia-cerrar" onClick={() => setMostrarReservas(false)}></button>
             </div>
             <div className="reservas-form">
               <p className="reservas-info">🌙 Reservá tu mesa para la noche. Te confirmaremos por WhatsApp.</p>
-              <div className="form-field"><label>👤 Nombre:</label><input type="text" value={formReserva.nombre} onChange={(e) => setFormReserva({...formReserva, nombre: e.target.value})} className="input-neumo" placeholder="Tu nombre" /></div>
+              <div className="form-field"><label> Nombre:</label><input type="text" value={formReserva.nombre} onChange={(e) => setFormReserva({...formReserva, nombre: e.target.value})} className="input-neumo" placeholder="Tu nombre" /></div>
               <div className="form-field"><label>📱 Teléfono:</label><input type="tel" value={formReserva.telefono} onChange={(e) => setFormReserva({...formReserva, telefono: e.target.value})} className="input-neumo" placeholder="Tu teléfono" /></div>
               <div className="form-row">
                 <div className="form-field"><label> Fecha:</label><input type="date" value={formReserva.fecha} onChange={(e) => setFormReserva({...formReserva, fecha: e.target.value})} className="input-neumo" /></div>
@@ -1759,7 +1762,7 @@ function App() {
             <div className="redes-header"><h3>📱 Seguinos en redes</h3><button className="redes-cerrar" onClick={() => setMostrarRedes(false)}>✕</button></div>
             <div className="redes-content">
               <div className="redes-lista">
-                {Object.entries({ instagram: { nombre: 'Instagram', url: DATOS_DIA.redesSociales?.instagram || '#', seguidores: '2.4K', color: '#E4405F', gradiente: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', icono: '📷', promocion: '🎁 10% OFF mencionando este post' }, facebook: { nombre: 'Facebook', url: DATOS_DIA.redesSociales?.facebook || '#', seguidores: '1.8K', color: '#1877F2', gradiente: 'linear-gradient(145deg, #1877F2, #0d5bbf)', icono: '👍', promocion: '🎉 Sorteo semanal' }, tiktok: { nombre: 'TikTok', url: DATOS_DIA.redesSociales?.tiktok || '#', seguidores: '5.2K', color: '#000000', gradiente: 'linear-gradient(145deg, #000000, #25F4EE)', icono: '🎵', promocion: '🎬 Videos exclusivos' } }).map(([key, red]) => (
+                {Object.entries({ instagram: { nombre: 'Instagram', url: DATOS_DIA.redesSociales?.instagram || '#', seguidores: '2.4K', color: '#E4405F', gradiente: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', icono: '📷', promocion: '🎁 10% OFF mencionando este post' }, facebook: { nombre: 'Facebook', url: DATOS_DIA.redesSociales?.facebook || '#', seguidores: '1.8K', color: '#1877F2', gradiente: 'linear-gradient(145deg, #1877F2, #0d5bbf)', icono: '👍', promocion: '🎉 Sorteo semanal' }, tiktok: { nombre: 'TikTok', url: DATOS_DIA.redesSociales?.tiktok || '#', seguidores: '5.2K', color: '#000000', gradiente: 'linear-gradient(145deg, #000000, #25F4EE)', icono: '🎵', promocion: ' Videos exclusivos' } }).map(([key, red]) => (
                   <div key={key} className="redes-card" style={{ '--color-red': red.color }}>
                     <div className="redes-info"><div className="redes-icono" style={{ background: red.gradiente }}><span>{red.icono}</span></div><div className="redes-detalles"><h4>{red.nombre}</h4><div className="redes-seguidores"><span className="seguidores-numero">{red.seguidores} seguidores</span></div></div></div>
                     <div className="redes-promocion"><p>{red.promocion}</p></div>
@@ -1775,7 +1778,7 @@ function App() {
       {mostrarTerminos && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-terminos">
-            <div className="modal-header-terminos"><h3>📋 Términos y Condiciones</h3><button className="guia-cerrar" onClick={() => setMostrarTerminos(false)}>✕</button></div>
+            <div className="modal-header-terminos"><h3> Términos y Condiciones</h3><button className="guia-cerrar" onClick={() => setMostrarTerminos(false)}>✕</button></div>
             <div className="terminos-content"><p>Al utilizar los servicios de {datosActuales.nombre}, aceptás los términos y condiciones.</p>
               <div className="terminos-checkbox"><label><input type="checkbox" checked={aceptoTerminos} onChange={(e) => setAceptoTerminos(e.target.checked)} /><span>He leído y acepto</span></label></div>
             </div>
@@ -1834,7 +1837,7 @@ function App() {
                       )}
                       {premiosDisponibles.length > 0 && (
                         <div className="fidelidad-premios">
-                          <h4>🎁 Premios Disponibles</h4>
+                          <h4> Premios Disponibles</h4>
                           <div className="premios-grid">
                             {premiosDisponibles.map((premio) => (
                               <div key={premio.id} className="premio-card">
@@ -1847,7 +1850,7 @@ function App() {
                         </div>
                       )}
                     </>
-                  ) : <div className="fidelidad-sin-datos"><p> Ingresá tu teléfono para ver tus puntos</p></div>}
+                  ) : <div className="fidelidad-sin-datos"><p>📱 Ingresá tu teléfono para ver tus puntos</p></div>}
                 </>
               ) : <div className="fidelidad-sin-periodo"><p>No hay períodos activos</p></div>}
             </div>
@@ -1870,7 +1873,7 @@ function App() {
             <p><strong> Tel:</strong> {mostrarNotificacion.cliente?.telefono}</p>
             <p className="total"><strong>💰 Total:</strong> {formatearPrecio(mostrarNotificacion.total)}</p>
           </div>
-          <button onClick={() => { setMostrarNotificacion(null); if (!esAdmin) setMostrarLogin(true); else setMostrarPanelAdmin(true) }} className="btn-ver-detalles">️ Ver Detalles</button>
+          <button onClick={() => { setMostrarNotificacion(null); if (!esAdmin) setMostrarLogin(true); else setMostrarPanelAdmin(true) }} className="btn-ver-detalles">👁️ Ver Detalles</button>
         </div>
       )}
 
@@ -1921,7 +1924,7 @@ function App() {
       </div>
 
       <div className="time-banner">
-        <p>⏱️ Tiempo estimado: <strong>20 a 40 minutos</strong></p>
+        <p>️ Tiempo estimado: <strong>20 a 40 minutos</strong></p>
         <p className="horario-info">🕐 {datosActuales.horarios}</p>
         {turnoActual === 'noche' && <p className="horario-info neon-text">🎉 Noche de Tragos & Música en Vivo</p>}
       </div>
@@ -1940,7 +1943,7 @@ function App() {
             <p>Abrimos a las 21:00 hs con la mejor noche de tragos y música</p>
             <div className="prevent-actions">
               <button className="btn-reservar-prevent" onClick={() => setMostrarReservas(true)}>📅 Reservar Mesa</button>
-              <p className="prevent-info">📞 Consultas: {DATOS_NOCHE.telefono}</p>
+              <p className="prevent-info"> Consultas: {DATOS_NOCHE.telefono}</p>
             </div>
           </div>
         </div>
@@ -1995,13 +1998,13 @@ function App() {
           )}
 
           <div className="form-section">
-            <h2> Datos del Cliente</h2>
+            <h2>📝 Datos del Cliente</h2>
             <div className="form-group">
-              <label htmlFor="nombre-completo">👤 Nombre: <span className="required">*</span></label>
+              <label htmlFor="nombre-completo"> Nombre: <span className="required">*</span></label>
               <input id="nombre-completo" type="text" className="form-input" value={nombreCompleto} onChange={(e) => { setNombreCompleto(e.target.value); setError(''); }} placeholder="Ej: Juan Pérez" />
             </div>
             <div className="form-group">
-              <label htmlFor="telefono"> Teléfono: <span className="required">*</span></label>
+              <label htmlFor="telefono">📱 Teléfono: <span className="required">*</span></label>
               <input id="telefono" type="tel" className="form-input" value={telefono} onChange={(e) => { setTelefono(e.target.value); setError(''); }} placeholder="Ej: 3878123456" />
             </div>
             <div className="subscribe-box">
@@ -2053,7 +2056,7 @@ function App() {
                       </div>
                       <div className="cart-item-total">{formatearPrecio(pedido.precio * pedido.cantidad)}</div>
                     </div>
-                    <input type="text" className="cart-item-note" value={notasPorProducto[pedido.id] || ''} onChange={(e) => actualizarNota(pedido.id, e.target.value)} placeholder="📝 Nota" />
+                    <input type="text" className="cart-item-note" value={notasPorProducto[pedido.id] || ''} onChange={(e) => actualizarNota(pedido.id, e.target.value)} placeholder=" Nota" />
                   </div>
                 ))}
                 <div className="resumen-pedido">
@@ -2064,10 +2067,10 @@ function App() {
                   <label><input type="checkbox" checked={aceptoTerminos} onChange={(e) => setAceptoTerminos(e.target.checked)} /><span>Acepto los <button className="btn-link-terminos" onClick={() => setMostrarTerminos(true)}>Términos y Condiciones</button></span></label>
                 </div>
                 <div className="transfer-section">
-                  <h3> PAGO POR TRANSFERENCIA</h3>
+                  <h3>💳 PAGO POR TRANSFERENCIA</h3>
                   <div className="alias-container">
                     <input type="text" className="alias-input" value="silvia.ge.nes" readOnly />
-                    <button className="btn-copy" onClick={copiarAlias}> Copiar</button>
+                    <button className="btn-copy" onClick={copiarAlias}>📋 Copiar</button>
                   </div>
                 </div>
                 {error && <div className="error-message">{error}</div>}
@@ -2098,7 +2101,7 @@ function App() {
               <div className="contacto-card"><div className="contacto-icono">📍</div><h3>Dirección</h3><p>{datosActuales.direccion}</p><button className="btn-contacto" onClick={abrirGoogleMaps}>🗺️ Ver</button></div>
               
               <div className="contacto-card">
-                <div className="contacto-icono">📞</div>
+                <div className="contacto-icono"></div>
                 <h3>Teléfonos</h3>
                 <p><strong>Cel/WhatsApp:</strong> {datosActuales.telefono}</p>
                 {datosActuales.telefonoFijo && (
