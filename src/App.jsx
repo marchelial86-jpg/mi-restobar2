@@ -141,8 +141,7 @@ function AcordeonCategoria({ categoriaKey, titulo, emoji, getProductosPorCategor
             }
 
             return (
-              return (
-  <div key={producto.id} className={`product-card ${producto.disponible === false ? 'producto-agotado' : ''}`}>
+              <div key={producto.id} className={`product-card ${producto.disponible === false ? 'producto-agotado' : ''}`}>
                 <GaleriaProducto 
                   imagenes={imagenes} 
                   nombreProducto={producto.nombre} 
