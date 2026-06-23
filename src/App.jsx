@@ -1476,11 +1476,11 @@ function App() {
                             📷 Fotos
                           </button>
                           <button 
-  onClick={() => toggleDisponibilidad(productId)} 
-  className={`btn-small ${producto.disponible !== false ? 'verde' : 'rojo'}`}
->
-  {producto.disponible !== false ? '✅ Disponible' : '🔴 Agotado'}
-</button>
+                          onClick={() => toggleDisponibilidad(productId)} 
+                          className={`btn-small ${prod.disponible !== false ? 'verde' : 'rojo'}`}
+                          >
+                          {prod.disponible !== false ? '✅ Disponible' : '🔴 Agotado'}
+                          </button>
                           <button 
                             onClick={() => eliminarProducto(productId)} 
                             className="btn-small rojo"
