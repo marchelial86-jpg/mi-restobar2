@@ -1169,7 +1169,22 @@ function App() {
       setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, disponible: nuevaDisponibilidad } : p))
       alert(nuevaDisponibilidad ? '✅ Producto marcado como DISPONIBLE' : '🔴 Producto marcado como AGOTADO')
     } catch (error) { alert(' Error: ' + error.message) }
-  }
+  }const cambiarTurnoProducto = async (id) => {
+  try {
+    const producto = productosFirebase.find(p => p.id === id || p.firestoreId === id)
+    const firestoreId = producto?.firestoreId || id
+    const turnos = ['dia', 'noche', 'ambos']
+    const turnoActual = producto.turno || 'ambos'
+    const indiceActual = turnos.indexOf(turnoActual)
+    const nuevoTurno = turnos[(indiceActual + 1) % turnos.length]
+    
+    await setDoc(doc(db, 'productos', firestoreId), { turno: nuevoTurno }, { merge: true })
+    setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, turno: nuevoTurno } : p))
+    
+    const iconos = { dia: '☀️', noche: '', ambos: '🔄' }
+    alert(`✅ Turno cambiado a: ${iconos[nuevoTurno]} ${nuevoTurno.toUpperCase()}`)
+  } catch (error) { alert('❌ Error: ' + error.message) }
+}
 
   const guardarDatosCliente = async () => {
     try {
@@ -1608,6 +1623,17 @@ function App() {
                           >
                           {prod.disponible !== false ? '✅ Disponible' : '🔴 Agotado'}
                           </button>
+                          <button 
+                          onClick={() => cambiarTurnoProducto(productId)} 
+                          className={`btn-small ${
+                            prod.turno === 'noche' ? 'purpura' : 
+                            prod.turno === 'dia' ? 'verde' : 'azul'
+                          }`}
+                           title={`Turno actual: ${prod.turno || 'ambos'}`}
+                        >
+                           {prod.turno === 'noche' ? ' Noche' : 
+                            prod.turno === 'dia' ? '☀️ Día' : '🔄 Ambos'}
+                         </button>
                           <button 
                             onClick={() => eliminarProducto(productId)} 
                             className="btn-small rojo"
