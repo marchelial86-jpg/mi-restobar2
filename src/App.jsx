@@ -154,10 +154,10 @@ function AcordeonCategoria({ categoriaKey, titulo, emoji, getProductosPorCategor
                 </div>
                 <div className="product-actions">
                   {producto.disponible === false ? (
-  <span className="badge-agotado">🔴 Agotado</span>
-) : (
-  <button className="btn-primary" onClick={() => agregarPedido(producto)}>+ Agregar</button>
-)}
+                    <span className="badge-agotado">🔴 Agotado</span>
+                  ) : (
+                    <button className="btn-primary" onClick={() => agregarPedido(producto)}>+ Agregar</button>
+                  )}
                   <button className="btn-compartir" onClick={() => compartirProducto(producto)}>📤</button>
                 </div>
               </div>
@@ -300,40 +300,40 @@ function App() {
   const WHATSAPP_NUMBER = datosActuales.telefonoWhatsApp
 
   const coctelesClasicos = [
-    { id: 'n1', nombre: 'Daiquiri', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Fruta a Elección (Frutilla, Durazno, Ananá)', orden: 1 },
-    { id: 'n2', nombre: 'Primavera', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Jugo de Naranja - Frutilla - Durazno - Ananá', orden: 2 },
-    { id: 'n3', nombre: 'Sex on The Beach', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Licor de Durazno - Jugo de Naranja - Granadina', orden: 3 },
-    { id: 'n4', nombre: 'Tequila Sunrise', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Tequila - Jugo de Naranja - Granadina', orden: 4 },
-    { id: 'n5', nombre: 'Cuba Libre', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Coca Cola - Jugo de Limón', orden: 5 },
+    { id: 'n1', nombre: 'Daiquiri', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Fruta a Elección', orden: 1 },
+    { id: 'n2', nombre: 'Primavera', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Jugo de Naranja - Frutilla', orden: 2 },
+    { id: 'n3', nombre: 'Sex on The Beach', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Licor de Durazno', orden: 3 },
+    { id: 'n4', nombre: 'Tequila Sunrise', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Tequila - Jugo de Naranja', orden: 4 },
+    { id: 'n5', nombre: 'Cuba Libre', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Coca Cola', orden: 5 },
     { id: 'n6', nombre: 'Gancia Batido', precio: 2500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Gancia - Limón - Azúcar', orden: 6 },
-    { id: 'n7', nombre: 'Laguna Azul', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Blue Curacao - Limón - Sprite', orden: 7 },
-    { id: 'n8', nombre: 'Mexicana', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Tequila - Ananá - Granadina', orden: 8 },
-    { id: 'n9', nombre: 'Caipiroska', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Trozo de Limón - Azúcar', orden: 9 },
-    { id: 'n10', nombre: 'Caipi Frutos Rojos', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Trozo de Limón - Frutos Rojos - Azúcar', orden: 10 },
-    { id: 'n11', nombre: 'Piel de Iguana', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Gancia - Licor de Melón - Blue Curacao - Sprite', orden: 11 },
-    { id: 'n12', nombre: 'Long Island', precio: 5000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Tequila - Ron - Gin - Jugo de Naranja - Limón - Coca Cola', orden: 12 },
-    { id: 'n13', nombre: 'Tom Collins', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Gin - Azúcar - Jugo de Limón - Soda', orden: 13 },
-    { id: 'n14', nombre: 'Mojito', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Menta - Jugo de Limón - Soda', orden: 14 },
-    { id: 'n15', nombre: 'Campari', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Campari - Jugo de Naranja - Hielo', orden: 15 },
-    { id: 'n16', nombre: 'Baileys', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Baileys - Licor de Chocolate - Azúcar', orden: 16 },
+    { id: 'n7', nombre: 'Laguna Azul', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Blue Curacao', orden: 7 },
+    { id: 'n8', nombre: 'Mexicana', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Tequila - Ananá', orden: 8 },
+    { id: 'n9', nombre: 'Caipiroska', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Limón - Azúcar', orden: 9 },
+    { id: 'n10', nombre: 'Caipi Frutos Rojos', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Frutos Rojos', orden: 10 },
+    { id: 'n11', nombre: 'Piel de Iguana', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Licor de Melón', orden: 11 },
+    { id: 'n12', nombre: 'Long Island', precio: 5000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Tequila - Ron - Gin', orden: 12 },
+    { id: 'n13', nombre: 'Tom Collins', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Gin - Azúcar - Limón', orden: 13 },
+    { id: 'n14', nombre: 'Mojito', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Menta - Limón', orden: 14 },
+    { id: 'n15', nombre: 'Campari', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Campari - Jugo de Naranja', orden: 15 },
+    { id: 'n16', nombre: 'Baileys', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Baileys - Chocolate', orden: 16 },
     { id: 'n17', nombre: 'Aperol Spritz', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Aperol - Soda', orden: 17 },
-    { id: 'n18', nombre: 'Deseo', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Gancia - Almíbar Frutos Rojos - Sprite - Granadina', orden: 18 },
-    { id: 'n19', nombre: 'Caipirinha', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Cachaza - Limón - Azúcar - Hielo', orden: 19 },
+    { id: 'n18', nombre: 'Deseo', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Gancia - Frutos Rojos', orden: 18 },
+    { id: 'n19', nombre: 'Caipirinha', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Cachaza - Limón - Azúcar', orden: 19 },
     { id: 'n20', nombre: 'Piña Frozen', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Piña Colada - Ananá', orden: 20 },
-    { id: 'n21', nombre: 'Orgasmo', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Piña Colada - Licor de Durazno - Granadina', orden: 21 },
-    { id: 'n22', nombre: 'Pantera Rosa', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Piña Colada - Granadina - Licor de frutilla', orden: 22 },
+    { id: 'n21', nombre: 'Orgasmo', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Piña Colada - Durazno', orden: 21 },
+    { id: 'n22', nombre: 'Pantera Rosa', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Piña Colada - Granadina', orden: 22 },
     { id: 'n23', nombre: 'Hawaiano Azul', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Piña Colada - Blue Curacao', orden: 23 },
-    { id: 'n24', nombre: 'Margarita', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Tequila - Triple sec - Jugo de limón - Azúcar', orden: 24 },
-    { id: 'n25', nombre: 'Affair', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Licor de Frutilla - Jugo de Naranja - Frutos Rojos - Soda', orden: 25 },
+    { id: 'n24', nombre: 'Margarita', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Tequila - Triple sec - Limón', orden: 24 },
+    { id: 'n25', nombre: 'Affair', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Licor de Frutilla', orden: 25 },
   ]
 
   const ginTonics = [
-    { id: 'gt1', nombre: 'Gin Tonic - New Styles', precio: 4000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin New Styles - Agua Tónica - Jugo de Limón', orden: 26 },
-    { id: 'gt2', nombre: 'Gin Tonic - Gordon\'s', precio: 4500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Gordon\'s - Agua Tónica - Jugo de Limón', orden: 27 },
-    { id: 'gt3', nombre: 'Gin Tonic - Beefeater', precio: 4500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Beefeater - Agua Tónica - Jugo de Limón', orden: 28 },
-    { id: 'gt4', nombre: 'Gin Tonic - Bulldog', precio: 5000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Bulldog - Agua Tónica - Jugo de Limón', orden: 29 },
-    { id: 'gt5', nombre: 'Gin Tonic - Bombay', precio: 5000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Bombay - Agua Tónica - Jugo de Limón', orden: 30 },
-    { id: 'gt6', nombre: 'Gin Tonic - Tanqueray', precio: 5500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Tanqueray - Agua Tónica - Jugo de Limón', orden: 31 },
+    { id: 'gt1', nombre: 'Gin Tonic - New Styles', precio: 4000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin New Styles - Agua Tónica', orden: 26 },
+    { id: 'gt2', nombre: 'Gin Tonic - Gordon\'s', precio: 4500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Gordon\'s - Agua Tónica', orden: 27 },
+    { id: 'gt3', nombre: 'Gin Tonic - Beefeater', precio: 4500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Beefeater - Agua Tónica', orden: 28 },
+    { id: 'gt4', nombre: 'Gin Tonic - Bulldog', precio: 5000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Bulldog - Agua Tónica', orden: 29 },
+    { id: 'gt5', nombre: 'Gin Tonic - Bombay', precio: 5000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Bombay - Agua Tónica', orden: 30 },
+    { id: 'gt6', nombre: 'Gin Tonic - Tanqueray', precio: 5500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Tanqueray - Agua Tónica', orden: 31 },
     { id: 'gt7', nombre: 'Gin Tonic Frutos Rojos - Bols Pink', precio: 4500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Bols Pink - Agua Tónica', orden: 32 },
     { id: 'gt8', nombre: 'Gin Tonic Frutos Rojos - Gordon\'s', precio: 5000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Gordon\'s - Agua Tónica', orden: 33 },
     { id: 'gt9', nombre: 'Gin Tonic Frutos Rojos - Beefeater', precio: 5000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Beefeater - Agua Tónica', orden: 34 },
@@ -745,38 +745,9 @@ function App() {
         const diferenciaMinutos = (new Date() - new Date(pedido.fecha)) / (1000 * 60)
         if (pedido.estado === 'pendiente' && diferenciaMinutos < 30) pedidosActualizados.push(pedido)
       })
-      .sort((a, b) => {
-  // Orden dinámico según el turno actual
-  const ordenCategoriasDia = {
-    'menuDelDia': 1, 'comidasFijas': 2, 'desayunos': 3,
-    'pizzas': 4, 'empanadas': 5, 'bebidas': 6,
-    'cocteles': 7, 'ginTonic': 8, 'medidas': 9, 'jarras': 10,
-    'whiskys': 11, 'tequilas': 12, 'cervezas': 13,
-    'vinos': 14, 'espumantes': 15, 'sinAlcohol': 16,
-    'pizzasNoche': 17, 'empanadasNoche': 18, 'minutas': 19,
-    'extras': 20, 'promosNoche': 21, 'otros': 22
-  }
-  
-  const ordenCategoriasNoche = {
-    'promosNoche': 1, 'cocteles': 2, 'ginTonic': 3,
-    'medidas': 4, 'jarras': 5, 'whiskys': 6,
-    'tequilas': 7, 'cervezas': 8, 'vinos': 9,
-    'espumantes': 10, 'sinAlcohol': 11,
-    'pizzasNoche': 12, 'empanadasNoche': 13,
-    'minutas': 14, 'extras': 15,
-    'pizzas': 16, 'empanadas': 17, 'bebidas': 18,
-    'menuDelDia': 19, 'comidasFijas': 20, 'desayunos': 21, 'otros': 22
-  }
-  
-  // Usar el orden según el turno
-  const ordenCategorias = turnoActual === 'noche' ? ordenCategoriasNoche : ordenCategoriasDia
-  
-  const ordenA = ordenCategorias[a.categoria] || 999
-  const ordenB = ordenCategorias[b.categoria] || 999
-  
-  if (ordenA !== ordenB) return ordenA - ordenB
-  return Number(a.orden || 999) - Number(b.orden || 999)
-})
+      pedidosActualizados.sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+      setPedidosNuevos(pedidosActualizados)
+    })
     return () => unsubscribe()
   }, [])
 
@@ -1062,76 +1033,63 @@ function App() {
       console.error('❌ Error recargando productos:', error)
     }
   }
+
   const actualizarProductosParaNoche = async () => {
-  if (!window.confirm('⚠️ Esto actualizará los productos de día para que aparezcan en la noche.\n\n¿Continuar?')) return;
-  
-  try {
-    console.log('🔄 Actualizando productos para turno noche...');
+    if (!window.confirm('⚠️ Esto actualizará los productos de día para que aparezcan en la noche.\n\n¿Continuar?')) return;
     
-    // Mapeo de categorías día → noche
-    const categoriasMap = {
-      'pizzas': 'pizzasNoche',
-      'empanadas': 'empanadasNoche',
-      'comidasFijas': 'minutas',
-      'menuDelDia': 'minutas'
-    };
-    
-    // Precios sugeridos para la noche
-    const preciosNoche = {
-      'Carne': 1100,
-      'Pollo': 1100,
-      'Árabe': 1100,
-      'Jamón y Queso': 1100,
-      'Queso y Cebolla': 1100,
-      'Verdura': 1100,
-      'Choclo': 1100,
-      'Muzza': 7000,
-      'Napo': 8500,
-      'Especial': 9000,
-      'Fugazza': 7500,
-      'Fugazzeta': 8000,
-      'Calabresa': 8500,
-      'Doble Queso': 7000
-    };
-    
-    let actualizados = 0;
-    
-    for (const producto of productosFirebase) {
-      const turnoActual = producto.turno || 'ambos';
-      const categoriaActual = producto.categoria;
+    try {
+      console.log('🔄 Actualizando productos para turno noche...');
       
-      // Solo actualizar si no tiene turno o es día
-      if (turnoActual === 'dia' || !producto.turno) {
-        const nuevaCategoria = categoriasMap[categoriaActual];
+      const categoriasMap = {
+        'pizzas': 'pizzasNoche',
+        'empanadas': 'empanadasNoche',
+        'comidasFijas': 'minutas',
+        'menuDelDia': 'minutas'
+      };
+      
+      const preciosNoche = {
+        'Carne': 1100, 'Pollo': 1100, 'Árabe': 1100, 'Jamón': 1100,
+        'Queso': 1100, 'Verdura': 1100, 'Choclo': 1100,
+        'Muzza': 7000, 'Napo': 8500, 'Especial': 9000,
+        'Fugazza': 7500, 'Fugazzeta': 8000, 'Calabresa': 8500, 'Doble': 7000
+      };
+      
+      let actualizados = 0;
+      
+      for (const producto of productosFirebase) {
+        const turnoProd = producto.turno || 'ambos';
+        const categoriaActual = producto.categoria;
         
-        if (nuevaCategoria) {
-          const firestoreId = producto.firestoreId || producto.id;
-          const nuevosDatos = {
-            categoria: nuevaCategoria,
-            turno: 'noche'
-          };
+        if (turnoProd === 'dia' || !producto.turno) {
+          const nuevaCategoria = categoriasMap[categoriaActual];
           
-          // Actualizar precio si el nombre coincide
-          const nombreProducto = producto.nombre.split(' ')[0]; // Primera palabra
-          if (preciosNoche[nombreProducto]) {
-            nuevosDatos.precio = preciosNoche[nombreProducto];
+          if (nuevaCategoria) {
+            const firestoreId = producto.firestoreId || producto.id;
+            const nuevosDatos = {
+              categoria: nuevaCategoria,
+              turno: 'noche'
+            };
+            
+            const nombreProducto = producto.nombre.split(' ')[0];
+            if (preciosNoche[nombreProducto]) {
+              nuevosDatos.precio = preciosNoche[nombreProducto];
+            }
+            
+            await setDoc(doc(db, 'productos', firestoreId), nuevosDatos, { merge: true });
+            console.log(`✅ ${producto.nombre}: ${categoriaActual} → ${nuevaCategoria}`);
+            actualizados++;
           }
-          
-          await setDoc(doc(db, 'productos', firestoreId), nuevosDatos, { merge: true });
-          console.log(`✅ ${producto.nombre}: ${categoriaActual} → ${nuevaCategoria}`);
-          actualizados++;
         }
       }
+      
+      alert(`✨ ¡Actualización completada!\n\n${actualizados} productos actualizados para turno noche.`);
+      await recargarProductos();
+      
+    } catch (error) {
+      console.error('❌ Error:', error);
+      alert('❌ Error al actualizar: ' + error.message);
     }
-    
-    alert(`✨ ¡Actualización completada!\n\n${actualizados} productos actualizados para turno noche.`);
-    await recargarProductos();
-    
-  } catch (error) {
-    console.error('❌ Error:', error);
-    alert('❌ Error al actualizar: ' + error.message);
-  }
-};
+  };
 
   const agregarProducto = async (producto) => {
     try {
@@ -1160,7 +1118,8 @@ function App() {
       alert('✅ Producto eliminado')
     } catch (error) { alert('❌ Error: ' + error.message) }
   }
-    const toggleDisponibilidad = async (id) => {
+
+  const toggleDisponibilidad = async (id) => {
     try {
       const producto = productosFirebase.find(p => p.id === id || p.firestoreId === id)
       const firestoreId = producto?.firestoreId || id
@@ -1168,22 +1127,42 @@ function App() {
       await setDoc(doc(db, 'productos', firestoreId), { disponible: nuevaDisponibilidad }, { merge: true })
       setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, disponible: nuevaDisponibilidad } : p))
       alert(nuevaDisponibilidad ? '✅ Producto marcado como DISPONIBLE' : '🔴 Producto marcado como AGOTADO')
-    } catch (error) { alert(' Error: ' + error.message) }
-  }const cambiarTurnoProducto = async (id) => {
+    } catch (error) { alert('❌ Error: ' + error.message) }
+  }
+
+  const cambiarTurnoProducto = async (id) => {
+    try {
+      const producto = productosFirebase.find(p => p.id === id || p.firestoreId === id)
+      const firestoreId = producto?.firestoreId || id
+      const turnos = ['dia', 'noche', 'ambos']
+      const turnoProd = producto.turno || 'ambos'
+      const indiceActual = turnos.indexOf(turnoProd)
+      const nuevoTurno = turnos[(indiceActual + 1) % turnos.length]
+      
+      await setDoc(doc(db, 'productos', firestoreId), { turno: nuevoTurno }, { merge: true })
+      setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, turno: nuevoTurno } : p))
+      
+      alert(`✅ Turno cambiado a: ${nuevoTurno.toUpperCase()}`)
+    } catch (error) { 
+      alert('❌ Error: ' + error.message) 
+    }
+  }
+  const cambiarTurnoProducto = async (id) => {
   try {
     const producto = productosFirebase.find(p => p.id === id || p.firestoreId === id)
     const firestoreId = producto?.firestoreId || id
     const turnos = ['dia', 'noche', 'ambos']
-    const turnoActual = producto.turno || 'ambos'
-    const indiceActual = turnos.indexOf(turnoActual)
+    const turnoProd = producto.turno || 'ambos'
+    const indiceActual = turnos.indexOf(turnoProd)
     const nuevoTurno = turnos[(indiceActual + 1) % turnos.length]
     
     await setDoc(doc(db, 'productos', firestoreId), { turno: nuevoTurno }, { merge: true })
     setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, turno: nuevoTurno } : p))
     
-    const iconos = { dia: '☀️', noche: '', ambos: '🔄' }
-    alert(`✅ Turno cambiado a: ${iconos[nuevoTurno]} ${nuevoTurno.toUpperCase()}`)
-  } catch (error) { alert('❌ Error: ' + error.message) }
+    alert(`✅ Turno cambiado a: ${nuevoTurno.toUpperCase()}`)
+  } catch (error) { 
+    alert('❌ Error: ' + error.message) 
+  }
 }
 
   const guardarDatosCliente = async () => {
@@ -1448,58 +1427,60 @@ function App() {
             </form>
             
             <div style={{ 
-  marginBottom: '1rem', 
-  padding: '1rem', 
-  background: turnoActual === 'noche' ? 'rgba(139, 92, 246, 0.2)' : 'rgba(0, 184, 148, 0.2)',
-  borderRadius: '10px',
-  border: `2px solid ${turnoActual === 'noche' ? '#8b5cf6' : '#00b894'}`,
-  textAlign: 'center'
-}}>
-  <span style={{ 
-    fontSize: '1.1rem', 
-    fontWeight: 'bold',
-    color: turnoActual === 'noche' ? '#a78bfa' : '#00b894'
-  }}>
-    {turnoActual === 'noche' ? '🌙 Turno Noche' : turnoActual === 'prevent' ? '🌆 Preventa' : '☀️ Turno Día'}
-  </span>
-  <span style={{ marginLeft: '10px', color: '#94a3b8' }}>
-    ({[...productosFirebase].filter(p => {
-      const tp = p.turno || 'ambos'
-      if (tp === 'ambos') return true
-      if (turnoActual === 'noche') return tp === 'noche'
-      if (turnoActual === 'dia') return tp === 'dia'
-      return false
-    }).length} productos)
-  </span>
-</div>
-<div style={{ 
-  marginBottom: '1rem', 
-  padding: '1rem', 
-  background: 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)',
-  borderRadius: '10px',
-  textAlign: 'center',
-  boxShadow: '0 4px 15px rgba(236, 72, 153, 0.4)'
-}}>
-  <button 
-    onClick={actualizarProductosParaNoche} 
-    style={{
-      padding: '12px 24px',
-      background: 'white',
-      color: '#8b5cf6',
-      border: 'none',
-      borderRadius: '8px',
-      fontWeight: 'bold',
-      fontSize: '1rem',
-      cursor: 'pointer',
-      boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
-    }}
-  >
-    🌙 Actualizar productos para turno NOCHE
-  </button>
-  <p style={{ color: 'white', marginTop: '10px', fontSize: '0.9rem', margin: '10px 0 0 0' }}>
-    Convierte productos de día (pizzas, empanadas) a productos de noche
-  </p>
-</div>
+              marginBottom: '1rem', 
+              padding: '1rem', 
+              background: turnoActual === 'noche' ? 'rgba(139, 92, 246, 0.2)' : 'rgba(0, 184, 148, 0.2)',
+              borderRadius: '10px',
+              border: `2px solid ${turnoActual === 'noche' ? '#8b5cf6' : '#00b894'}`,
+              textAlign: 'center'
+            }}>
+              <span style={{ 
+                fontSize: '1.1rem', 
+                fontWeight: 'bold',
+                color: turnoActual === 'noche' ? '#a78bfa' : '#00b894'
+              }}>
+                {turnoActual === 'noche' ? '🌙 Turno Noche' : turnoActual === 'prevent' ? '🌆 Preventa' : '☀️ Turno Día'}
+              </span>
+              <span style={{ marginLeft: '10px', color: '#94a3b8' }}>
+                ({[...productosFirebase].filter(p => {
+                  const tp = p.turno || 'ambos'
+                  if (tp === 'ambos') return true
+                  if (turnoActual === 'noche') return tp === 'noche'
+                  if (turnoActual === 'dia') return tp === 'dia'
+                  return false
+                }).length} productos)
+              </span>
+            </div>
+
+            <div style={{ 
+              marginBottom: '1rem', 
+              padding: '1rem', 
+              background: 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)',
+              borderRadius: '10px',
+              textAlign: 'center',
+              boxShadow: '0 4px 15px rgba(236, 72, 153, 0.4)'
+            }}>
+              <button 
+                onClick={actualizarProductosParaNoche} 
+                style={{
+                  padding: '12px 24px',
+                  background: 'white',
+                  color: '#8b5cf6',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontWeight: 'bold',
+                  fontSize: '1rem',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+                }}
+              >
+                🌙 Actualizar productos para turno NOCHE
+              </button>
+              <p style={{ color: 'white', marginTop: '10px', fontSize: '0.9rem', margin: '10px 0 0 0' }}>
+                Convierte productos de día (pizzas, empanadas) a productos de noche
+              </p>
+            </div>
+
             <h3>📋 Productos Existentes ({productosFirebase.length} en total)</h3>
             
             <div style={{ 
@@ -1534,29 +1515,28 @@ function App() {
             ) : (
               <div className="productos-admin-grid">
                 {[...productosFirebase]
-  .filter((prod) => {
-    // Filtrar por turno actual
-    const turnoProducto = prod.turno || 'ambos'
-    if (turnoProducto === 'ambos') return true
-    if (turnoActual === 'noche') return turnoProducto === 'noche'
-    if (turnoActual === 'dia') return turnoProducto === 'dia'
-    return true
-  })
-  .sort((a, b) => {
-    const ordenCategorias = {
-      'menuDelDia': 1, 'comidasFijas': 2, 'pizzas': 3, 'empanadas': 4,
-      'desayunos': 5, 'bebidas': 6, 'cocteles': 7, 'ginTonic': 8,
-      'medidas': 9, 'jarras': 10, 'whiskys': 11, 'tequilas': 12,
-      'cervezas': 13, 'vinos': 14, 'espumantes': 15, 'sinAlcohol': 16,
-      'pizzasNoche': 17, 'empanadasNoche': 18, 'minutas': 19,
-      'extras': 20, 'promosNoche': 21, 'otros': 22
-    }
-    const ordenA = ordenCategorias[a.categoria] || 999
-    const ordenB = ordenCategorias[b.categoria] || 999
-    if (ordenA !== ordenB) return ordenA - ordenB
-    return Number(a.orden || 999) - Number(b.orden || 999)
-  })
-  .map((prod) => {
+                  .filter((prod) => {
+                    const turnoProducto = prod.turno || 'ambos'
+                    if (turnoProducto === 'ambos') return true
+                    if (turnoActual === 'noche') return turnoProducto === 'noche'
+                    if (turnoActual === 'dia') return turnoProducto === 'dia'
+                    return true
+                  })
+                  .sort((a, b) => {
+                    const ordenCategorias = {
+                      'menuDelDia': 1, 'comidasFijas': 2, 'pizzas': 3, 'empanadas': 4,
+                      'desayunos': 5, 'bebidas': 6, 'cocteles': 7, 'ginTonic': 8,
+                      'medidas': 9, 'jarras': 10, 'whiskys': 11, 'tequilas': 12,
+                      'cervezas': 13, 'vinos': 14, 'espumantes': 15, 'sinAlcohol': 16,
+                      'pizzasNoche': 17, 'empanadasNoche': 18, 'minutas': 19,
+                      'extras': 20, 'promosNoche': 21, 'otros': 22
+                    }
+                    const ordenA = ordenCategorias[a.categoria] || 999
+                    const ordenB = ordenCategorias[b.categoria] || 999
+                    if (ordenA !== ordenB) return ordenA - ordenB
+                    return Number(a.orden || 999) - Number(b.orden || 999)
+                  })
+                  .map((prod) => {
                     const productId = prod.firestoreId || prod.id;
                     const tieneFotos = prod.imagenes && prod.imagenes.toString().trim().length > 0;
                     
@@ -1618,22 +1598,23 @@ function App() {
                             📷 Fotos
                           </button>
                           <button 
-                          onClick={() => toggleDisponibilidad(productId)} 
-                          className={`btn-small ${prod.disponible !== false ? 'verde' : 'rojo'}`}
+                            onClick={() => toggleDisponibilidad(productId)} 
+                            className={`btn-small ${prod.disponible !== false ? 'verde' : 'rojo'}`}
                           >
-                          {prod.disponible !== false ? '✅ Disponible' : '🔴 Agotado'}
+                            {prod.disponible !== false ? '✅ Disponible' : '🔴 Agotado'}
                           </button>
                           <button 
-                          onClick={() => cambiarTurnoProducto(productId)} 
-                          className={`btn-small ${
-                            prod.turno === 'noche' ? 'purpura' : 
-                            prod.turno === 'dia' ? 'verde' : 'azul'
-                          }`}
-                           title={`Turno actual: ${prod.turno || 'ambos'}`}
-                        >
-                           {prod.turno === 'noche' ? ' Noche' : 
-                            prod.turno === 'dia' ? '☀️ Día' : '🔄 Ambos'}
-                         </button>
+  onClick={() => cambiarTurnoProducto(productId)} 
+  className={`btn-small ${prod.turno === 'noche' ? 'purpura' : prod.turno === 'dia' ? 'verde' : 'azul'}`}
+>
+  {prod.turno === 'noche' ? '🌙 Noche' : prod.turno === 'dia' ? '☀️ Día' : '🔄 Ambos'}
+</button>
+                          <button 
+                            onClick={() => cambiarTurnoProducto(productId)} 
+                            className="btn-small azul"
+                          >
+                            {prod.turno === 'noche' ? '🌙 Noche' : prod.turno === 'dia' ? '☀️ Día' : '🔄 Ambos'}
+                          </button>
                           <button 
                             onClick={() => eliminarProducto(productId)} 
                             className="btn-small rojo"
@@ -1998,7 +1979,6 @@ function App() {
         </div>
       )}
 
-      {/* HEADER - BANNER INEVA */}
       <div className={`header ${turnoActual === 'noche' ? 'header-noche' : turnoActual === 'prevent' ? 'header-prevent' : 'header-dia'}`}>
         <div className="header-title">
           <div className="logo-circle"><span className="logo-text" translate="no">IN</span></div>
@@ -2009,9 +1989,6 @@ function App() {
         </div>
       </div>
 
-      {/* BUSCADOR - ELIMINADO TEMPORALMENTE */}
-
-      {/* BOTONES ADMIN */}
       <div className="admin-buttons">
         {esAdmin ? (
           <div className="admin-buttons-group">
