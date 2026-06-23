@@ -1333,6 +1333,31 @@ function App() {
               <button type="submit" className="btn-primary">➕ Agregar</button>
             </form>
             
+            <div style={{ 
+  marginBottom: '1rem', 
+  padding: '1rem', 
+  background: turnoActual === 'noche' ? 'rgba(139, 92, 246, 0.2)' : 'rgba(0, 184, 148, 0.2)',
+  borderRadius: '10px',
+  border: `2px solid ${turnoActual === 'noche' ? '#8b5cf6' : '#00b894'}`,
+  textAlign: 'center'
+}}>
+  <span style={{ 
+    fontSize: '1.1rem', 
+    fontWeight: 'bold',
+    color: turnoActual === 'noche' ? '#a78bfa' : '#00b894'
+  }}>
+    {turnoActual === 'noche' ? '🌙 Turno Noche' : turnoActual === 'prevent' ? '🌆 Preventa' : '☀️ Turno Día'}
+  </span>
+  <span style={{ marginLeft: '10px', color: '#94a3b8' }}>
+    ({[...productosFirebase].filter(p => {
+      const tp = p.turno || 'ambos'
+      if (tp === 'ambos') return true
+      if (turnoActual === 'noche') return tp === 'noche'
+      if (turnoActual === 'dia') return tp === 'dia'
+      return false
+    }).length} productos)
+  </span>
+</div>
             <h3>📋 Productos Existentes ({productosFirebase.length} en total)</h3>
             
             <div style={{ 
@@ -1367,21 +1392,29 @@ function App() {
             ) : (
               <div className="productos-admin-grid">
                 {[...productosFirebase]
-                  .sort((a, b) => {
-                    const ordenCategorias = {
-                      'menuDelDia': 1, 'comidasFijas': 2, 'pizzas': 3, 'empanadas': 4,
-                      'desayunos': 5, 'bebidas': 6, 'cocteles': 7, 'ginTonic': 8,
-                      'medidas': 9, 'jarras': 10, 'whiskys': 11, 'tequilas': 12,
-                      'cervezas': 13, 'vinos': 14, 'espumantes': 15, 'sinAlcohol': 16,
-                      'pizzasNoche': 17, 'empanadasNoche': 18, 'minutas': 19,
-                      'extras': 20, 'promosNoche': 21, 'otros': 22
-                    };
-                    const ordenA = ordenCategorias[a.categoria] || 999;
-                    const ordenB = ordenCategorias[b.categoria] || 999;
-                    if (ordenA !== ordenB) return ordenA - ordenB;
-                    return Number(a.orden || 999) - Number(b.orden || 999);
-                  })
-                  .map((prod) => {
+  .filter((prod) => {
+    // Filtrar por turno actual
+    const turnoProducto = prod.turno || 'ambos'
+    if (turnoProducto === 'ambos') return true
+    if (turnoActual === 'noche') return turnoProducto === 'noche'
+    if (turnoActual === 'dia') return turnoProducto === 'dia'
+    return true
+  })
+  .sort((a, b) => {
+    const ordenCategorias = {
+      'menuDelDia': 1, 'comidasFijas': 2, 'pizzas': 3, 'empanadas': 4,
+      'desayunos': 5, 'bebidas': 6, 'cocteles': 7, 'ginTonic': 8,
+      'medidas': 9, 'jarras': 10, 'whiskys': 11, 'tequilas': 12,
+      'cervezas': 13, 'vinos': 14, 'espumantes': 15, 'sinAlcohol': 16,
+      'pizzasNoche': 17, 'empanadasNoche': 18, 'minutas': 19,
+      'extras': 20, 'promosNoche': 21, 'otros': 22
+    }
+    const ordenA = ordenCategorias[a.categoria] || 999
+    const ordenB = ordenCategorias[b.categoria] || 999
+    if (ordenA !== ordenB) return ordenA - ordenB
+    return Number(a.orden || 999) - Number(b.orden || 999)
+  })
+  .map((prod) => {
                     const productId = prod.firestoreId || prod.id;
                     const tieneFotos = prod.imagenes && prod.imagenes.toString().trim().length > 0;
                     
