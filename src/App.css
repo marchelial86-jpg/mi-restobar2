@@ -1164,3 +1164,17 @@ CORRECCIÓN: SEPARAR HEADER, BUSCADOR Y ADMIN
 .app-container > * {
   position: relative;
 }
+/* ============================================
+CORRECCIÓN: HEADER ARRIBA, BUSCADOR DEBAJO
+============================================ */
+.header {
+  position: relative !important;
+  z-index: 10 !important;
+  margin-bottom: 30px !important;
+}
+
+.buscador-inteligente {
+  position: relative !important;
+  z-index: 5 !important;
+  margin-top: 0 !important;
+}
