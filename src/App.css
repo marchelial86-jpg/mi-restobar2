@@ -5411,4 +5411,213 @@ RESPONSIVE
 .app-container {
   display: flex !important;
   flex-direction: column !important;
+}/* ============================================
+🔧 CORRECCIÓN: CONTENIDO A TODO EL ANCHO
+============================================ */
+
+/* Eliminar scroll horizontal en toda la app */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+/* Contenedor principal a todo el ancho */
+.app-container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 10px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Buscador a todo el ancho */
+.buscador-inteligente {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 0 20px 0 !important;
+  padding: 15px !important;
+  box-sizing: border-box !important;
+}
+
+/* Header a todo el ancho */
+.header {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 0 20px 0 !important;
+  border-radius: 15px !important;
+  box-sizing: border-box !important;
+}
+
+/* Banner de estado a todo el ancho */
+.status-banner {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Banner de tiempo a todo el ancho */
+.time-banner {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Secciones del menú a todo el ancho */
+.menu-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Carrito a todo el ancho */
+.cart-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Panel admin a todo el ancho */
+.panel-admin-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Footer a todo el ancho */
+.footer-app {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Prevent banner a todo el ancho */
+.prevent-banner {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 10px 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Plato especial a todo el ancho */
+.plato-especial-banner {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 10px 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Evitar que las imágenes causen scroll horizontal */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Asegurar que nada se salga del contenedor */
+* {
+  box-sizing: border-box !important;
+}
+
+/* ============================================
+RESPONSIVE MÓVIL - SIN SCROLL HORIZONTAL
+============================================ */
+@media (max-width: 600px) {
+  html, body {
+    overflow-x: hidden !important;
+    position: relative !important;
+  }
+  
+  .app-container {
+    padding: 5px !important;
+    width: 100% !important;
+  }
+  
+  .header {
+    min-height: 150px !important;
+    padding: 20px 10px !important;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  .header p {
+    font-size: 0.9rem !important;
+  }
+  
+  .logo-circle {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .logo-text {
+    font-size: 1rem !important;
+  }
+  
+  .buscador-inteligente {
+    padding: 10px !important;
+  }
+  
+  .categorias-rapidas {
+    gap: 4px !important;
+  }
+  
+  .categoria-chip {
+    padding: 6px 8px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .status-banner {
+    padding: 10px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .time-banner {
+    padding: 10px !important;
+  }
+  
+  .menu-section {
+    padding: 15px !important;
+  }
+  
+  .product-card {
+    padding: 12px !important;
+  }
+  
+  .cart-container {
+    padding: 10px !important;
+  }
+  
+  .footer-app {
+    padding: 15px 10px !important;
+  }
+  
+  /* Botones flotantes más pequeños en móvil */
+  .btn-ayuda-flotante,
+  .btn-whatsapp-flotante,
+  .btn-redes-flotante,
+  .btn-instalar-flotante {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 1.2rem !important;
+    left: 10px !important;
+  }
+  
+  .btn-ayuda-flotante { bottom: 10px !important; }
+  .btn-whatsapp-flotante { bottom: 65px !important; }
+  .btn-redes-flotante { bottom: 120px !important; }
+  .btn-instalar-flotante { bottom: 175px !important; }
+  
+  /* Carrito flotante adaptado */
+  .carrito-flotante {
+    right: 10px !important;
+    left: 10px !important;
+    bottom: 10px !important;
+  }
+  
+  /* Admin button adaptado */
+  .admin-buttons {
+    top: 10px !important;
+    right: 10px !important;
+    padding: 8px 12px !important;
+  }
 }
