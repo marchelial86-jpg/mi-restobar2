@@ -299,240 +299,73 @@ function App() {
   const datosActuales = turnoActual === 'noche' ? DATOS_NOCHE : DATOS_DIA
   const WHATSAPP_NUMBER = datosActuales.telefonoWhatsApp
 
-  const coctelesClasicos = [
-    { id: 'n1', nombre: 'Daiquiri', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Fruta a Elección', orden: 1 },
-    { id: 'n2', nombre: 'Primavera', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Jugo de Naranja - Frutilla', orden: 2 },
-    { id: 'n3', nombre: 'Sex on The Beach', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Licor de Durazno', orden: 3 },
-    { id: 'n4', nombre: 'Tequila Sunrise', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Tequila - Jugo de Naranja', orden: 4 },
-    { id: 'n5', nombre: 'Cuba Libre', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Coca Cola', orden: 5 },
-    { id: 'n6', nombre: 'Gancia Batido', precio: 2500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Gancia - Limón - Azúcar', orden: 6 },
-    { id: 'n7', nombre: 'Laguna Azul', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Blue Curacao', orden: 7 },
-    { id: 'n8', nombre: 'Mexicana', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Tequila - Ananá', orden: 8 },
-    { id: 'n9', nombre: 'Caipiroska', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Limón - Azúcar', orden: 9 },
-    { id: 'n10', nombre: 'Caipi Frutos Rojos', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Frutos Rojos', orden: 10 },
-    { id: 'n11', nombre: 'Piel de Iguana', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Licor de Melón', orden: 11 },
-    { id: 'n12', nombre: 'Long Island', precio: 5000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Tequila - Ron - Gin', orden: 12 },
-    { id: 'n13', nombre: 'Tom Collins', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Gin - Azúcar - Limón', orden: 13 },
-    { id: 'n14', nombre: 'Mojito', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Menta - Limón', orden: 14 },
-    { id: 'n15', nombre: 'Campari', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Campari - Jugo de Naranja', orden: 15 },
-    { id: 'n16', nombre: 'Baileys', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Baileys - Chocolate', orden: 16 },
-    { id: 'n17', nombre: 'Aperol Spritz', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Aperol - Soda', orden: 17 },
-    { id: 'n18', nombre: 'Deseo', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Gancia - Frutos Rojos', orden: 18 },
-    { id: 'n19', nombre: 'Caipirinha', precio: 3000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Cachaza - Limón - Azúcar', orden: 19 },
-    { id: 'n20', nombre: 'Piña Frozen', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Piña Colada - Ananá', orden: 20 },
-    { id: 'n21', nombre: 'Orgasmo', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Piña Colada - Durazno', orden: 21 },
-    { id: 'n22', nombre: 'Pantera Rosa', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Piña Colada - Granadina', orden: 22 },
-    { id: 'n23', nombre: 'Hawaiano Azul', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Ron - Piña Colada - Blue Curacao', orden: 23 },
-    { id: 'n24', nombre: 'Margarita', precio: 3500, categoria: 'cocteles', turno: 'noche', ingredientes: 'Tequila - Triple sec - Limón', orden: 24 },
-    { id: 'n25', nombre: 'Affair', precio: 4000, categoria: 'cocteles', turno: 'noche', ingredientes: 'Vodka - Licor de Frutilla', orden: 25 },
-  ]
-
-  const ginTonics = [
-    { id: 'gt1', nombre: 'Gin Tonic - New Styles', precio: 4000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin New Styles - Agua Tónica', orden: 26 },
-    { id: 'gt2', nombre: 'Gin Tonic - Gordon\'s', precio: 4500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Gordon\'s - Agua Tónica', orden: 27 },
-    { id: 'gt3', nombre: 'Gin Tonic - Beefeater', precio: 4500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Beefeater - Agua Tónica', orden: 28 },
-    { id: 'gt4', nombre: 'Gin Tonic - Bulldog', precio: 5000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Bulldog - Agua Tónica', orden: 29 },
-    { id: 'gt5', nombre: 'Gin Tonic - Bombay', precio: 5000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Bombay - Agua Tónica', orden: 30 },
-    { id: 'gt6', nombre: 'Gin Tonic - Tanqueray', precio: 5500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Tanqueray - Agua Tónica', orden: 31 },
-    { id: 'gt7', nombre: 'Gin Tonic Frutos Rojos - Bols Pink', precio: 4500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Bols Pink - Agua Tónica', orden: 32 },
-    { id: 'gt8', nombre: 'Gin Tonic Frutos Rojos - Gordon\'s', precio: 5000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Gordon\'s - Agua Tónica', orden: 33 },
-    { id: 'gt9', nombre: 'Gin Tonic Frutos Rojos - Beefeater', precio: 5000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Beefeater - Agua Tónica', orden: 34 },
-    { id: 'gt10', nombre: 'Gin Tonic Frutos Rojos - Bulldog', precio: 5500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Bulldog - Agua Tónica', orden: 35 },
-    { id: 'gt11', nombre: 'Gin Tonic Frutos Rojos - Bombay', precio: 5500, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Bombay - Agua Tónica', orden: 36 },
-    { id: 'gt12', nombre: 'Gin Tonic Frutos Rojos - Tanqueray', precio: 6000, categoria: 'ginTonic', turno: 'noche', ingredientes: 'Gin Tanqueray - Agua Tónica', orden: 37 },
-  ]
-
-  const medidasYJarras = [
-    { id: 'mj1', nombre: 'Fernet con Coca (Medida)', precio: 2500, categoria: 'medidas', turno: 'noche', orden: 38 },
-    { id: 'mj2', nombre: 'Vodka con Speed (Medida)', precio: 2500, categoria: 'medidas', turno: 'noche', orden: 39 },
-    { id: 'mj3', nombre: 'Gancia con Sprite (Medida)', precio: 2000, categoria: 'medidas', turno: 'noche', orden: 40 },
-    { id: 'mj4', nombre: 'Absolut con Speed (Medida)', precio: 3000, categoria: 'medidas', turno: 'noche', orden: 41 },
-    { id: 'mj5', nombre: 'Jarra Fernet con Coca', precio: 8000, categoria: 'jarras', turno: 'noche', orden: 42 },
-    { id: 'mj6', nombre: 'Jarra Vodka con Speed', precio: 8000, categoria: 'jarras', turno: 'noche', orden: 43 },
-    { id: 'mj7', nombre: 'Jarra Gancia con Sprite', precio: 6000, categoria: 'jarras', turno: 'noche', orden: 44 },
-  ]
-
-  const whiskysYTequilas = [
-    { id: 'wt1', nombre: 'Whisky Smuggler', precio: 3000, categoria: 'whiskys', turno: 'noche', orden: 45 },
-    { id: 'wt2', nombre: 'Whisky Red Label', precio: 3500, categoria: 'whiskys', turno: 'noche', orden: 46 },
-    { id: 'wt3', nombre: 'Whisky Black Label', precio: 5000, categoria: 'whiskys', turno: 'noche', orden: 47 },
-    { id: 'wt4', nombre: 'Shot Promo Tequila', precio: 1500, categoria: 'tequilas', turno: 'noche', orden: 48 },
-    { id: 'wt5', nombre: 'Shot Conquistador', precio: 2000, categoria: 'tequilas', turno: 'noche', orden: 49 },
-    { id: 'wt6', nombre: 'Shot Sol Azteca', precio: 2000, categoria: 'tequilas', turno: 'noche', orden: 50 },
-    { id: 'wt7', nombre: 'Shot José Cuervo', precio: 2500, categoria: 'tequilas', turno: 'noche', orden: 51 },
-    { id: 'wt8', nombre: 'Ruleta de Tragos', precio: 5000, categoria: 'otros', turno: 'noche', orden: 52 },
-  ]
-
-  const cervezasNoche = [
-    { id: 'cer1', nombre: 'Quilmes', precio: 2000, categoria: 'cervezas', turno: 'noche', orden: 53 },
-    { id: 'cer2', nombre: 'Salta Rubia', precio: 1800, categoria: 'cervezas', turno: 'noche', orden: 54 },
-    { id: 'cer3', nombre: 'Salta Negra', precio: 1800, categoria: 'cervezas', turno: 'noche', orden: 55 },
-    { id: 'cer4', nombre: 'Brahma', precio: 1800, categoria: 'cervezas', turno: 'noche', orden: 56 },
-    { id: 'cer5', nombre: 'Corona', precio: 2500, categoria: 'cervezas', turno: 'noche', orden: 57 },
-    { id: 'cer6', nombre: 'Heineken', precio: 2500, categoria: 'cervezas', turno: 'noche', orden: 58 },
-    { id: 'cer7', nombre: 'Miller', precio: 2000, categoria: 'cervezas', turno: 'noche', orden: 59 },
-    { id: 'cer8', nombre: 'Budweiser', precio: 2000, categoria: 'cervezas', turno: 'noche', orden: 60 },
-    { id: 'cer9', nombre: 'Stella Artois', precio: 2200, categoria: 'cervezas', turno: 'noche', orden: 61 },
-  ]
-
-  const vinosYEspumantes = [
-    { id: 've1', nombre: 'Viñas de Balbo "T"', precio: 8000, categoria: 'vinos', turno: 'noche', orden: 62 },
-    { id: 've2', nombre: 'Toro "T"', precio: 7000, categoria: 'vinos', turno: 'noche', orden: 63 },
-    { id: 've3', nombre: 'Dada "T"', precio: 7500, categoria: 'vinos', turno: 'noche', orden: 64 },
-    { id: 've4', nombre: 'Elemento "T"', precio: 7000, categoria: 'vinos', turno: 'noche', orden: 65 },
-    { id: 've5', nombre: 'Dilema "B"', precio: 6500, categoria: 'vinos', turno: 'noche', orden: 66 },
-    { id: 've6', nombre: 'Alma Mora', precio: 7000, categoria: 'vinos', turno: 'noche', orden: 67 },
-    { id: 've7', nombre: 'Frizzé', precio: 5000, categoria: 'espumantes', turno: 'noche', orden: 68 },
-    { id: 've8', nombre: 'New Age', precio: 4500, categoria: 'espumantes', turno: 'noche', orden: 69 },
-    { id: 've9', nombre: 'Dr Lemón', precio: 4000, categoria: 'espumantes', turno: 'noche', orden: 70 },
-    { id: 've10', nombre: 'Champagne c/Speed', precio: 6000, categoria: 'espumantes', turno: 'noche', orden: 71 },
-  ]
-
-  const comidasNoche = [
-    { id: 'cn1', nombre: 'Pizza Muzza', precio: 7000, categoria: 'pizzasNoche', turno: 'noche', orden: 72 },
-    { id: 'cn2', nombre: 'Pizza Especial', precio: 8500, categoria: 'pizzasNoche', turno: 'noche', orden: 73 },
-    { id: 'cn3', nombre: 'Pizza Doble Muzza', precio: 8000, categoria: 'pizzasNoche', turno: 'noche', orden: 74 },
-    { id: 'cn4', nombre: 'Pizza Napolitana', precio: 8500, categoria: 'pizzasNoche', turno: 'noche', orden: 75 },
-    { id: 'cn5', nombre: 'Pizza Argentina', precio: 9000, categoria: 'pizzasNoche', turno: 'noche', orden: 76 },
-    { id: 'cn6', nombre: 'Pizza Primavera', precio: 8500, categoria: 'pizzasNoche', turno: 'noche', orden: 77 },
-    { id: 'cn7', nombre: 'Pizza de Pollo', precio: 9000, categoria: 'pizzasNoche', turno: 'noche', orden: 78 },
-    { id: 'cn8', nombre: 'Empanada de Carne', precio: 1100, categoria: 'empanadasNoche', turno: 'noche', orden: 79 },
-    { id: 'cn9', nombre: 'Empanada de Pollo', precio: 1100, categoria: 'empanadasNoche', turno: 'noche', orden: 80 },
-    { id: 'cn10', nombre: 'Empanada Árabe', precio: 1100, categoria: 'empanadasNoche', turno: 'noche', orden: 81 },
-    { id: 'cn11', nombre: 'Empanada Jamón y Queso', precio: 1100, categoria: 'empanadasNoche', turno: 'noche', orden: 82 },
-    { id: 'cn12', nombre: 'Sándwich de Milanesa', precio: 5000, categoria: 'minutas', turno: 'noche', orden: 83 },
-    { id: 'cn13', nombre: 'Sándwich de Lomito', precio: 5000, categoria: 'minutas', turno: 'noche', orden: 84 },
-    { id: 'cn14', nombre: 'Hamburguesa', precio: 5000, categoria: 'minutas', turno: 'noche', orden: 85 },
-    { id: 'cn15', nombre: 'Napo para Dos', precio: 6000, categoria: 'minutas', turno: 'noche', orden: 86 },
-    { id: 'cn16', nombre: 'Papas Fritas', precio: 3000, categoria: 'extras', turno: 'noche', orden: 87 },
-    { id: 'cn17', nombre: 'Papas Gratinadas', precio: 3500, categoria: 'extras', turno: 'noche', orden: 88 },
-    { id: 'cn18', nombre: 'Papas Cheddar', precio: 3500, categoria: 'extras', turno: 'noche', orden: 89 },
-    { id: 'cn19', nombre: 'Papas Bacon', precio: 4000, categoria: 'extras', turno: 'noche', orden: 90 },
-  ]
-
-  const bebidasSinAlcoholNoche = [
-    { id: 'bs1', nombre: 'Gaseosa Chica', precio: 1500, categoria: 'sinAlcohol', turno: 'noche', orden: 91 },
-    { id: 'bs2', nombre: 'Gaseosa 1 lts', precio: 2500, categoria: 'sinAlcohol', turno: 'noche', orden: 92 },
-    { id: 'bs3', nombre: 'Gaseosa 1.5 lts', precio: 3000, categoria: 'sinAlcohol', turno: 'noche', orden: 93 },
-    { id: 'bs4', nombre: 'Gaseosa 2 lts', precio: 4000, categoria: 'sinAlcohol', turno: 'noche', orden: 94 },
-    { id: 'bs5', nombre: 'Agua Mineral Chica', precio: 1000, categoria: 'sinAlcohol', turno: 'noche', orden: 95 },
-    { id: 'bs6', nombre: 'Agua Mineral Grande', precio: 1500, categoria: 'sinAlcohol', turno: 'noche', orden: 96 },
-    { id: 'bs7', nombre: 'Soda', precio: 1000, categoria: 'sinAlcohol', turno: 'noche', orden: 97 },
-    { id: 'bs8', nombre: 'Agua Saborizada', precio: 1500, categoria: 'sinAlcohol', turno: 'noche', orden: 98 },
-    { id: 'bs9', nombre: 'Speed Chica', precio: 1500, categoria: 'sinAlcohol', turno: 'noche', orden: 99 },
-    { id: 'bs10', nombre: 'Speed Grande', precio: 2500, categoria: 'sinAlcohol', turno: 'noche', orden: 100 },
-    { id: 'bs11', nombre: 'Limonada Clásica', precio: 2000, categoria: 'sinAlcohol', turno: 'noche', orden: 101 },
-    { id: 'bs12', nombre: 'Limonada c/Menta y Jengibre', precio: 2500, categoria: 'sinAlcohol', turno: 'noche', orden: 102 },
-    { id: 'bs13', nombre: 'Jugo de Naranja', precio: 2000, categoria: 'sinAlcohol', turno: 'noche', orden: 103 },
-  ]
-
-  const menuDelDia = [
-    { id: 1, nombre: 'Menú del Día #1 - Milanesa con Puré', precio: 12000, categoria: 'menuDelDia', turno: 'dia', orden: 1 },
-    { id: 2, nombre: 'Menú del Día #2 - Pollo al Horno con Arroz', precio: 12000, categoria: 'menuDelDia', turno: 'dia', orden: 2 },
-    { id: 3, nombre: 'Menú del Día #3 - Pasta con Salsa Bolognesa', precio: 11000, categoria: 'menuDelDia', turno: 'dia', orden: 3 },
-  ]
-  const comidasFijas = [
-    { id: 4, nombre: 'Milanesa con Guarnición', precio: 11000, categoria: 'comidasFijas', turno: 'dia', orden: 4 },
-    { id: 6, nombre: 'Costeleta con Guarnición', precio: 9500, categoria: 'comidasFijas', turno: 'dia', orden: 5 },
-    { id: 7, nombre: 'Mila Napo', precio: 7000, categoria: 'comidasFijas', turno: 'dia', orden: 6 },
-    { id: 8, nombre: 'Mila a Caballo', precio: 7000, categoria: 'comidasFijas', turno: 'dia', orden: 7 },
-    { id: 10, nombre: 'Hamburguesa con Guarnición', precio: 7000, categoria: 'comidasFijas', turno: 'dia', orden: 8 },
-    { id: 11, nombre: 'Sándwich de Lomito', precio: 7000, categoria: 'comidasFijas', turno: 'dia', orden: 9 },
-    { id: 12, nombre: 'Sándwich de Milanesa', precio: 7000, categoria: 'comidasFijas', turno: 'dia', orden: 10 },
-    { id: 13, nombre: 'Hamburguesa', precio: 7000, categoria: 'comidasFijas', turno: 'dia', orden: 11 },
-  ]
-  const pizzasDetalladas = [
-    { id: 'p1', nombre: 'Muzza', precio: 7000, categoria: 'pizzas', turno: 'ambos', orden: 12 },
-    { id: 'p2', nombre: 'Napo', precio: 8500, categoria: 'pizzas', turno: 'ambos', orden: 13 },
-    { id: 'p3', nombre: 'Especial', precio: 9000, categoria: 'pizzas', turno: 'ambos', orden: 14 },
-    { id: 'p4', nombre: 'Fugazza', precio: 7500, categoria: 'pizzas', turno: 'ambos', orden: 15 },
-    { id: 'p5', nombre: 'Fugazzeta', precio: 8000, categoria: 'pizzas', turno: 'ambos', orden: 16 },
-    { id: 'p6', nombre: 'Calabresa', precio: 8500, categoria: 'pizzas', turno: 'ambos', orden: 17 },
-  ]
-  const empanadasDetalladas = [
-    { id: 'e1', nombre: 'Carne', precio: 1100, categoria: 'empanadas', turno: 'ambos', orden: 18 },
-    { id: 'e2', nombre: 'Pollo', precio: 1100, categoria: 'empanadas', turno: 'ambos', orden: 19 },
-    { id: 'e3', nombre: 'Jamón y Queso', precio: 1100, categoria: 'empanadas', turno: 'ambos', orden: 20 },
-    { id: 'e4', nombre: 'Queso y Cebolla', precio: 1100, categoria: 'empanadas', turno: 'ambos', orden: 21 },
-    { id: 'e5', nombre: 'Árabe', precio: 1100, categoria: 'empanadas', turno: 'ambos', orden: 22 },
-    { id: 'e6', nombre: 'Verdura', precio: 1100, categoria: 'empanadas', turno: 'ambos', orden: 23 },
-    { id: 'e7', nombre: 'Choclo', precio: 1100, categoria: 'empanadas', turno: 'ambos', orden: 24 },
-  ]
-  const desayunos = [
-    { id: 14, nombre: 'Desayuno (Mate Cocido)', precio: 8500, categoria: 'desayunos', turno: 'dia', orden: 25 },
-    { id: 15, nombre: 'Desayuno (Té)', precio: 5000, categoria: 'desayunos', turno: 'dia', orden: 26 },
-    { id: 16, nombre: 'Licuados', precio: 4500, categoria: 'desayunos', turno: 'dia', orden: 27 },
-    { id: 17, nombre: 'Jugos Naturales', precio: 6000, categoria: 'desayunos', turno: 'dia', orden: 28 },
-  ]
-  const bebidasDia = [
-    { id: 18, nombre: 'Coca Cola 2 lts', precio: 4000, categoria: 'bebidas', turno: 'ambos', orden: 29 },
-    { id: 19, nombre: 'Coca Cola 1.5 lts', precio: 2500, categoria: 'bebidas', turno: 'ambos', orden: 30 },
-    { id: 20, nombre: 'Coca Cola 1 lts', precio: 2000, categoria: 'bebidas', turno: 'ambos', orden: 31 },
-    { id: 21, nombre: 'Agua Saborizada', precio: 1500, categoria: 'bebidas', turno: 'ambos', orden: 32 },
-    { id: 22, nombre: 'Agua Mineral', precio: 1000, categoria: 'bebidas', turno: 'ambos', orden: 33 },
-    { id: 23, nombre: 'Vino Viña de Balbo', precio: 5000, categoria: 'bebidas', turno: 'ambos', orden: 34 },
-  ]
-
+  // ============================================
+  // 📋 CATEGORÍAS - TURNO DÍA
+  // ============================================
   const categoriasInfoDia = {
+    promosDia: { nombre: 'Promos Día', emoji: '🔥', color: '#FF0000' },
     menuDelDia: { nombre: 'Menú del Día', emoji: '📋', color: '#6c5ce7' },
     comidasFijas: { nombre: 'Comidas Fijas', emoji: '🍽️', color: '#00b894' },
     pizzas: { nombre: 'Pizzas', emoji: '🍕', color: '#e17055' },
-    empanadas: { nombre: 'Empanadas', emoji: '🥟', color: '#fdcb6e' },
+    empanadas: { nombre: 'Empanadas', emoji: '', color: '#fdcb6e' },
     desayunos: { nombre: 'Desayunos', emoji: '🥐', color: '#a29bfe' },
     bebidas: { nombre: 'Bebidas', emoji: '🥤', color: '#00cec9' }
   }
 
+  // ============================================
+  // 📋 CATEGORÍAS - TURNO NOCHE
+  // ============================================
   const categoriasInfoNoche = {
+    promosNoche: { nombre: 'Promos Noche', emoji: '🔥', color: '#FF0000' },
     cocteles: { nombre: 'Cócteles Clásicos', emoji: '🍹', color: '#EC4899' },
-    ginTonic: { nombre: 'Gin Tonic', emoji: '🍸', color: '#06B6D4' },
+    ginTonic: { nombre: 'Gin Tonic', emoji: '', color: '#06B6D4' },
     medidas: { nombre: 'Medidas', emoji: '🥃', color: '#F59E0B' },
     jarras: { nombre: 'Jarras', emoji: '🍺', color: '#8B5CF6' },
     whiskys: { nombre: 'Whiskys', emoji: '🥃', color: '#D97706' },
     tequilas: { nombre: 'Tequilas & Shots', emoji: '🌵', color: '#10B981' },
-    otros: { nombre: 'Otros', emoji: '🎲', color: '#EF4444' },
-    cervezas: { nombre: 'Cervezas', emoji: '🍻', color: '#F59E0B' },
+    cervezas: { nombre: 'Cervezas', emoji: '', color: '#F59E0B' },
     vinos: { nombre: 'Vinos', emoji: '🍷', color: '#7C3AED' },
-    espumantes: { nombre: 'Espumantes', emoji: '🥂', color: '#EC4899' },
+    espumantes: { nombre: 'Espumantes', emoji: '', color: '#EC4899' },
     sinAlcohol: { nombre: 'Sin Alcohol', emoji: '🧃', color: '#06B6D4' },
-    pizzasNoche: { nombre: 'Pizzas', emoji: '🍕', color: '#EF4444' },
-    empanadasNoche: { nombre: 'Empanadas', emoji: '🥟', color: '#F59E0B' },
-    minutas: { nombre: 'Minutas', emoji: '🥪', color: '#10B981' },
-    extras: { nombre: 'Extras', emoji: '🍟', color: '#F97316' },
-    promosNoche: { nombre: 'Super Promos Delivery', emoji: '🔥', color: '#FF0000' }
+    pizzas: { nombre: 'Pizzas', emoji: '', color: '#EF4444' },
+    empanadas: { nombre: 'Empanadas', emoji: '🥟', color: '#F59E0B' },
+    minutas: { nombre: 'Minutas', emoji: '', color: '#10B981' },
+    extras: { nombre: 'Extras', emoji: '🍟', color: '#F97316' }
   }
 
   const categoriasOrdenNoche = [
-    { key: 'promosNoche', nombre: '🔥 Super Promos Delivery', emoji: '🔥' },
-    { key: 'empanadasNoche', nombre: 'Empanadas', emoji: '🥟' },
-    { key: 'pizzasNoche', nombre: 'Pizzas', emoji: '🍕' },
-    { key: 'minutas', nombre: 'Minutas', emoji: '🥪' },
-    { key: 'extras', nombre: 'Extras', emoji: '🍟' },
+    { key: 'promosNoche', nombre: '🔥 Promos Noche', emoji: '🔥' },
+    { key: 'cocteles', nombre: 'Cócteles Clásicos', emoji: '' },
+    { key: 'ginTonic', nombre: 'Gin Tonic', emoji: '🍸' },
+    { key: 'medidas', nombre: 'Medidas', emoji: '🥃' },
+    { key: 'jarras', nombre: 'Jarras', emoji: '🍺' },
+    { key: 'whiskys', nombre: 'Whiskys', emoji: '🥃' },
+    { key: 'tequilas', nombre: 'Tequila & Shots', emoji: '🌵' },
     { key: 'cervezas', nombre: 'Cervezas', emoji: '🍻' },
     { key: 'vinos', nombre: 'Vinos', emoji: '🍷' },
-    { key: 'cocteles', nombre: 'Cócteles Clásicos', emoji: '🍹' },
-    { key: 'whiskys', nombre: 'Whiskys', emoji: '🥃' },
     { key: 'espumantes', nombre: 'Espumantes', emoji: '🥂' },
-    { key: 'jarras', nombre: 'Jarras', emoji: '🍺' },
-    { key: 'medidas', nombre: 'Medidas', emoji: '🥃' },
-    { key: 'ginTonic', nombre: 'Gin Tonic', emoji: '🍸' },
-    { key: 'tequilas', nombre: 'Tequila & Shots', emoji: '🌵' },
-    { key: 'sinAlcohol', nombre: 'Sin Alcohol', emoji: '🧃' }
+    { key: 'sinAlcohol', nombre: 'Sin Alcohol', emoji: '🧃' },
+    { key: 'pizzas', nombre: 'Pizzas', emoji: '🍕' },
+    { key: 'empanadas', nombre: 'Empanadas', emoji: '🥟' },
+    { key: 'minutas', nombre: 'Minutas', emoji: '🥪' },
+    { key: 'extras', nombre: 'Extras', emoji: '🍟' }
   ];
 
   const categoriasOrdenDia = [
+    { key: 'promosDia', nombre: '🔥 Promos Día', emoji: '🔥' },
     { key: 'menuDelDia', nombre: 'Menú del Día', emoji: '📋' },
-    { key: 'comidasFijas', nombre: 'Comidas Fijas', emoji: '🍽️' },
-    { key: 'pizzas', nombre: 'Pizzas', emoji: '🍕' },
-    { key: 'empanadas', nombre: 'Empanadas', emoji: '🥟' },
+    { key: 'comidasFijas', nombre: 'Comidas Fijas', emoji: '️' },
+    { key: 'pizzas', nombre: 'Pizzas', emoji: '' },
+    { key: 'empanadas', nombre: 'Empanadas', emoji: '' },
     { key: 'desayunos', nombre: 'Desayunos', emoji: '🥐' },
-    { key: 'bebidas', nombre: 'Bebidas', emoji: '🥤' }
+    { key: 'bebidas', nombre: 'Bebidas', emoji: '' }
   ];
 
   const pasosGuia = [
     { id: 'buscador', titulo: '🔍 Buscá rápido', descripcion: 'Usá el buscador para encontrar tus productos favoritos.' },
     { id: 'categorias', titulo: '📂 Categorías', descripcion: 'Hacé clic en las categorías para navegar rápido.' },
-    { id: 'productos', titulo: '🍔 Agregá al carrito', descripcion: 'Hacé clic en "+ Agregar" para añadir productos.' },
-    { id: 'carrito', titulo: '🛒 Tu pedido', descripcion: 'El carrito flotante te muestra el total.' },
+    { id: 'productos', titulo: ' Agregá al carrito', descripcion: 'Hacé clic en "+ Agregar" para añadir productos.' },
+    { id: 'carrito', titulo: ' Tu pedido', descripcion: 'El carrito flotante te muestra el total.' },
     { id: 'finalizar', titulo: '📱 Finalizá tu pedido', descripcion: 'Completá tus datos y enviá por WhatsApp.' }
   ]
 
@@ -720,7 +553,7 @@ function App() {
   useEffect(() => {
     const cargarProductos = async () => {
       try {
-        console.log('🔍 Cargando productos de Firebase...')
+        console.log(' Cargando productos de Firebase...')
         const querySnapshot = await getDocs(collection(db, 'productos'))
         console.log('📦 Documentos encontrados:', querySnapshot.size)
         const productos = querySnapshot.docs.map(doc => ({ 
@@ -856,7 +689,7 @@ function App() {
       const q = query(collection(db, 'fidelidad_periodos'), orderBy('fechaInicio', 'desc'))
       const qs = await getDocs(q)
       setPeriodosFidelidad(qs.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-    } catch (error) { alert('❌ Error: ' + error.message) }
+    } catch (error) { alert(' Error: ' + error.message) }
   }
 
   const marcarCanjeEntregado = async (canjeId) => {
@@ -866,7 +699,7 @@ function App() {
       const q = query(collection(db, 'fidelidad_canjes'), orderBy('fecha', 'desc'))
       const qs = await getDocs(q)
       setCanjesFidelidad(qs.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-    } catch (error) { alert('❌ Error: ' + error.message) }
+    } catch (error) { alert(' Error: ' + error.message) }
   }
 
   const enviarReserva = async () => {
@@ -882,7 +715,7 @@ function App() {
         turno: 'noche'
       })
       alert('✅ ¡Reserva enviada! Te confirmaremos por WhatsApp.')
-      const mensaje = encodeURIComponent(`🎉 *NUEVA RESERVA - Ineva Resto-Bar*\n\n👤 ${formReserva.nombre}\n📱 ${formReserva.telefono}\n📅 ${formReserva.fecha}\n🕐 ${formReserva.hora}\n👥 ${formReserva.personas} personas\n💬 ${formReserva.mensaje || 'Sin mensaje'}`)
+      const mensaje = encodeURIComponent(`🎉 *NUEVA RESERVA - Ineva Resto-Bar*\n\n👤 ${formReserva.nombre}\n📱 ${formReserva.telefono}\n ${formReserva.fecha}\n🕐 ${formReserva.hora}\n👥 ${formReserva.personas} personas\n💬 ${formReserva.mensaje || 'Sin mensaje'}`)
       window.open(`https://wa.me/${DATOS_NOCHE.telefonoWhatsApp}?text=${mensaje}`, '_blank')
       setMostrarReservas(false)
       setFormReserva({ nombre: '', telefono: '', fecha: '', hora: '', personas: '2', mensaje: '' })
@@ -939,29 +772,14 @@ function App() {
     } catch (error) { alert('❌ Error al actualizar el pedido') }
   }
 
+  // ============================================
+  // 🍔 OBTENER PRODUCTOS POR CATEGORÍA (SOLO FIREBASE)
+  // ============================================
   const getProductosPorCategoria = (categoria) => {
-    const firebaseProducts = productosFirebase.filter(p => {
-      const productoTurno = p.turno || 'ambos'
-      return p.categoria === categoria && (productoTurno === turnoActual || productoTurno === 'ambos')
+    const productosFiltrados = productosFirebase.filter(p => {
+      return p.categoria === categoria && p.turno === turnoActual
     })
-    if (firebaseProducts.length > 0) return firebaseProducts.sort((a, b) => (a.orden || 999) - (b.orden || 999))
-
-    if (turnoActual === 'noche') {
-      const productosNoche = {
-        cocteles: coctelesClasicos, ginTonic: ginTonics, medidas: medidasYJarras.filter(p => p.categoria === 'medidas'),
-        jarras: medidasYJarras.filter(p => p.categoria === 'jarras'), whiskys: whiskysYTequilas.filter(p => p.categoria === 'whiskys'),
-        tequilas: whiskysYTequilas.filter(p => p.categoria === 'tequilas'), otros: whiskysYTequilas.filter(p => p.categoria === 'otros'),
-        cervezas: cervezasNoche, vinos: vinosYEspumantes.filter(p => p.categoria === 'vinos'),
-        espumantes: vinosYEspumantes.filter(p => p.categoria === 'espumantes'), sinAlcohol: bebidasSinAlcoholNoche,
-        pizzasNoche: comidasNoche.filter(p => p.categoria === 'pizzasNoche'), empanadasNoche: comidasNoche.filter(p => p.categoria === 'empanadasNoche'),
-        minutas: comidasNoche.filter(p => p.categoria === 'minutas'), extras: comidasNoche.filter(p => p.categoria === 'extras'),
-        promosNoche: []
-      }
-      return (productosNoche[categoria] || []).sort((a, b) => (a.orden || 999) - (b.orden || 999))
-    } else {
-      const productosDia = { menuDelDia, comidasFijas, pizzas: pizzasDetalladas, empanadas: empanadasDetalladas, desayunos, bebidas: bebidasDia }
-      return (productosDia[categoria] || []).sort((a, b) => (a.orden || 999) - (b.orden || 999))
-    }
+    return productosFiltrados.sort((a, b) => (a.orden || 999) - (b.orden || 999))
   }
 
   const formatearPrecio = (precio) => precio.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' })
@@ -1004,7 +822,7 @@ function App() {
       if (querySnapshot.empty) { alert('❌ No hay clientes suscritos'); return }
       const clientesSuscriptos = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
       const fechaHoy = new Date().toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
-      const menuDelDiaTexto = `🍔 *MENÚ DEL DÍA - INEVA RESTO-BAR* 🍔\n📅 ${fechaHoy.toUpperCase()}\n\n*Menú #1:* Milanesa con Puré - $12.000\n*Menú #2:* Pollo al Horno con Arroz - $12.000\n*Menú #3:* Pasta con Salsa Bolognesa - $11.000\n\n¡Te esperamos! 🎉`
+      const menuDelDiaTexto = `🍔 *MENÚ DEL DÍA - INEVA RESTO-BAR* 🍔\n📅 ${fechaHoy.toUpperCase()}\n\n¡Te esperamos! 🎉`
       let enviados = 0
       for (const cliente of clientesSuscriptos) {
         try {
@@ -1034,70 +852,26 @@ function App() {
     }
   }
 
-  const actualizarProductosParaNoche = async () => {
-    if (!window.confirm('⚠️ Esto actualizará los productos de día para que aparezcan en la noche.\n\n¿Continuar?')) return;
-    
-    try {
-      console.log('🔄 Actualizando productos para turno noche...');
-      
-      const categoriasMap = {
-        'pizzas': 'pizzasNoche',
-        'empanadas': 'empanadasNoche',
-        'comidasFijas': 'minutas',
-        'menuDelDia': 'minutas'
-      };
-      
-      const preciosNoche = {
-        'Carne': 1100, 'Pollo': 1100, 'Árabe': 1100, 'Jamón': 1100,
-        'Queso': 1100, 'Verdura': 1100, 'Choclo': 1100,
-        'Muzza': 7000, 'Napo': 8500, 'Especial': 9000,
-        'Fugazza': 7500, 'Fugazzeta': 8000, 'Calabresa': 8500, 'Doble': 7000
-      };
-      
-      let actualizados = 0;
-      
-      for (const producto of productosFirebase) {
-        const turnoProd = producto.turno || 'ambos';
-        const categoriaActual = producto.categoria;
-        
-        if (turnoProd === 'dia' || !producto.turno) {
-          const nuevaCategoria = categoriasMap[categoriaActual];
-          
-          if (nuevaCategoria) {
-            const firestoreId = producto.firestoreId || producto.id;
-            const nuevosDatos = {
-              categoria: nuevaCategoria,
-              turno: 'noche'
-            };
-            
-            const nombreProducto = producto.nombre.split(' ')[0];
-            if (preciosNoche[nombreProducto]) {
-              nuevosDatos.precio = preciosNoche[nombreProducto];
-            }
-            
-            await setDoc(doc(db, 'productos', firestoreId), nuevosDatos, { merge: true });
-            console.log(`✅ ${producto.nombre}: ${categoriaActual} → ${nuevaCategoria}`);
-            actualizados++;
-          }
-        }
-      }
-      
-      alert(`✨ ¡Actualización completada!\n\n${actualizados} productos actualizados para turno noche.`);
-      await recargarProductos();
-      
-    } catch (error) {
-      console.error('❌ Error:', error);
-      alert('❌ Error al actualizar: ' + error.message);
-    }
-  };
-
+  // ============================================
+  //  AGREGAR PRODUCTO
+  // ============================================
   const agregarProducto = async (producto) => {
     try {
-      await addDoc(collection(db, 'productos'), { ...producto, disponible: true, fechaCreacion: new Date().toISOString() })
-      alert('✅ Producto agregado'); await recargarProductos()
-    } catch (error) { alert('❌ Error al agregar producto') }
+      await addDoc(collection(db, 'productos'), { 
+        ...producto, 
+        disponible: true, 
+        fechaCreacion: new Date().toISOString() 
+      })
+      alert('✅ Producto agregado')
+      await recargarProductos()
+    } catch (error) { 
+      alert(' Error al agregar producto') 
+    }
   }
 
+  // ============================================
+  // ✏️ EDITAR PRODUCTO
+  // ============================================
   const editarProducto = async (id, datosActualizados) => {
     try {
       const producto = productosFirebase.find(p => p.id === id || p.firestoreId === id)
@@ -1105,9 +879,14 @@ function App() {
       await setDoc(doc(db, 'productos', firestoreId), datosActualizados, { merge: true })
       setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, ...datosActualizados } : p))
       alert('✅ Producto actualizado')
-    } catch (error) { alert('❌ Error: ' + error.message) }
+    } catch (error) { 
+      alert('❌ Error: ' + error.message) 
+    }
   }
 
+  // ============================================
+  // 🗑️ ELIMINAR PRODUCTO
+  // ============================================
   const eliminarProducto = async (id) => {
     if (!window.confirm('¿Eliminar este producto?')) return
     try {
@@ -1116,9 +895,14 @@ function App() {
       await deleteDoc(doc(db, 'productos', firestoreId))
       setProductosFirebase(prev => prev.filter(p => p.id !== id && p.firestoreId !== id))
       alert('✅ Producto eliminado')
-    } catch (error) { alert('❌ Error: ' + error.message) }
+    } catch (error) { 
+      alert('❌ Error: ' + error.message) 
+    }
   }
 
+  // ============================================
+  // ✅ TOGGLE DISPONIBILIDAD
+  // ============================================
   const toggleDisponibilidad = async (id) => {
     try {
       const producto = productosFirebase.find(p => p.id === id || p.firestoreId === id)
@@ -1127,25 +911,24 @@ function App() {
       await setDoc(doc(db, 'productos', firestoreId), { disponible: nuevaDisponibilidad }, { merge: true })
       setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, disponible: nuevaDisponibilidad } : p))
       alert(nuevaDisponibilidad ? '✅ Producto marcado como DISPONIBLE' : '🔴 Producto marcado como AGOTADO')
-    } catch (error) { alert('❌ Error: ' + error.message) }
+    } catch (error) { 
+      alert('❌ Error: ' + error.message) 
+    }
   }
 
-  const cambiarTurnoProducto = async (id) => {
+  // ============================================
+  // 🔄 CAMBIAR TURNO PRODUCTO
+  // ============================================
+  const cambiarTurnoProducto = async (id, nuevoTurno) => {
     try {
       const producto = productosFirebase.find(p => p.id === id || p.firestoreId === id)
       const firestoreId = producto?.firestoreId || id
-      const turnos = ['dia', 'noche', 'ambos']
-      const turnoProd = producto.turno || 'ambos'
-      const indiceActual = turnos.indexOf(turnoProd)
-      const nuevoTurno = turnos[(indiceActual + 1) % turnos.length]
-      
       await setDoc(doc(db, 'productos', firestoreId), { turno: nuevoTurno }, { merge: true })
       setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, turno: nuevoTurno } : p))
-      
-      const iconos = { dia: '☀️', noche: '🌙', ambos: '🔄' }
+      const iconos = { dia: '️', noche: '🌙' }
       alert(`✅ Turno cambiado a: ${iconos[nuevoTurno]} ${nuevoTurno.toUpperCase()}`)
-    } catch (error) { 
-      alert('❌ Error: ' + error.message) 
+    } catch (error) {
+      alert('❌ Error: ' + error.message)
     }
   }
 
@@ -1275,11 +1058,14 @@ function App() {
     else { setCategoriaActiva(categoria); navegarASeccion(categoria) }
   }
 
+  // ============================================
+  // 🔧 PANEL DE ADMINISTRACIÓN
+  // ============================================
   const PanelAdministracion = () => {
-    const [nuevoProducto, setNuevoProducto] = useState({ nombre: '', precio: '', categoria: 'comidasFijas', turno: 'dia', orden: '', imagenes: '' })
-    const [tabActiva, setTabActiva] = useState('productos')
+    const [nuevoProducto, setNuevoProducto] = useState({ nombre: '', precio: '', categoria: 'menuDelDia', turno: 'dia', orden: '', imagenes: '' })
+    const [tabActiva, setTabActiva] = useState('productosDia')
     
-    console.log('📊 productosFirebase en admin:', productosFirebase.length)
+    console.log(' productosFirebase en admin:', productosFirebase.length)
     
     const handleSubmit = (e) => {
       e.preventDefault()
@@ -1292,14 +1078,19 @@ function App() {
         orden: nuevoProducto.orden ? Number(nuevoProducto.orden) : 999,
         imagenes: nuevoProducto.imagenes || ''
       })
-      setNuevoProducto({ nombre: '', precio: '', categoria: 'comidasFijas', turno: 'dia', orden: '', imagenes: '' })
+      setNuevoProducto({ nombre: '', precio: '', categoria: 'menuDelDia', turno: nuevoProducto.turno, orden: '', imagenes: '' })
     }
+
+    // Filtrar productos por turno
+    const productosDia = productosFirebase.filter(p => p.turno === 'dia')
+    const productosNoche = productosFirebase.filter(p => p.turno === 'noche')
     
     return (
       <div className="panel-admin-container" role="main" aria-label="Panel de administración">
         <div className="admin-tabs">
           <button className={`admin-tab ${tabActiva === 'pedidos' ? 'activa' : ''}`} onClick={() => setTabActiva('pedidos')}>📋 Pedidos</button>
-          <button className={`admin-tab ${tabActiva === 'productos' ? 'activa' : ''}`} onClick={() => setTabActiva('productos')}>🔧 Productos</button>
+          <button className={`admin-tab ${tabActiva === 'productosDia' ? 'activa' : ''}`} onClick={() => setTabActiva('productosDia')}>☀️ Productos Día</button>
+          <button className={`admin-tab ${tabActiva === 'productosNoche' ? 'activa' : ''}`} onClick={() => setTabActiva('productosNoche')}>🌙 Productos Noche</button>
           <button className={`admin-tab ${tabActiva === 'fidelidad' ? 'activa' : ''}`} onClick={() => setTabActiva('fidelidad')}>🏆 Fidelidad</button>
           <button className={`admin-tab ${tabActiva === 'reservas' ? 'activa' : ''}`} onClick={() => setTabActiva('reservas')}>📅 Reservas</button>
         </div>
@@ -1309,7 +1100,7 @@ function App() {
             <div className="panel-header">
               <h2>📋 Pedidos Pendientes ({pedidosNuevos.length})</h2>
               <button onClick={() => setSonidoActivado(!sonidoActivado)} className="btn-sonido" style={{ background: sonidoActivado ? '#00b894' : '#e74c3c' }}>
-                {sonidoActivado ? '🔔 Sonido ON' : '🔕 Sonido OFF'}
+                {sonidoActivado ? ' Sonido ON' : '🔕 Sonido OFF'}
               </button>
             </div>
             {pedidosNuevos.length === 0 ? <p className="no-pedidos">✅ No hay pedidos pendientes</p> : (
@@ -1317,7 +1108,7 @@ function App() {
                 {pedidosNuevos.map((pedido) => (
                   <div key={pedido.id} className="pedido-card" style={{ borderLeft: `4px solid ${pedido.estado === 'pendiente' ? '#ffc107' : pedido.estado === 'en_preparacion' ? '#00b894' : '#6c5ce7'}` }}>
                     <div className="pedido-header">
-                      <div><strong>👤 {pedido.cliente?.nombre}</strong><div>📱 {pedido.cliente?.telefono}</div><div>🕐 {new Date(pedido.fecha).toLocaleTimeString('es-AR')}</div></div>
+                      <div><strong>👤 {pedido.cliente?.nombre}</strong><div> {pedido.cliente?.telefono}</div><div>🕐 {new Date(pedido.fecha).toLocaleTimeString('es-AR')}</div></div>
                       <div className="pedido-total"><div>{formatearPrecio(pedido.total)}</div><div className={`badge-entrega ${pedido.tipoEntrega === 'delivery' ? 'delivery' : 'retiro'}`}>{pedido.tipoEntrega === 'delivery' ? '🚚 Delivery' : '🏪 Retiro'}</div></div>
                     </div>
                     <div className="pedido-productos"><strong>📦 Productos:</strong><ul>{pedido.productos?.map((prod, idx) => (<li key={idx}>{prod.cantidad}x {prod.nombre}{prod.nota && <em> ({prod.nota})</em>}</li>))}</ul></div>
@@ -1334,7 +1125,10 @@ function App() {
           </div>
         )}
 
-        {tabActiva === 'productos' && (
+        {/* ============================================ */}
+        {/* PRODUCTOS DÍA */}
+        {/* ============================================ */}
+        {tabActiva === 'productosDia' && (
           <>
             <div className="panel-action verde">
               <h3>📩 Enviar Menú del Día</h3>
@@ -1343,11 +1137,11 @@ function App() {
             
             <div className="botones-seguridad">
               <button onClick={() => setMostrarCambiarPassword(true)} className="btn-seguridad verde">
-                🔑 Cambiar Contraseña
+                 Cambiar Contraseña
               </button>
             </div>
             
-            <h2 className="panel-titulo">➕ Agregar Producto</h2>
+            <h2 className="panel-titulo">☀️ Agregar Producto - Turno Día</h2>
             <form onSubmit={handleSubmit} className="form-producto">
               <input 
                 type="text" 
@@ -1377,95 +1171,35 @@ function App() {
                 onChange={(e) => setNuevoProducto({...nuevoProducto, categoria: e.target.value})} 
                 className="input-neumo"
               >
-                <option value="menuDelDia">Menú del Día</option>
-                <option value="comidasFijas">Comidas Fijas</option>
-                <option value="pizzas">Pizzas</option>
-                <option value="empanadas">Empanadas</option>
-                <option value="desayunos">Desayunos</option>
-                <option value="bebidas">Bebidas</option>
-                <option value="cocteles">Cócteles</option>
-                <option value="ginTonic">Gin Tonic</option>
-                <option value="medidas">Medidas</option>
-                <option value="jarras">Jarras</option>
-                <option value="whiskys">Whiskys</option>
-                <option value="tequilas">Tequilas</option>
-                <option value="cervezas">Cervezas</option>
-                <option value="vinos">Vinos</option>
-                <option value="espumantes">Espumantes</option>
-                <option value="sinAlcohol">Sin Alcohol</option>
-                <option value="pizzasNoche">Pizzas Noche</option>
-                <option value="minutas">Minutas</option>
-                <option value="extras">Extras</option>
-                <option value="promosNoche">🔥 Promos Noche Delivery</option>
+                <option value="promosDia">🔥 Promos Día</option>
+                <option value="menuDelDia">📋 Menú del Día</option>
+                <option value="comidasFijas">🍽️ Comidas Fijas</option>
+                <option value="pizzas">🍕 Pizzas</option>
+                <option value="empanadas">🥟 Empanadas</option>
+                <option value="desayunos"> Desayunos</option>
+                <option value="bebidas">🥤 Bebidas</option>
               </select>
-              <select 
-                value={nuevoProducto.turno} 
-                onChange={(e) => setNuevoProducto({...nuevoProducto, turno: e.target.value})} 
-                className="input-neumo"
-              >
-                <option value="dia">☀️ Solo Día</option>
-                <option value="noche">🌙 Solo Noche</option>
-                <option value="ambos">🔄 Ambos Turnos</option>
-              </select>
+              <input type="hidden" value="dia" />
               <button type="submit" className="btn-primary">➕ Agregar</button>
             </form>
             
             <div style={{ 
               marginBottom: '1rem', 
               padding: '1rem', 
-              background: turnoActual === 'noche' ? 'rgba(139, 92, 246, 0.2)' : 'rgba(0, 184, 148, 0.2)',
+              background: 'rgba(0, 184, 148, 0.2)',
               borderRadius: '10px',
-              border: `2px solid ${turnoActual === 'noche' ? '#8b5cf6' : '#00b894'}`,
+              border: '2px solid #00b894',
               textAlign: 'center'
             }}>
-              <span style={{ 
-                fontSize: '1.1rem', 
-                fontWeight: 'bold',
-                color: turnoActual === 'noche' ? '#a78bfa' : '#00b894'
-              }}>
-                {turnoActual === 'noche' ? '🌙 Turno Noche' : turnoActual === 'prevent' ? '🌆 Preventa' : '☀️ Turno Día'}
+              <span style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#00b894' }}>
+                ☀️ Turno Día
               </span>
               <span style={{ marginLeft: '10px', color: '#94a3b8' }}>
-                ({[...productosFirebase].filter(p => {
-                  const tp = p.turno || 'ambos'
-                  if (tp === 'ambos') return true
-                  if (turnoActual === 'noche') return tp === 'noche'
-                  if (turnoActual === 'dia') return tp === 'dia'
-                  return false
-                }).length} productos)
+                ({productosDia.length} productos)
               </span>
             </div>
 
-            <div style={{ 
-              marginBottom: '1rem', 
-              padding: '1rem', 
-              background: 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)',
-              borderRadius: '10px',
-              textAlign: 'center',
-              boxShadow: '0 4px 15px rgba(236, 72, 153, 0.4)'
-            }}>
-              <button 
-                onClick={actualizarProductosParaNoche} 
-                style={{
-                  padding: '12px 24px',
-                  background: 'white',
-                  color: '#8b5cf6',
-                  border: 'none',
-                  borderRadius: '8px',
-                  fontWeight: 'bold',
-                  fontSize: '1rem',
-                  cursor: 'pointer',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
-                }}
-              >
-                🌙 Actualizar productos para turno NOCHE
-              </button>
-              <p style={{ color: 'white', marginTop: '10px', fontSize: '0.9rem', margin: '10px 0 0 0' }}>
-                Convierte productos de día (pizzas, empanadas) a productos de noche
-              </p>
-            </div>
-
-            <h3>📋 Productos Existentes ({productosFirebase.length} en total)</h3>
+            <h3>📋 Productos Día ({productosDia.length})</h3>
             
             <div style={{ 
               marginBottom: '1.5rem', 
@@ -1477,43 +1211,28 @@ function App() {
               gap: '1rem',
               flexWrap: 'wrap'
             }}>
-              <button 
-                onClick={recargarProductos} 
-                className="btn-primary"
-                style={{ margin: 0 }}
-              >
+              <button onClick={recargarProductos} className="btn-primary" style={{ margin: 0 }}>
                 🔄 Recargar Productos
               </button>
               <span style={{ color: '#00b894', fontWeight: 'bold' }}>
-                {productosFirebase.length} productos cargados
+                {productosFirebase.length} productos totales
               </span>
             </div>
             
-            {productosFirebase.length === 0 ? (
+            {productosDia.length === 0 ? (
               <div className="sin-productos">
-                <p>⚠️ No hay productos en Firebase</p>
+                <p>⚠️ No hay productos de día</p>
                 <p style={{ fontSize: '0.9rem', color: '#888' }}>
                   Agregá tu primer producto con el formulario de arriba
                 </p>
               </div>
             ) : (
               <div className="productos-admin-grid">
-                {[...productosFirebase]
-                  .filter((prod) => {
-                    const turnoProducto = prod.turno || 'ambos'
-                    if (turnoProducto === 'ambos') return true
-                    if (turnoActual === 'noche') return turnoProducto === 'noche'
-                    if (turnoActual === 'dia') return turnoProducto === 'dia'
-                    return true
-                  })
+                {productosDia
                   .sort((a, b) => {
                     const ordenCategorias = {
-                      'menuDelDia': 1, 'comidasFijas': 2, 'pizzas': 3, 'empanadas': 4,
-                      'desayunos': 5, 'bebidas': 6, 'cocteles': 7, 'ginTonic': 8,
-                      'medidas': 9, 'jarras': 10, 'whiskys': 11, 'tequilas': 12,
-                      'cervezas': 13, 'vinos': 14, 'espumantes': 15, 'sinAlcohol': 16,
-                      'pizzasNoche': 17, 'empanadasNoche': 18, 'minutas': 19,
-                      'extras': 20, 'promosNoche': 21, 'otros': 22
+                      'promosDia': 1, 'menuDelDia': 2, 'comidasFijas': 3, 'pizzas': 4, 'empanadas': 5,
+                      'desayunos': 6, 'bebidas': 7
                     }
                     const ordenA = ordenCategorias[a.categoria] || 999
                     const ordenB = ordenCategorias[b.categoria] || 999
@@ -1532,8 +1251,7 @@ function App() {
                             ${prod.precio ? Number(prod.precio).toLocaleString('es-AR') : '0'}
                           </div>
                           <div className="meta">
-                            📂 {prod.categoria || 'sin categoría'} • 
-                            🕐 {prod.turno || 'ambos'}
+                            📂 {prod.categoria || 'sin categoría'}
                           </div>
                           {tieneFotos && (
                             <div className="meta" style={{ color: '#00b894', marginTop: '0.25rem' }}>
@@ -1571,10 +1289,7 @@ function App() {
                           </button>
                           <button 
                             onClick={() => { 
-                              const imgs = prompt(
-                                'URLs de imágenes (separadas por coma):\n\nEjemplo:\nhttps://foto1.jpg, https://foto2.jpg', 
-                                prod.imagenes || ''
-                              ); 
+                              const imgs = prompt('URLs de imágenes (separadas por coma):', prod.imagenes || ''); 
                               if (imgs !== null) editarProducto(productId, { imagenes: imgs.trim() }) 
                             }} 
                             className={`btn-small ${tieneFotos ? 'naranja' : 'gris'}`}
@@ -1588,10 +1303,212 @@ function App() {
                             {prod.disponible !== false ? '✅ Disponible' : '🔴 Agotado'}
                           </button>
                           <button 
-                            onClick={() => cambiarTurnoProducto(productId)} 
-                            className={`btn-small ${prod.turno === 'noche' ? 'purpura' : prod.turno === 'dia' ? 'verde' : 'azul'}`}
+                            onClick={() => cambiarTurnoProducto(productId, 'noche')} 
+                            className="btn-small purpura"
                           >
-                            {prod.turno === 'noche' ? '🌙 Noche' : prod.turno === 'dia' ? '☀️ Día' : '🔄 Ambos'}
+                            🌙 Mover a Noche
+                          </button>
+                          <button 
+                            onClick={() => eliminarProducto(productId)} 
+                            className="btn-small rojo"
+                          >
+                            🗑️ Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            )}
+          </>
+        )}
+
+        {/* ============================================ */}
+        {/* PRODUCTOS NOCHE */}
+        {/* ============================================ */}
+        {tabActiva === 'productosNoche' && (
+          <>
+            <div className="botones-seguridad">
+              <button onClick={() => setMostrarCambiarPassword(true)} className="btn-seguridad verde">
+                🔑 Cambiar Contraseña
+              </button>
+            </div>
+            
+            <h2 className="panel-titulo"> Agregar Producto - Turno Noche</h2>
+            <form onSubmit={handleSubmit} className="form-producto">
+              <input 
+                type="text" 
+                placeholder="Nombre" 
+                value={nuevoProducto.nombre} 
+                onChange={(e) => setNuevoProducto({...nuevoProducto, nombre: e.target.value})} 
+                className="input-neumo" 
+                required 
+              />
+              <input 
+                type="number" 
+                placeholder="Precio" 
+                value={nuevoProducto.precio} 
+                onChange={(e) => setNuevoProducto({...nuevoProducto, precio: e.target.value})} 
+                className="input-neumo" 
+                required 
+              />
+              <textarea 
+                placeholder="📷 URLs de imágenes (separadas por coma). Ej: https://foto1.jpg, https://foto2.jpg"
+                value={nuevoProducto.imagenes || ''}
+                onChange={(e) => setNuevoProducto({...nuevoProducto, imagenes: e.target.value})}
+                className="input-neumo textarea-neumo"
+                rows="2"
+              />
+              <select 
+                value={nuevoProducto.categoria} 
+                onChange={(e) => setNuevoProducto({...nuevoProducto, categoria: e.target.value})} 
+                className="input-neumo"
+              >
+                <option value="promosNoche"> Promos Noche</option>
+                <option value="cocteles">🍹 Cócteles Clásicos</option>
+                <option value="ginTonic">🍸 Gin Tonic</option>
+                <option value="medidas"> Medidas</option>
+                <option value="jarras">🍺 Jarras</option>
+                <option value="whiskys">🥃 Whiskys</option>
+                <option value="tequilas">🌵 Tequilas & Shots</option>
+                <option value="cervezas">🍻 Cervezas</option>
+                <option value="vinos"> Vinos</option>
+                <option value="espumantes">🥂 Espumantes</option>
+                <option value="sinAlcohol">🧃 Sin Alcohol</option>
+                <option value="pizzas">🍕 Pizzas</option>
+                <option value="empanadas"> Empanadas</option>
+                <option value="minutas">🥪 Minutas</option>
+                <option value="extras">🍟 Extras</option>
+              </select>
+              <input type="hidden" value="noche" />
+              <button type="submit" className="btn-primary">➕ Agregar</button>
+            </form>
+            
+            <div style={{ 
+              marginBottom: '1rem', 
+              padding: '1rem', 
+              background: 'rgba(139, 92, 246, 0.2)',
+              borderRadius: '10px',
+              border: '2px solid #8b5cf6',
+              textAlign: 'center'
+            }}>
+              <span style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#a78bfa' }}>
+                🌙 Turno Noche
+              </span>
+              <span style={{ marginLeft: '10px', color: '#94a3b8' }}>
+                ({productosNoche.length} productos)
+              </span>
+            </div>
+
+            <h3>📋 Productos Noche ({productosNoche.length})</h3>
+            
+            <div style={{ 
+              marginBottom: '1.5rem', 
+              padding: '1rem', 
+              background: 'rgba(0,0,0,0.2)', 
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem',
+              flexWrap: 'wrap'
+            }}>
+              <button onClick={recargarProductos} className="btn-primary" style={{ margin: 0 }}>
+                🔄 Recargar Productos
+              </button>
+              <span style={{ color: '#00b894', fontWeight: 'bold' }}>
+                {productosFirebase.length} productos totales
+              </span>
+            </div>
+            
+            {productosNoche.length === 0 ? (
+              <div className="sin-productos">
+                <p>⚠️ No hay productos de noche</p>
+                <p style={{ fontSize: '0.9rem', color: '#888' }}>
+                  Agregá tu primer producto con el formulario de arriba
+                </p>
+              </div>
+            ) : (
+              <div className="productos-admin-grid">
+                {productosNoche
+                  .sort((a, b) => {
+                    const ordenCategorias = {
+                      'promosNoche': 1, 'cocteles': 2, 'ginTonic': 3, 'medidas': 4, 'jarras': 5,
+                      'whiskys': 6, 'tequilas': 7, 'cervezas': 8, 'vinos': 9, 'espumantes': 10,
+                      'sinAlcohol': 11, 'pizzas': 12, 'empanadas': 13, 'minutas': 14, 'extras': 15
+                    }
+                    const ordenA = ordenCategorias[a.categoria] || 999
+                    const ordenB = ordenCategorias[b.categoria] || 999
+                    if (ordenA !== ordenB) return ordenA - ordenB
+                    return Number(a.orden || 999) - Number(b.orden || 999)
+                  })
+                  .map((prod) => {
+                    const productId = prod.firestoreId || prod.id;
+                    const tieneFotos = prod.imagenes && prod.imagenes.toString().trim().length > 0;
+                    
+                    return (
+                      <div key={productId} className="producto-admin-card">
+                        <div className="producto-admin-info">
+                          <strong>{prod.nombre || 'Sin nombre'}</strong>
+                          <div className="precio">
+                            ${prod.precio ? Number(prod.precio).toLocaleString('es-AR') : '0'}
+                          </div>
+                          <div className="meta">
+                            📂 {prod.categoria || 'sin categoría'}
+                          </div>
+                          {tieneFotos && (
+                            <div className="meta" style={{ color: '#00b894', marginTop: '0.25rem' }}>
+                              📷 Tiene fotos
+                            </div>
+                          )}
+                        </div>
+                        <div className="producto-admin-botones">
+                          <button 
+                            onClick={() => { 
+                              const n = prompt('Nuevo nombre:', prod.nombre); 
+                              if (n && n.trim()) editarProducto(productId, { nombre: n.trim() }) 
+                            }} 
+                            className="btn-small azul"
+                          >
+                            ✏️ Nombre
+                          </button>
+                          <button 
+                            onClick={() => { 
+                              const p = prompt('Nuevo precio:', prod.precio); 
+                              if (p && !isNaN(Number(p))) editarProducto(productId, { precio: Number(p) }) 
+                            }} 
+                            className="btn-small verde"
+                          >
+                            💰 Precio
+                          </button>
+                          <button 
+                            onClick={() => { 
+                              const c = prompt('Nueva categoría:', prod.categoria); 
+                              if (c && c.trim()) editarProducto(productId, { categoria: c.trim() }) 
+                            }} 
+                            className="btn-small purpura"
+                          >
+                            📂 Categoría
+                          </button>
+                          <button 
+                            onClick={() => { 
+                              const imgs = prompt('URLs de imágenes (separadas por coma):', prod.imagenes || ''); 
+                              if (imgs !== null) editarProducto(productId, { imagenes: imgs.trim() }) 
+                            }} 
+                            className={`btn-small ${tieneFotos ? 'naranja' : 'gris'}`}
+                          >
+                            📷 Fotos
+                          </button>
+                          <button 
+                            onClick={() => toggleDisponibilidad(productId)} 
+                            className={`btn-small ${prod.disponible !== false ? 'verde' : 'rojo'}`}
+                          >
+                            {prod.disponible !== false ? '✅ Disponible' : '🔴 Agotado'}
+                          </button>
+                          <button 
+                            onClick={() => cambiarTurnoProducto(productId, 'dia')} 
+                            className="btn-small verde"
+                          >
+                            ☀️ Mover a Día
                           </button>
                           <button 
                             onClick={() => eliminarProducto(productId)} 
@@ -1610,7 +1527,7 @@ function App() {
 
         {tabActiva === 'fidelidad' && (
           <div className="panel-fidelidad">
-            <h2 className="panel-titulo">🏆 Programa de Fidelidad</h2>
+            <h2 className="panel-titulo"> Programa de Fidelidad</h2>
             <div className="fidelidad-config-info">
               <h3>⚙️ Configuración Actual</h3>
               {configFidelidad ? (
@@ -1664,7 +1581,7 @@ function App() {
                       <div><label>Tipo:</label><select value={nuevoPremio.tipo} onChange={(e) => setNuevoPremio({...nuevoPremio, tipo: e.target.value})} className="input-neumo"><option value="canje">Canje directo</option><option value="sorteo">Sorteo</option></select></div>
                       <div><label>Cantidad disponible:</label><input type="number" value={nuevoPremio.cantidadDisponible} onChange={(e) => setNuevoPremio({...nuevoPremio, cantidadDisponible: e.target.value})} className="input-neumo" /></div>
                     </div>
-                    <button onClick={guardarPremio} className="btn-primary">🎁 Guardar Premio</button>
+                    <button onClick={guardarPremio} className="btn-primary"> Guardar Premio</button>
                   </div>
                   {premiosDisponibles.length > 0 && (
                     <div className="lista-premios">
@@ -1707,7 +1624,7 @@ function App() {
   const categoriasInfo = turnoActual === 'noche' ? categoriasInfoNoche : categoriasInfoDia
 
   const platoEspecial = productosFirebase.find(p => {
-    if (p.categoria !== 'promosNoche') return false;
+    if (p.categoria !== 'promosNoche' && p.categoria !== 'promosDia') return false;
     if (p.especial) return true;
     if (p.fechaInicio && p.fechaFin) {
       const ahora = new Date();
@@ -1763,8 +1680,8 @@ function App() {
               <div className="form-field"><label>👤 Nombre:</label><input type="text" value={formReserva.nombre} onChange={(e) => setFormReserva({...formReserva, nombre: e.target.value})} className="input-neumo" placeholder="Tu nombre" /></div>
               <div className="form-field"><label>📱 Teléfono:</label><input type="tel" value={formReserva.telefono} onChange={(e) => setFormReserva({...formReserva, telefono: e.target.value})} className="input-neumo" placeholder="Tu teléfono" /></div>
               <div className="form-row">
-                <div className="form-field"><label>📅 Fecha:</label><input type="date" value={formReserva.fecha} onChange={(e) => setFormReserva({...formReserva, fecha: e.target.value})} className="input-neumo" /></div>
-                <div className="form-field"><label>🕐 Hora:</label><input type="time" value={formReserva.hora} onChange={(e) => setFormReserva({...formReserva, hora: e.target.value})} className="input-neumo" /></div>
+                <div className="form-field"><label> Fecha:</label><input type="date" value={formReserva.fecha} onChange={(e) => setFormReserva({...formReserva, fecha: e.target.value})} className="input-neumo" /></div>
+                <div className="form-field"><label> Hora:</label><input type="time" value={formReserva.hora} onChange={(e) => setFormReserva({...formReserva, hora: e.target.value})} className="input-neumo" /></div>
               </div>
               <div className="form-field"><label>👥 Personas:</label><select value={formReserva.personas} onChange={(e) => setFormReserva({...formReserva, personas: e.target.value})} className="input-neumo">
                 <option value="1">1 persona</option><option value="2">2 personas</option><option value="3">3 personas</option><option value="4">4 personas</option><option value="5">5 personas</option><option value="6">6 personas</option><option value="7">7 personas</option><option value="8">8+ personas</option>
@@ -1799,7 +1716,7 @@ function App() {
       {mostrarCalificacion && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-calificacion">
-            <div className="calificacion-header"><div className="calificacion-icono">🎉</div><h3>¡Gracias por tu pedido!</h3><p>¿Cómo fue tu experiencia?</p></div>
+            <div className="calificacion-header"><div className="calificacion-icono"></div><h3>¡Gracias por tu pedido!</h3><p>¿Cómo fue tu experiencia?</p></div>
             <div className="calificacion-body">
               <div className="calificacion-estrellas">{renderizarEstrellas(calificacion, 'grande', true, setCalificacionHover, setCalificacion)}</div>
               {calificacion > 0 && <p className="calificacion-texto">{obtenerTextoCalificacion(calificacion)}</p>}
@@ -1863,7 +1780,7 @@ function App() {
               <div className="terminos-checkbox"><label><input type="checkbox" checked={aceptoTerminos} onChange={(e) => setAceptoTerminos(e.target.checked)} /><span>He leído y acepto</span></label></div>
             </div>
             <div className="modal-buttons">
-              <button onClick={() => { if (aceptoTerminos) { setMostrarTerminos(false); setError('') } else alert('❌ Debés aceptar') }} className="btn-ingresar">✅ Aceptar</button>
+              <button onClick={() => { if (aceptoTerminos) { setMostrarTerminos(false); setError('') } else alert(' Debés aceptar') }} className="btn-ingresar">✅ Aceptar</button>
               <button onClick={() => setMostrarTerminos(false)} className="btn-cancelar">Cancelar</button>
             </div>
           </div>
@@ -1873,7 +1790,7 @@ function App() {
       {mostrarZonaDelivery && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-zona">
-            <div className="modal-header-terminos"><h3>🗺️ Zona de Delivery</h3><button className="guia-cerrar" onClick={() => setMostrarZonaDelivery(false)}>✕</button></div>
+            <div className="modal-header-terminos"><h3>️ Zona de Delivery</h3><button className="guia-cerrar" onClick={() => setMostrarZonaDelivery(false)}>✕</button></div>
             <div className="zona-content">
               <div className="zona-info-card"><div className="zona-icono">📍</div><p className="zona-radio">{datosActuales.deliveryRadio} km desde el local</p></div>
               <div className="zona-costos"><div className="costo-item"><span>Costo:</span><strong>{datosActuales.deliveryTexto}</strong></div></div>
@@ -1895,7 +1812,7 @@ function App() {
                     <>
                       <div className="fidelidad-puntos">
                         <div className="puntos-total"><span className="puntos-numero">{puntosCliente.totalPuntos || 0}</span><span className="puntos-label">puntos</span></div>
-                        <div className={`nivel-badge nivel-${nivelCliente}`}>{nivelCliente === 'oro' ? '🥇' : nivelCliente === 'plata' ? '🥈' : '🥉'} {nivelCliente.charAt(0).toUpperCase() + nivelCliente.slice(1)}</div>
+                        <div className={`nivel-badge nivel-${nivelCliente}`}>{nivelCliente === 'oro' ? '' : nivelCliente === 'plata' ? '🥈' : '🥉'} {nivelCliente.charAt(0).toUpperCase() + nivelCliente.slice(1)}</div>
                       </div>
                       <div className="fidelidad-progreso">
                         <div className="progreso-barra"><div className="progreso-fill" style={{ width: `${Math.min((puntosCliente.totalPuntos / 500) * 100, 100)}%` }}></div></div>
@@ -1930,7 +1847,7 @@ function App() {
                         </div>
                       )}
                     </>
-                  ) : <div className="fidelidad-sin-datos"><p>📱 Ingresá tu teléfono para ver tus puntos</p></div>}
+                  ) : <div className="fidelidad-sin-datos"><p> Ingresá tu teléfono para ver tus puntos</p></div>}
                 </>
               ) : <div className="fidelidad-sin-periodo"><p>No hay períodos activos</p></div>}
             </div>
@@ -1950,10 +1867,10 @@ function App() {
           <div className="notification-header"><h3>🔔 ¡Nuevo Pedido!</h3><button onClick={() => setMostrarNotificacion(null)}>✕</button></div>
           <div className="notification-content">
             <p><strong>👤 Cliente:</strong> {mostrarNotificacion.cliente?.nombre}</p>
-            <p><strong>📱 Tel:</strong> {mostrarNotificacion.cliente?.telefono}</p>
+            <p><strong> Tel:</strong> {mostrarNotificacion.cliente?.telefono}</p>
             <p className="total"><strong>💰 Total:</strong> {formatearPrecio(mostrarNotificacion.total)}</p>
           </div>
-          <button onClick={() => { setMostrarNotificacion(null); if (!esAdmin) setMostrarLogin(true); else setMostrarPanelAdmin(true) }} className="btn-ver-detalles">👁️ Ver Detalles</button>
+          <button onClick={() => { setMostrarNotificacion(null); if (!esAdmin) setMostrarLogin(true); else setMostrarPanelAdmin(true) }} className="btn-ver-detalles">️ Ver Detalles</button>
         </div>
       )}
 
@@ -1970,8 +1887,8 @@ function App() {
       <div className="admin-buttons">
         {esAdmin ? (
           <div className="admin-buttons-group">
-            <button onClick={() => setMostrarPanelAdmin(!mostrarPanelAdmin)} className="btn-admin-panel">{mostrarPanelAdmin ? '👁️ Ver App' : '🔧 Panel Admin'}</button>
-            <button onClick={logout} className="btn-salir">🚪 Salir</button>
+            <button onClick={() => setMostrarPanelAdmin(!mostrarPanelAdmin)} className="btn-admin-panel">{mostrarPanelAdmin ? '👁️ Ver App' : ' Panel Admin'}</button>
+            <button onClick={logout} className="btn-salir"> Salir</button>
           </div>
         ) : <button onClick={() => setMostrarLogin(true)} className="btn-admin">👤 Admin</button>}
       </div>
@@ -2078,13 +1995,13 @@ function App() {
           )}
 
           <div className="form-section">
-            <h2>📝 Datos del Cliente</h2>
+            <h2> Datos del Cliente</h2>
             <div className="form-group">
               <label htmlFor="nombre-completo">👤 Nombre: <span className="required">*</span></label>
               <input id="nombre-completo" type="text" className="form-input" value={nombreCompleto} onChange={(e) => { setNombreCompleto(e.target.value); setError(''); }} placeholder="Ej: Juan Pérez" />
             </div>
             <div className="form-group">
-              <label htmlFor="telefono">📱 Teléfono: <span className="required">*</span></label>
+              <label htmlFor="telefono"> Teléfono: <span className="required">*</span></label>
               <input id="telefono" type="tel" className="form-input" value={telefono} onChange={(e) => { setTelefono(e.target.value); setError(''); }} placeholder="Ej: 3878123456" />
             </div>
             <div className="subscribe-box">
@@ -2147,10 +2064,10 @@ function App() {
                   <label><input type="checkbox" checked={aceptoTerminos} onChange={(e) => setAceptoTerminos(e.target.checked)} /><span>Acepto los <button className="btn-link-terminos" onClick={() => setMostrarTerminos(true)}>Términos y Condiciones</button></span></label>
                 </div>
                 <div className="transfer-section">
-                  <h3>💳 PAGO POR TRANSFERENCIA</h3>
+                  <h3> PAGO POR TRANSFERENCIA</h3>
                   <div className="alias-container">
                     <input type="text" className="alias-input" value="silvia.ge.nes" readOnly />
-                    <button className="btn-copy" onClick={copiarAlias}>📋 Copiar</button>
+                    <button className="btn-copy" onClick={copiarAlias}> Copiar</button>
                   </div>
                 </div>
                 {error && <div className="error-message">{error}</div>}
