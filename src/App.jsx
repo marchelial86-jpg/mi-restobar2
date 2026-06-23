@@ -779,11 +779,11 @@ function App() {
   // 🍔 OBTENER PRODUCTOS POR CATEGORÍA (SOLO FIREBASE - SIN HARDCODED)
   // ============================================
   const getProductosPorCategoria = (categoria) => {
-    const productosFiltrados = productosFirebase.filter(p => {
-      return p.categoria === categoria && p.turno === turnoActual
-    })
-    return productosFiltrados.sort((a, b) => (a.orden || 999) - (b.orden || 999))
-  }
+  const productosFiltrados = productosFirebase.filter(p => {
+    return p.categoria === categoria && p.turno === turnoActual
+  })
+  return productosFiltrados.sort((a, b) => (a.orden || 999) - (b.orden || 999))
+}
 
   const formatearPrecio = (precio) => precio.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' })
   const copiarAlias = () => { navigator.clipboard.writeText('silvia.ge.nes').then(() => alert('✅ Alias copiado')).catch(() => alert('❌ No se pudo copiar')) }
