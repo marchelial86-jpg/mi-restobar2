@@ -141,7 +141,8 @@ function AcordeonCategoria({ categoriaKey, titulo, emoji, getProductosPorCategor
             }
 
             return (
-              <div key={producto.id} className="product-card">
+              return (
+  <div key={producto.id} className={`product-card ${producto.disponible === false ? 'producto-agotado' : ''}`}>
                 <GaleriaProducto 
                   imagenes={imagenes} 
                   nombreProducto={producto.nombre} 
@@ -153,7 +154,11 @@ function AcordeonCategoria({ categoriaKey, titulo, emoji, getProductosPorCategor
                   <div className="product-price">{formatearPrecio(producto.precio)}</div>
                 </div>
                 <div className="product-actions">
-                  <button className="btn-primary" onClick={() => agregarPedido(producto)}>+ Agregar</button>
+                  {producto.disponible === false ? (
+  <span className="badge-agotado">🔴 Agotado</span>
+) : (
+  <button className="btn-primary" onClick={() => agregarPedido(producto)}>+ Agregar</button>
+)}
                   <button className="btn-compartir" onClick={() => compartirProducto(producto)}>📤</button>
                 </div>
               </div>
@@ -1057,6 +1062,16 @@ function App() {
       alert('✅ Producto eliminado')
     } catch (error) { alert('❌ Error: ' + error.message) }
   }
+    const toggleDisponibilidad = async (id) => {
+    try {
+      const producto = productosFirebase.find(p => p.id === id || p.firestoreId === id)
+      const firestoreId = producto?.firestoreId || id
+      const nuevaDisponibilidad = !producto.disponible
+      await setDoc(doc(db, 'productos', firestoreId), { disponible: nuevaDisponibilidad }, { merge: true })
+      setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, disponible: nuevaDisponibilidad } : p))
+      alert(nuevaDisponibilidad ? '✅ Producto marcado como DISPONIBLE' : '🔴 Producto marcado como AGOTADO')
+    } catch (error) { alert(' Error: ' + error.message) }
+  }
 
   const guardarDatosCliente = async () => {
     try {
@@ -1428,6 +1443,12 @@ function App() {
                           >
                             📷 Fotos
                           </button>
+                          <button 
+  onClick={() => toggleDisponibilidad(productId)} 
+  className={`btn-small ${producto.disponible !== false ? 'verde' : 'rojo'}`}
+>
+  {producto.disponible !== false ? '✅ Disponible' : '🔴 Agotado'}
+</button>
                           <button 
                             onClick={() => eliminarProducto(productId)} 
                             className="btn-small rojo"

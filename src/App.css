@@ -6033,4 +6033,71 @@ RESPONSIVE MÓVIL - SIN SCROLL HORIZONTAL
 .tema-dia .transfer-section h3 {
   color: #6c5ce7 !important;
   text-shadow: none !important;
+}/* ============================================
+🔴 SISTEMA DE DISPONIBILIDAD DE PRODUCTOS
+============================================ */
+
+/* Producto agotado - atenuado */
+.producto-agotado {
+  opacity: 0.5 !important;
+  position: relative;
+}
+
+.producto-agotado::after {
+  content: 'AGOTADO';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Badge de agotado */
+.badge-agotado {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(145deg, #ef4444, #dc2626);
+  color: white;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Botón disponible en admin */
+.btn-small.verde {
+  background: linear-gradient(145deg, #10b981, #059669) !important;
+  color: white !important;
+}
+
+.btn-small.rojo {
+  background: linear-gradient(145deg, #ef4444, #dc2626) !important;
+  color: white !important;
+}
+
+/* Modo oscuro - producto agotado */
+.modo-oscuro .producto-agotado {
+  opacity: 0.4 !important;
+}
+
+.modo-oscuro .producto-agotado::after {
+  background: rgba(239, 68, 68, 0.95);
+}
+
+/* Tema noche - producto agotado */
+.tema-noche .producto-agotado {
+  opacity: 0.3 !important;
+}
+
+.tema-noche .producto-agotado::after {
+  background: rgba(239, 68, 68, 0.95);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
 }
