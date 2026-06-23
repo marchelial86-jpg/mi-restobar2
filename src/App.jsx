@@ -1142,28 +1142,12 @@ function App() {
       await setDoc(doc(db, 'productos', firestoreId), { turno: nuevoTurno }, { merge: true })
       setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, turno: nuevoTurno } : p))
       
-      alert(`✅ Turno cambiado a: ${nuevoTurno.toUpperCase()}`)
+      const iconos = { dia: '☀️', noche: '🌙', ambos: '🔄' }
+      alert(`✅ Turno cambiado a: ${iconos[nuevoTurno]} ${nuevoTurno.toUpperCase()}`)
     } catch (error) { 
       alert('❌ Error: ' + error.message) 
     }
   }
-  const cambiarTurnoProducto = async (id) => {
-  try {
-    const producto = productosFirebase.find(p => p.id === id || p.firestoreId === id)
-    const firestoreId = producto?.firestoreId || id
-    const turnos = ['dia', 'noche', 'ambos']
-    const turnoProd = producto.turno || 'ambos'
-    const indiceActual = turnos.indexOf(turnoProd)
-    const nuevoTurno = turnos[(indiceActual + 1) % turnos.length]
-    
-    await setDoc(doc(db, 'productos', firestoreId), { turno: nuevoTurno }, { merge: true })
-    setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, turno: nuevoTurno } : p))
-    
-    alert(`✅ Turno cambiado a: ${nuevoTurno.toUpperCase()}`)
-  } catch (error) { 
-    alert('❌ Error: ' + error.message) 
-  }
-}
 
   const guardarDatosCliente = async () => {
     try {
@@ -1604,14 +1588,8 @@ function App() {
                             {prod.disponible !== false ? '✅ Disponible' : '🔴 Agotado'}
                           </button>
                           <button 
-  onClick={() => cambiarTurnoProducto(productId)} 
-  className={`btn-small ${prod.turno === 'noche' ? 'purpura' : prod.turno === 'dia' ? 'verde' : 'azul'}`}
->
-  {prod.turno === 'noche' ? '🌙 Noche' : prod.turno === 'dia' ? '☀️ Día' : '🔄 Ambos'}
-</button>
-                          <button 
                             onClick={() => cambiarTurnoProducto(productId)} 
-                            className="btn-small azul"
+                            className={`btn-small ${prod.turno === 'noche' ? 'purpura' : prod.turno === 'dia' ? 'verde' : 'azul'}`}
                           >
                             {prod.turno === 'noche' ? '🌙 Noche' : prod.turno === 'dia' ? '☀️ Día' : '🔄 Ambos'}
                           </button>
