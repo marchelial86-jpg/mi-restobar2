@@ -30,22 +30,14 @@ body {
 }
 
 /* ============================================
-HEADER CON IMAGEN DE FONDO - CORREGIDO
+BUSCADOR INTELIGENTE - SIN SUPERPOSICIÓN
 ============================================ */
-.header {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 45px 20px;
-  background: linear-gradient(145deg, #2d3436, #1e272e);
-  border-radius: 25px;
-  box-shadow: 9px 9px 16px #d1d9e6, -9px -9px 16px #ffffff;
-  position: relative;
-  overflow: hidden;
-  min-height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
+.buscador-inteligente {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff;
 }
 
 .header::before {
