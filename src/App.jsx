@@ -780,7 +780,8 @@ function App() {
   // ============================================
   const getProductosPorCategoria = (categoria) => {
   const productosFiltrados = productosFirebase.filter(p => {
-    return p.categoria === categoria && p.turno === turnoActual
+    const turnoProducto = p.turno || 'ambos'
+    return p.categoria === categoria && (turnoProducto === turnoActual || turnoProducto === 'ambos')
   })
   return productosFiltrados.sort((a, b) => (a.orden || 999) - (b.orden || 999))
 }
