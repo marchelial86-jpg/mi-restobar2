@@ -5896,4 +5896,141 @@ RESPONSIVE MÓVIL - SIN SCROLL HORIZONTAL
 .required {
   color: #e74c3c !important;
   font-weight: 700 !important;
+}/* ============================================
+🔧 MEJORAR LEGIBILIDAD TÍTULOS Y LABELS
+============================================ */
+
+/* Títulos principales de secciones */
+.form-section h2,
+.cart-section h2,
+.seccion-resenas h2,
+.seccion-contacto h2 {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 30px rgba(108, 92, 231, 0.3) !important;
+  letter-spacing: 1px !important;
+}
+
+/* Labels de formularios */
+.form-group label,
+.form-field label {
+  color: #f8fafc !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Placeholder de inputs */
+.form-input::placeholder,
+.input-neumo::placeholder {
+  color: #94a3b8 !important;
+  opacity: 0.9 !important;
+}
+
+/* Texto de suscripción */
+.subscribe-text {
+  color: #f8fafc !important;
+  font-weight: 600 !important;
+}
+
+/* Tipo de entrega - título */
+.form-section h2 {
+  color: #ffffff !important;
+}
+
+/* Carrito - título */
+.cart-section h2 {
+  color: #ffffff !important;
+}
+
+/* Reseñas - título */
+.seccion-resenas h2 {
+  color: #ffffff !important;
+}
+
+/* Contacto - título */
+.seccion-contacto h2 {
+  color: #ffffff !important;
+}
+
+/* Contacto - labels */
+.contacto-card h3 {
+  color: #f8fafc !important;
+  font-weight: 700 !important;
+}
+
+.contacto-card p {
+  color: #cbd5e1 !important;
+}
+
+.contacto-card strong {
+  color: #ffffff !important;
+}
+
+/* Transfer section */
+.transfer-section h3 {
+  color: #fbbf24 !important;
+  font-weight: 800 !important;
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.5) !important;
+}
+
+/* Admin panel titles */
+.panel-titulo,
+.panel-section h2,
+.panel-section h3 {
+  color: #f8fafc !important;
+  font-weight: 700 !important;
+}
+
+/* Acordeón - títulos */
+.acordeon-header {
+  color: #f8fafc !important;
+  font-weight: 700 !important;
+}
+
+/* Producto cards - nombres */
+.product-info h3 {
+  color: #f8fafc !important;
+  font-weight: 700 !important;
+}
+
+/* Footer en modo oscuro */
+.footer-info h4,
+.footer-legal h4 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.footer-info p {
+  color: #cbd5e1 !important;
+}
+
+/* Required asterisk */
+.required {
+  color: #ef4444 !important;
+  font-weight: 800 !important;
+  text-shadow: 0 0 5px rgba(239, 68, 68, 0.5) !important;
+}
+
+/* Modo claro - mantener contraste */
+.tema-dia .form-section h2,
+.tema-dia .cart-section h2,
+.tema-dia .seccion-resenas h2,
+.tema-dia .seccion-contacto h2 {
+  color: #2d3436 !important;
+  text-shadow: none !important;
+}
+
+.tema-dia .form-group label,
+.tema-dia .form-field label {
+  color: #2d3436 !important;
+  text-shadow: none !important;
+}
+
+.tema-dia .contacto-card h3 {
+  color: #2d3436 !important;
+}
+
+.tema-dia .transfer-section h3 {
+  color: #6c5ce7 !important;
+  text-shadow: none !important;
 }
