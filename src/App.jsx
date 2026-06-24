@@ -276,7 +276,7 @@ function App() {
     telefono: '3878541224',
     telefonoFijo: '3878770614',
     telefonoWhatsApp: '5493878541224',
-    horarios: 'Lunes a Sábados de 09:00 a 15:00 hs',
+    horarios: 'Todos los Días de 09:00 a 16:00 hs',
     deliveryCosto: 0,
     deliveryRadio: 5,
     deliveryTexto: 'Delivery GRATIS',
@@ -377,7 +377,7 @@ function App() {
       const tiempoActualEnMinutos = horaActual * 60 + minutosActuales
       
       const aperturaDia = 9 * 60
-      const cierreDia = 15 * 60
+      const cierreDia = 16 * 60
       const aperturaNoche = 21 * 60
       const cierreNoche = 4 * 60
       
@@ -404,18 +404,18 @@ function App() {
         if (tiempoActualEnMinutos >= aperturaNoche) {
           const minsHastaCierre = (24 * 60 - tiempoActualEnMinutos) + cierreNoche
           msgHorario = '🌙 Abierto - Noche de Tragos'
-          tiempoRest = `Cierra a las 04:00 (en ${Math.floor(minsHastaCierre / 60)}h ${minsHastaCierre % 60}min`
+          tiempoRest = `Cierra a las 04:00 (en ${Math.floor(minsHastaCierre / 60)}h ${minsHastaCierre % 60}min)`
         } else {
           const minsHastaCierre = cierreNoche - tiempoActualEnMinutos
           msgHorario = '🌙 Abierto - Noche de Tragos'
-          tiempoRest = `Cierra a las 04:00 (en ${Math.floor(minsHastaCierre / 60)}h ${minsHastaCierre % 60}min`
+          tiempoRest = `Cierra a las 04:00 (en ${Math.floor(minsHastaCierre / 60)}h ${minsHastaCierre % 60}min)`
         }
       } else {
         nuevoTurno = 'dia'
         abierto = false
         const minsHastaApertura = aperturaDia - tiempoActualEnMinutos
         msgHorario = '🔴 Cerrado'
-        tiempoRest = `Abrimos a las 09:00 (en ${Math.floor(minsHastaApertura / 60)}h ${minsHastaApertura % 60}min`
+        tiempoRest = `Abrimos a las 09:00 (en ${Math.floor(minsHastaApertura / 60)}h ${minsHastaApertura % 60}min)`
       }
       
       setTurnoActual(nuevoTurno)
@@ -611,7 +611,7 @@ function App() {
     }
     window.addEventListener('beforeinstallprompt', manejarPrompt)
     
-    // Verificar si ya está instalada
+    // Detectar cuando la app se instala
     window.addEventListener('appinstalled', () => {
       console.log('✅ PWA instalada correctamente');
       setPuedeInstalar(false);
@@ -636,8 +636,14 @@ function App() {
         window.deferredPrompt = null;
       })
     } else {
-      console.log('⚠️ No hay prompt disponible. Intenta recargar la página.');
-      alert('Para instalar la app:\n\n📱 En Android: Toca los 3 puntos (⋮) → "Instalar aplicación"\n🍎 En iOS: Toca el botón Compartir → "Agregar a pantalla principal"');
+      console.log('⚠️ No hay prompt disponible.');
+      // Instrucciones manuales según el dispositivo
+      const esIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      if (esIOS) {
+        alert('📱 Para instalar en iPhone:\n\n1. Tocá el botón Compartir (cuadrado con flecha)\n2. Seleccioná "Agregar a pantalla principal"\n3. Confirmá');
+      } else {
+        alert('📱 Para instalar:\n\n1. Tocá los 3 puntos (⋮) de Chrome\n2. Seleccioná "Instalar aplicación"\n3. Confirmá');
+      }
     }
   }
 
@@ -958,7 +964,7 @@ function App() {
       const firestoreId = producto?.firestoreId || id
       await setDoc(doc(db, 'productos', firestoreId), { turno: nuevoTurno }, { merge: true })
       setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, turno: nuevoTurno } : p))
-      const iconos = { dia: '☀️', noche: '🌙' }
+      const iconos = { dia: '☀️', noche: '🌙', ambos: '🔄' }
       alert(`✅ Turno cambiado a: ${iconos[nuevoTurno]} ${nuevoTurno.toUpperCase()}`)
     } catch (error) {
       alert('❌ Error: ' + error.message)
@@ -1944,7 +1950,7 @@ function App() {
       )}
 
       {/* 🎨 HEADER MEJORADO CON COLORES VIBRANTES */}
-      <div className={`header ${turnoActual === 'noche' ? 'header-noche' : turnoActual === 'prevent' ? 'header-prevent' : 'header-dia'}`}
+      <<div className="header">
         style={{
           background: turnoActual === 'noche' 
             ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
