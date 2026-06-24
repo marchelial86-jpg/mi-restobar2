@@ -5,7 +5,7 @@ import './App.css'
 import { registrarServiceWorker } from './registerSW'
 
 // ============================================
-// ️ COMPONENTE GALERÍA DE FOTOS
+// 🖼️ COMPONENTE GALERÍA DE FOTOS
 // ============================================
 function GaleriaProducto({ imagenes = [], nombreProducto }) {
   const [fotoActiva, setFotoActiva] = useState(0);
@@ -14,7 +14,7 @@ function GaleriaProducto({ imagenes = [], nombreProducto }) {
   if (!imagenes || imagenes.length === 0) {
     return (
       <div className="galeria-placeholder">
-        <span className="galeria-placeholder-icono">️</span>
+        <span className="galeria-placeholder-icono">🍽️</span>
         <span className="galeria-placeholder-texto">Sin foto</span>
       </div>
     );
@@ -83,7 +83,7 @@ function GaleriaProducto({ imagenes = [], nombreProducto }) {
 
       {lightboxAbierto && (
         <div className="lightbox-overlay" onClick={cerrarLightbox} role="dialog" aria-modal="true">
-          <button className="lightbox-cerrar" onClick={cerrarLightbox} aria-label="Cerrar"></button>
+          <button className="lightbox-cerrar" onClick={cerrarLightbox} aria-label="Cerrar">✕</button>
           
           {imagenes.length > 1 && (
             <>
@@ -305,22 +305,22 @@ function App() {
   const categoriasInfoDia = {
     promosDia: { nombre: 'Promos Día', emoji: '🔥', color: '#FF0000' },
     menuDelDia: { nombre: 'Menú del Día', emoji: '📋', color: '#6c5ce7' },
-    comidasFijas: { nombre: 'Comidas Fijas', emoji: '️', color: '#00b894' },
+    comidasFijas: { nombre: 'Comidas Fijas', emoji: '🍽️', color: '#00b894' },
     pizzas: { nombre: 'Pizzas', emoji: '🍕', color: '#e17055' },
     empanadas: { nombre: 'Empanadas', emoji: '🥟', color: '#fdcb6e' },
     desayunos: { nombre: 'Desayunos', emoji: '🥐', color: '#a29bfe' },
-    bebidas: { nombre: 'Bebidas', emoji: '', color: '#00cec9' }
+    bebidas: { nombre: 'Bebidas', emoji: '🥤', color: '#00cec9' }
   }
 
   // ============================================
-  //  CATEGORÍAS - TURNO NOCHE (SOLO FIREBASE)
+  // 📋 CATEGORÍAS - TURNO NOCHE (SOLO FIREBASE)
   // ============================================
   const categoriasInfoNoche = {
     promosNoche: { nombre: 'Promos Noche', emoji: '🔥', color: '#FF0000' },
     cocteles: { nombre: 'Cócteles Clásicos', emoji: '🍹', color: '#EC4899' },
     ginTonic: { nombre: 'Gin Tonic', emoji: '🍸', color: '#06B6D4' },
     medidas: { nombre: 'Medidas', emoji: '🥃', color: '#F59E0B' },
-    jarras: { nombre: 'Jarras', emoji: '', color: '#8B5CF6' },
+    jarras: { nombre: 'Jarras', emoji: '🍺', color: '#8B5CF6' },
     whiskys: { nombre: 'Whiskys', emoji: '🥃', color: '#D97706' },
     tequilas: { nombre: 'Tequilas & Shots', emoji: '🌵', color: '#10B981' },
     cervezas: { nombre: 'Cervezas', emoji: '🍻', color: '#F59E0B' },
@@ -335,9 +335,9 @@ function App() {
 
   const categoriasOrdenNoche = [
     { key: 'promosNoche', nombre: '🔥 Promos Noche', emoji: '🔥' },
-    { key: 'cocteles', nombre: 'Cócteles Clásicos', emoji: '' },
+    { key: 'cocteles', nombre: 'Cócteles Clásicos', emoji: '🍹' },
     { key: 'ginTonic', nombre: 'Gin Tonic', emoji: '🍸' },
-    { key: 'medidas', nombre: 'Medidas', emoji: '' },
+    { key: 'medidas', nombre: 'Medidas', emoji: '🥃' },
     { key: 'jarras', nombre: 'Jarras', emoji: '🍺' },
     { key: 'whiskys', nombre: 'Whiskys', emoji: '🥃' },
     { key: 'tequilas', nombre: 'Tequila & Shots', emoji: '🌵' },
@@ -356,16 +356,16 @@ function App() {
     { key: 'menuDelDia', nombre: 'Menú del Día', emoji: '📋' },
     { key: 'comidasFijas', nombre: 'Comidas Fijas', emoji: '🍽️' },
     { key: 'pizzas', nombre: 'Pizzas', emoji: '🍕' },
-    { key: 'empanadas', nombre: 'Empanadas', emoji: '' },
-    { key: 'desayunos', nombre: 'Desayunos', emoji: '' },
-    { key: 'bebidas', nombre: 'Bebidas', emoji: '' }
+    { key: 'empanadas', nombre: 'Empanadas', emoji: '🥟' },
+    { key: 'desayunos', nombre: 'Desayunos', emoji: '🥐' },
+    { key: 'bebidas', nombre: 'Bebidas', emoji: '🥤' }
   ];
 
   const pasosGuia = [
     { id: 'buscador', titulo: '🔍 Buscá rápido', descripcion: 'Usá el buscador para encontrar tus productos favoritos.' },
     { id: 'categorias', titulo: '📂 Categorías', descripcion: 'Hacé clic en las categorías para navegar rápido.' },
     { id: 'productos', titulo: '🍔 Agregá al carrito', descripcion: 'Hacé clic en "+ Agregar" para añadir productos.' },
-    { id: 'carrito', titulo: ' Tu pedido', descripcion: 'El carrito flotante te muestra el total.' },
+    { id: 'carrito', titulo: '🛒 Tu pedido', descripcion: 'El carrito flotante te muestra el total.' },
     { id: 'finalizar', titulo: '📱 Finalizá tu pedido', descripcion: 'Completá tus datos y enviá por WhatsApp.' }
   ]
 
@@ -404,18 +404,18 @@ function App() {
         if (tiempoActualEnMinutos >= aperturaNoche) {
           const minsHastaCierre = (24 * 60 - tiempoActualEnMinutos) + cierreNoche
           msgHorario = '🌙 Abierto - Noche de Tragos'
-          tiempoRest = `Cierra a las 04:00 (en ${Math.floor(minsHastaCierre / 60)}h ${minsHastaCierre % 60}min)`
+          tiempoRest = `Cierra a las 04:00 (en ${Math.floor(minsHastaCierre / 60)}h ${minsHastaCierre % 60}min`
         } else {
           const minsHastaCierre = cierreNoche - tiempoActualEnMinutos
           msgHorario = '🌙 Abierto - Noche de Tragos'
-          tiempoRest = `Cierra a las 04:00 (en ${Math.floor(minsHastaCierre / 60)}h ${minsHastaCierre % 60}min)`
+          tiempoRest = `Cierra a las 04:00 (en ${Math.floor(minsHastaCierre / 60)}h ${minsHastaCierre % 60}min`
         }
       } else {
         nuevoTurno = 'dia'
         abierto = false
         const minsHastaApertura = aperturaDia - tiempoActualEnMinutos
-        msgHorario = ' Cerrado'
-        tiempoRest = `Abrimos a las 09:00 (en ${Math.floor(minsHastaApertura / 60)}h ${minsHastaApertura % 60}min)`
+        msgHorario = '🔴 Cerrado'
+        tiempoRest = `Abrimos a las 09:00 (en ${Math.floor(minsHastaApertura / 60)}h ${minsHastaApertura % 60}min`
       }
       
       setTurnoActual(nuevoTurno)
@@ -551,7 +551,7 @@ function App() {
   }, [])
 
   // ============================================
-  //  CARGAR PRODUCTOS DESDE FIREBASE
+  // 🍔 CARGAR PRODUCTOS DESDE FIREBASE
   // ============================================
   useEffect(() => {
     const cargarProductos = async () => {
@@ -599,16 +599,45 @@ function App() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
+  // ============================================
+  // 📲 PWA - MEJORADO PARA INSTALACIÓN
+  // ============================================
   useEffect(() => {
-    const manejarPrompt = (evento) => { evento.preventDefault(); setPuedeInstalar(true); window.deferredPrompt = evento }
+    const manejarPrompt = (evento) => { 
+      evento.preventDefault(); 
+      setPuedeInstalar(true); 
+      window.deferredPrompt = evento;
+      console.log('📲 PWA Install prompt disponible!');
+    }
     window.addEventListener('beforeinstallprompt', manejarPrompt)
-    return () => window.removeEventListener('beforeinstallprompt', manejarPrompt)
+    
+    // Verificar si ya está instalada
+    window.addEventListener('appinstalled', () => {
+      console.log('✅ PWA instalada correctamente');
+      setPuedeInstalar(false);
+    });
+    
+    return () => {
+      window.removeEventListener('beforeinstallprompt', manejarPrompt)
+    }
   }, [])
 
   const instalarPWA = () => {
     if (window.deferredPrompt) {
       window.deferredPrompt.prompt()
-      window.deferredPrompt.userChoice.then(() => { setPuedeInstalar(false); window.deferredPrompt = null })
+      window.deferredPrompt.userChoice.then((choiceResult) => {
+        console.log('📲 Resultado instalación:', choiceResult.outcome);
+        if (choiceResult.outcome === 'accepted') {
+          console.log('✅ Usuario aceptó la instalación');
+        } else {
+          console.log('❌ Usuario rechazó la instalación');
+        }
+        setPuedeInstalar(false);
+        window.deferredPrompt = null;
+      })
+    } else {
+      console.log('⚠️ No hay prompt disponible. Intenta recargar la página.');
+      alert('Para instalar la app:\n\n📱 En Android: Toca los 3 puntos (⋮) → "Instalar aplicación"\n🍎 En iOS: Toca el botón Compartir → "Agregar a pantalla principal"');
     }
   }
 
@@ -662,7 +691,7 @@ function App() {
   }
 
   const guardarPeriodo = async () => {
-    if (!nuevoPeriodo.nombre || !nuevoPeriodo.fechaInicio || !nuevoPeriodo.fechaCierre) { alert(' Completá todos los campos'); return }
+    if (!nuevoPeriodo.nombre || !nuevoPeriodo.fechaInicio || !nuevoPeriodo.fechaCierre) { alert('❌ Completá todos los campos'); return }
     try {
       await addDoc(collection(db, 'fidelidad_periodos'), { nombre: nuevoPeriodo.nombre, fechaInicio: new Date(nuevoPeriodo.fechaInicio).toISOString(), fechaCierre: new Date(nuevoPeriodo.fechaCierre).toISOString(), puntosPorCienPesos: Number(nuevoPeriodo.puntosPorCienPesos), bonusPedidos: { cantidad: Number(nuevoPeriodo.bonusCantidad), puntos: Number(nuevoPeriodo.bonusPuntos) }, activo: nuevoPeriodo.activo })
       alert('✅ Período creado')
@@ -718,7 +747,7 @@ function App() {
         turno: 'noche'
       })
       alert('✅ ¡Reserva enviada! Te confirmaremos por WhatsApp.')
-      const mensaje = encodeURIComponent(`🎉 *NUEVA RESERVA - Ineva Resto-Bar*\n\n ${formReserva.nombre}\n📱 ${formReserva.telefono}\n📅 ${formReserva.fecha}\n🕐 ${formReserva.hora}\n👥 ${formReserva.personas} personas\n💬 ${formReserva.mensaje || 'Sin mensaje'}`)
+      const mensaje = encodeURIComponent(`🎉 *NUEVA RESERVA - Ineva Resto-Bar*\n\n👤 ${formReserva.nombre}\n📱 ${formReserva.telefono}\n📅 ${formReserva.fecha}\n🕐 ${formReserva.hora}\n👥 ${formReserva.personas} personas\n💬 ${formReserva.mensaje || 'Sin mensaje'}`)
       window.open(`https://wa.me/${DATOS_NOCHE.telefonoWhatsApp}?text=${mensaje}`, '_blank')
       setMostrarReservas(false)
       setFormReserva({ nombre: '', telefono: '', fecha: '', hora: '', personas: '2', mensaje: '' })
@@ -779,12 +808,12 @@ function App() {
   // 🍔 OBTENER PRODUCTOS POR CATEGORÍA (SOLO FIREBASE - SIN HARDCODED)
   // ============================================
   const getProductosPorCategoria = (categoria) => {
-  const productosFiltrados = productosFirebase.filter(p => {
-    const turnoProducto = p.turno || 'ambos'
-    return p.categoria === categoria && (turnoProducto === turnoActual || turnoProducto === 'ambos')
-  })
-  return productosFiltrados.sort((a, b) => (a.orden || 999) - (b.orden || 999))
-}
+    const productosFiltrados = productosFirebase.filter(p => {
+      const turnoProducto = p.turno || 'ambos'
+      return p.categoria === categoria && (turnoProducto === turnoActual || turnoProducto === 'ambos')
+    })
+    return productosFiltrados.sort((a, b) => (a.orden || 999) - (b.orden || 999))
+  }
 
   const formatearPrecio = (precio) => precio.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' })
   const copiarAlias = () => { navigator.clipboard.writeText('silvia.ge.nes').then(() => alert('✅ Alias copiado')).catch(() => alert('❌ No se pudo copiar')) }
@@ -857,7 +886,7 @@ function App() {
   }
 
   // ============================================
-  //  AGREGAR PRODUCTO
+  // 🔧 AGREGAR PRODUCTO
   // ============================================
   const agregarProducto = async (producto) => {
     try {
@@ -929,7 +958,7 @@ function App() {
       const firestoreId = producto?.firestoreId || id
       await setDoc(doc(db, 'productos', firestoreId), { turno: nuevoTurno }, { merge: true })
       setProductosFirebase(prev => prev.map(p => (p.id === id || p.firestoreId === id) ? { ...p, turno: nuevoTurno } : p))
-      const iconos = { dia: '☀️', noche: '' }
+      const iconos = { dia: '☀️', noche: '🌙' }
       alert(`✅ Turno cambiado a: ${iconos[nuevoTurno]} ${nuevoTurno.toUpperCase()}`)
     } catch (error) {
       alert('❌ Error: ' + error.message)
@@ -971,9 +1000,9 @@ function App() {
     if (!tipoEntrega) { setError('❌ Seleccioná tipo de entrega'); return }
     if (tipoEntrega === 'delivery' && turnoActual === 'noche') {
     } else if (tipoEntrega === 'delivery' && !direccion.trim()) {
-      setError(' Ingresá la dirección'); return
+      setError('❌ Ingresá la dirección'); return
     }
-    if (!aceptoTerminos) { setError('️ Aceptá los Términos'); setMostrarTerminos(true); return }
+    if (!aceptoTerminos) { setError('⚠️ Aceptá los Términos'); setMostrarTerminos(true); return }
     setCargando(true)
     try {
       await guardarDatosCliente()
@@ -1102,7 +1131,7 @@ function App() {
         {tabActiva === 'pedidos' && (
           <div className="panel-section">
             <div className="panel-header">
-              <h2> Pedidos Pendientes ({pedidosNuevos.length})</h2>
+              <h2>📋 Pedidos Pendientes ({pedidosNuevos.length})</h2>
               <button onClick={() => setSonidoActivado(!sonidoActivado)} className="btn-sonido" style={{ background: sonidoActivado ? '#00b894' : '#e74c3c' }}>
                 {sonidoActivado ? '🔔 Sonido ON' : '🔕 Sonido OFF'}
               </button>
@@ -1113,12 +1142,12 @@ function App() {
                   <div key={pedido.id} className="pedido-card" style={{ borderLeft: `4px solid ${pedido.estado === 'pendiente' ? '#ffc107' : pedido.estado === 'en_preparacion' ? '#00b894' : '#6c5ce7'}` }}>
                     <div className="pedido-header">
                       <div><strong>👤 {pedido.cliente?.nombre}</strong><div>📱 {pedido.cliente?.telefono}</div><div>🕐 {new Date(pedido.fecha).toLocaleTimeString('es-AR')}</div></div>
-                      <div className="pedido-total"><div>{formatearPrecio(pedido.total)}</div><div className={`badge-entrega ${pedido.tipoEntrega === 'delivery' ? 'delivery' : 'retiro'}`}>{pedido.tipoEntrega === 'delivery' ? '🚚 Delivery' : ' Retiro'}</div></div>
+                      <div className="pedido-total"><div>{formatearPrecio(pedido.total)}</div><div className={`badge-entrega ${pedido.tipoEntrega === 'delivery' ? 'delivery' : 'retiro'}`}>{pedido.tipoEntrega === 'delivery' ? '🚚 Delivery' : '🏪 Retiro'}</div></div>
                     </div>
                     <div className="pedido-productos"><strong>📦 Productos:</strong><ul>{pedido.productos?.map((prod, idx) => (<li key={idx}>{prod.cantidad}x {prod.nombre}{prod.nota && <em> ({prod.nota})</em>}</li>))}</ul></div>
                     {pedido.direccion && <div className="pedido-direccion">🏠 {pedido.direccion}</div>}
                     <div className="pedido-botones">
-                      {pedido.estado === 'pendiente' && <button onClick={() => cambiarEstadoPedido(pedido.id, 'en_preparacion')} className="btn-estado btn-preparar">👨‍ Preparar</button>}
+                      {pedido.estado === 'pendiente' && <button onClick={() => cambiarEstadoPedido(pedido.id, 'en_preparacion')} className="btn-estado btn-preparar">👨‍🍳 Preparar</button>}
                       {pedido.estado === 'en_preparacion' && <button onClick={() => cambiarEstadoPedido(pedido.id, 'listo')} className="btn-estado btn-listo">✅ Listo</button>}
                       <button onClick={() => cambiarEstadoPedido(pedido.id, 'entregado')} className="btn-estado btn-entregado">📦 Entregado</button>
                     </div>
@@ -1164,7 +1193,7 @@ function App() {
                 required 
               />
               <textarea 
-                placeholder=" URLs de imágenes (separadas por coma). Ej: https://foto1.jpg, https://foto2.jpg"
+                placeholder="📷 URLs de imágenes (separadas por coma). Ej: https://foto1.jpg, https://foto2.jpg"
                 value={nuevoProducto.imagenes || ''}
                 onChange={(e) => setNuevoProducto({...nuevoProducto, imagenes: e.target.value})}
                 className="input-neumo textarea-neumo"
@@ -1334,7 +1363,7 @@ function App() {
           <>
             <div className="botones-seguridad">
               <button onClick={() => setMostrarCambiarPassword(true)} className="btn-seguridad verde">
-                 Cambiar Contraseña
+                🔑 Cambiar Contraseña
               </button>
             </div>
             
@@ -1370,11 +1399,11 @@ function App() {
               >
                 <option value="promosNoche">🔥 Promos Noche</option>
                 <option value="cocteles">🍹 Cócteles Clásicos</option>
-                <option value="ginTonic"> Gin Tonic</option>
+                <option value="ginTonic">🍸 Gin Tonic</option>
                 <option value="medidas">🥃 Medidas</option>
                 <option value="jarras">🍺 Jarras</option>
                 <option value="whiskys">🥃 Whiskys</option>
-                <option value="tequilas"> Tequilas & Shots</option>
+                <option value="tequilas">🌵 Tequilas & Shots</option>
                 <option value="cervezas">🍻 Cervezas</option>
                 <option value="vinos">🍷 Vinos</option>
                 <option value="espumantes">🥂 Espumantes</option>
@@ -1540,12 +1569,12 @@ function App() {
                   <div className="config-card"><strong>Bonus cada {configFidelidad.bonusPedidos?.cantidad || 5} pedidos:</strong><span>+{configFidelidad.bonusPedidos?.puntos || 10} pts</span></div>
                   <div className="config-card nivel-bronce-config">🥉 Bronce: 0-200 pts (1x)</div>
                   <div className="config-card nivel-plata-config">🥈 Plata: 201-500 pts (1.5x)</div>
-                  <div className="config-card nivel-oro-config"> Oro: 501+ pts (2x)</div>
+                  <div className="config-card nivel-oro-config">🥇 Oro: 501+ pts (2x)</div>
                 </div>
               ) : <p>Cargando configuración...</p>}
             </div>
             <div className="fidelidad-seccion">
-              <h3> Períodos</h3>
+              <h3>📅 Períodos</h3>
               <div className="form-periodo">
                 <input type="text" placeholder="Nombre del período" value={nuevoPeriodo.nombre} onChange={(e) => setNuevoPeriodo({...nuevoPeriodo, nombre: e.target.value})} className="input-neumo" />
                 <div className="form-row">
@@ -1618,7 +1647,7 @@ function App() {
 
         {tabActiva === 'reservas' && (
           <div className="panel-reservas">
-            <h2 className="panel-titulo"> Reservas Nocturnas</h2>
+            <h2 className="panel-titulo">📅 Reservas Nocturnas</h2>
           </div>
         )}
       </div>
@@ -1644,13 +1673,49 @@ function App() {
     <div className={`app-container ${turnoActual === 'noche' ? 'tema-noche' : turnoActual === 'prevent' ? 'tema-prevent' : 'tema-dia'}`} role="application" aria-label="Aplicación de pedidos Ineva Resto-Bar">
       
       <button className="btn-modo-oscuro" onClick={toggleModoOscuro} aria-label={modoOscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'} title={modoOscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}>
-        {modoOscuro ? '☀️' : ''}
+        {modoOscuro ? '☀️' : '🌙'}
       </button>
 
-      {puedeInstalar && <button className="btn-instalar-flotante" onClick={instalarPWA} aria-label="Instalar app">📲</button>}
+      {/* 📲 BOTÓN DE INSTALACIÓN PWA MEJORADO */}
+      {puedeInstalar && (
+        <button 
+          onClick={instalarPWA} 
+          aria-label="Instalar app"
+          style={{
+            position: 'fixed',
+            bottom: '100px',
+            right: '20px',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '50px',
+            padding: '16px 28px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            zIndex: 9999,
+            boxShadow: '0 10px 30px rgba(102, 126, 234, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            animation: 'pulse 2s infinite'
+          }}
+        >
+          📲 Instalar App
+        </button>
+      )}
+
+      {/* Animación CSS para el botón */}
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+      `}</style>
+
       <button className="btn-ayuda-flotante" onClick={() => setMostrarGuia(true)} aria-label="Ayuda">❓</button>
       <button className="btn-whatsapp-flotante" onClick={abrirWhatsAppConsulta} aria-label="WhatsApp">💬</button>
-      <button className="btn-redes-flotante" onClick={() => setMostrarRedes(true)} aria-label="Redes"></button>
+      <button className="btn-redes-flotante" onClick={() => setMostrarRedes(true)} aria-label="Redes">📱</button>
       
       {telefono && <button className="btn-fidelidad-flotante" onClick={() => setMostrarFidelidad(true)} aria-label="Ver mis puntos" title="Ver programa de fidelidad">🏆</button>}
 
@@ -1677,15 +1742,15 @@ function App() {
           <div className="modal-content modal-reservas">
             <div className="modal-header-reservas">
               <h3>📅 Reservar Mesa - Noche</h3>
-              <button className="guia-cerrar" onClick={() => setMostrarReservas(false)}></button>
+              <button className="guia-cerrar" onClick={() => setMostrarReservas(false)}>✕</button>
             </div>
             <div className="reservas-form">
               <p className="reservas-info">🌙 Reservá tu mesa para la noche. Te confirmaremos por WhatsApp.</p>
-              <div className="form-field"><label> Nombre:</label><input type="text" value={formReserva.nombre} onChange={(e) => setFormReserva({...formReserva, nombre: e.target.value})} className="input-neumo" placeholder="Tu nombre" /></div>
+              <div className="form-field"><label>👤 Nombre:</label><input type="text" value={formReserva.nombre} onChange={(e) => setFormReserva({...formReserva, nombre: e.target.value})} className="input-neumo" placeholder="Tu nombre" /></div>
               <div className="form-field"><label>📱 Teléfono:</label><input type="tel" value={formReserva.telefono} onChange={(e) => setFormReserva({...formReserva, telefono: e.target.value})} className="input-neumo" placeholder="Tu teléfono" /></div>
               <div className="form-row">
-                <div className="form-field"><label> Fecha:</label><input type="date" value={formReserva.fecha} onChange={(e) => setFormReserva({...formReserva, fecha: e.target.value})} className="input-neumo" /></div>
-                <div className="form-field"><label> Hora:</label><input type="time" value={formReserva.hora} onChange={(e) => setFormReserva({...formReserva, hora: e.target.value})} className="input-neumo" /></div>
+                <div className="form-field"><label>📅 Fecha:</label><input type="date" value={formReserva.fecha} onChange={(e) => setFormReserva({...formReserva, fecha: e.target.value})} className="input-neumo" /></div>
+                <div className="form-field"><label>🕐 Hora:</label><input type="time" value={formReserva.hora} onChange={(e) => setFormReserva({...formReserva, hora: e.target.value})} className="input-neumo" /></div>
               </div>
               <div className="form-field"><label>👥 Personas:</label><select value={formReserva.personas} onChange={(e) => setFormReserva({...formReserva, personas: e.target.value})} className="input-neumo">
                 <option value="1">1 persona</option><option value="2">2 personas</option><option value="3">3 personas</option><option value="4">4 personas</option><option value="5">5 personas</option><option value="6">6 personas</option><option value="7">7 personas</option><option value="8">8+ personas</option>
@@ -1720,7 +1785,7 @@ function App() {
       {mostrarCalificacion && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-calificacion">
-            <div className="calificacion-header"><div className="calificacion-icono"></div><h3>¡Gracias por tu pedido!</h3><p>¿Cómo fue tu experiencia?</p></div>
+            <div className="calificacion-header"><div className="calificacion-icono">🎉</div><h3>¡Gracias por tu pedido!</h3><p>¿Cómo fue tu experiencia?</p></div>
             <div className="calificacion-body">
               <div className="calificacion-estrellas">{renderizarEstrellas(calificacion, 'grande', true, setCalificacionHover, setCalificacion)}</div>
               {calificacion > 0 && <p className="calificacion-texto">{obtenerTextoCalificacion(calificacion)}</p>}
@@ -1763,7 +1828,7 @@ function App() {
             <div className="redes-header"><h3>📱 Seguinos en redes</h3><button className="redes-cerrar" onClick={() => setMostrarRedes(false)}>✕</button></div>
             <div className="redes-content">
               <div className="redes-lista">
-                {Object.entries({ instagram: { nombre: 'Instagram', url: DATOS_DIA.redesSociales?.instagram || '#', seguidores: '2.4K', color: '#E4405F', gradiente: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', icono: '📷', promocion: '🎁 10% OFF mencionando este post' }, facebook: { nombre: 'Facebook', url: DATOS_DIA.redesSociales?.facebook || '#', seguidores: '1.8K', color: '#1877F2', gradiente: 'linear-gradient(145deg, #1877F2, #0d5bbf)', icono: '👍', promocion: '🎉 Sorteo semanal' }, tiktok: { nombre: 'TikTok', url: DATOS_DIA.redesSociales?.tiktok || '#', seguidores: '5.2K', color: '#000000', gradiente: 'linear-gradient(145deg, #000000, #25F4EE)', icono: '🎵', promocion: ' Videos exclusivos' } }).map(([key, red]) => (
+                {Object.entries({ instagram: { nombre: 'Instagram', url: DATOS_DIA.redesSociales?.instagram || '#', seguidores: '2.4K', color: '#E4405F', gradiente: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', icono: '📷', promocion: '🎁 10% OFF mencionando este post' }, facebook: { nombre: 'Facebook', url: DATOS_DIA.redesSociales?.facebook || '#', seguidores: '1.8K', color: '#1877F2', gradiente: 'linear-gradient(145deg, #1877F2, #0d5bbf)', icono: '👍', promocion: '🎉 Sorteo semanal' }, tiktok: { nombre: 'TikTok', url: DATOS_DIA.redesSociales?.tiktok || '#', seguidores: '5.2K', color: '#000000', gradiente: 'linear-gradient(145deg, #000000, #25F4EE)', icono: '🎵', promocion: '🎬 Videos exclusivos' } }).map(([key, red]) => (
                   <div key={key} className="redes-card" style={{ '--color-red': red.color }}>
                     <div className="redes-info"><div className="redes-icono" style={{ background: red.gradiente }}><span>{red.icono}</span></div><div className="redes-detalles"><h4>{red.nombre}</h4><div className="redes-seguidores"><span className="seguidores-numero">{red.seguidores} seguidores</span></div></div></div>
                     <div className="redes-promocion"><p>{red.promocion}</p></div>
@@ -1779,12 +1844,12 @@ function App() {
       {mostrarTerminos && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-terminos">
-            <div className="modal-header-terminos"><h3> Términos y Condiciones</h3><button className="guia-cerrar" onClick={() => setMostrarTerminos(false)}>✕</button></div>
+            <div className="modal-header-terminos"><h3>📋 Términos y Condiciones</h3><button className="guia-cerrar" onClick={() => setMostrarTerminos(false)}>✕</button></div>
             <div className="terminos-content"><p>Al utilizar los servicios de {datosActuales.nombre}, aceptás los términos y condiciones.</p>
               <div className="terminos-checkbox"><label><input type="checkbox" checked={aceptoTerminos} onChange={(e) => setAceptoTerminos(e.target.checked)} /><span>He leído y acepto</span></label></div>
             </div>
             <div className="modal-buttons">
-              <button onClick={() => { if (aceptoTerminos) { setMostrarTerminos(false); setError('') } else alert(' Debés aceptar') }} className="btn-ingresar">✅ Aceptar</button>
+              <button onClick={() => { if (aceptoTerminos) { setMostrarTerminos(false); setError('') } else alert('❌ Debés aceptar') }} className="btn-ingresar">✅ Aceptar</button>
               <button onClick={() => setMostrarTerminos(false)} className="btn-cancelar">Cancelar</button>
             </div>
           </div>
@@ -1794,7 +1859,7 @@ function App() {
       {mostrarZonaDelivery && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-content modal-zona">
-            <div className="modal-header-terminos"><h3>️ Zona de Delivery</h3><button className="guia-cerrar" onClick={() => setMostrarZonaDelivery(false)}>✕</button></div>
+            <div className="modal-header-terminos"><h3>🗺️ Zona de Delivery</h3><button className="guia-cerrar" onClick={() => setMostrarZonaDelivery(false)}>✕</button></div>
             <div className="zona-content">
               <div className="zona-info-card"><div className="zona-icono">📍</div><p className="zona-radio">{datosActuales.deliveryRadio} km desde el local</p></div>
               <div className="zona-costos"><div className="costo-item"><span>Costo:</span><strong>{datosActuales.deliveryTexto}</strong></div></div>
@@ -1816,7 +1881,7 @@ function App() {
                     <>
                       <div className="fidelidad-puntos">
                         <div className="puntos-total"><span className="puntos-numero">{puntosCliente.totalPuntos || 0}</span><span className="puntos-label">puntos</span></div>
-                        <div className={`nivel-badge nivel-${nivelCliente}`}>{nivelCliente === 'oro' ? '' : nivelCliente === 'plata' ? '🥈' : '🥉'} {nivelCliente.charAt(0).toUpperCase() + nivelCliente.slice(1)}</div>
+                        <div className={`nivel-badge nivel-${nivelCliente}`}>{nivelCliente === 'oro' ? '🥇' : nivelCliente === 'plata' ? '🥈' : '🥉'} {nivelCliente.charAt(0).toUpperCase() + nivelCliente.slice(1)}</div>
                       </div>
                       <div className="fidelidad-progreso">
                         <div className="progreso-barra"><div className="progreso-fill" style={{ width: `${Math.min((puntosCliente.totalPuntos / 500) * 100, 100)}%` }}></div></div>
@@ -1838,7 +1903,7 @@ function App() {
                       )}
                       {premiosDisponibles.length > 0 && (
                         <div className="fidelidad-premios">
-                          <h4> Premios Disponibles</h4>
+                          <h4>🎁 Premios Disponibles</h4>
                           <div className="premios-grid">
                             {premiosDisponibles.map((premio) => (
                               <div key={premio.id} className="premio-card">
@@ -1871,19 +1936,74 @@ function App() {
           <div className="notification-header"><h3>🔔 ¡Nuevo Pedido!</h3><button onClick={() => setMostrarNotificacion(null)}>✕</button></div>
           <div className="notification-content">
             <p><strong>👤 Cliente:</strong> {mostrarNotificacion.cliente?.nombre}</p>
-            <p><strong> Tel:</strong> {mostrarNotificacion.cliente?.telefono}</p>
+            <p><strong>📱 Tel:</strong> {mostrarNotificacion.cliente?.telefono}</p>
             <p className="total"><strong>💰 Total:</strong> {formatearPrecio(mostrarNotificacion.total)}</p>
           </div>
           <button onClick={() => { setMostrarNotificacion(null); if (!esAdmin) setMostrarLogin(true); else setMostrarPanelAdmin(true) }} className="btn-ver-detalles">👁️ Ver Detalles</button>
         </div>
       )}
 
-      <div className={`header ${turnoActual === 'noche' ? 'header-noche' : turnoActual === 'prevent' ? 'header-prevent' : 'header-dia'}`}>
+      {/* 🎨 HEADER MEJORADO CON COLORES VIBRANTES */}
+      <div className={`header ${turnoActual === 'noche' ? 'header-noche' : turnoActual === 'prevent' ? 'header-prevent' : 'header-dia'}`}
+        style={{
+          background: turnoActual === 'noche' 
+            ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+            : turnoActual === 'prevent'
+            ? 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+            : 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+          boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+          padding: '30px 20px',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
         <div className="header-title">
-          <div className="logo-circle"><span className="logo-text" translate="no">IN</span></div>
+          <div className="logo-circle" 
+            style={{
+              width: '80px',
+              height: '80px',
+              background: 'linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%)',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
+              marginBottom: '15px'
+            }}
+          >
+            <span className="logo-text" 
+              style={{
+                fontSize: '32px',
+                fontWeight: 'bold',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}
+            >
+              IN
+            </span>
+          </div>
           <div>
-            <h1>{datosActuales.nombre}</h1>
-            <p className="subtitulo-turno">{datosActuales.subtitulo}</p>
+            <h1 style={{
+              fontSize: '32px',
+              fontWeight: 'bold',
+              color: 'white',
+              margin: '0 0 8px 0',
+              textShadow: '0 2px 10px rgba(0,0,0,0.2)'
+            }}>
+              {datosActuales.nombre}
+            </h1>
+            <p className="subtitulo-turno" 
+              style={{
+                fontSize: '18px',
+                color: 'rgba(255,255,255,0.95)',
+                margin: '0',
+                fontWeight: '500'
+              }}
+            >
+              {datosActuales.subtitulo}
+            </p>
           </div>
         </div>
       </div>
@@ -1891,8 +2011,8 @@ function App() {
       <div className="admin-buttons">
         {esAdmin ? (
           <div className="admin-buttons-group">
-            <button onClick={() => setMostrarPanelAdmin(!mostrarPanelAdmin)} className="btn-admin-panel">{mostrarPanelAdmin ? '👁️ Ver App' : ' Panel Admin'}</button>
-            <button onClick={logout} className="btn-salir"> Salir</button>
+            <button onClick={() => setMostrarPanelAdmin(!mostrarPanelAdmin)} className="btn-admin-panel">{mostrarPanelAdmin ? '👁️ Ver App' : '🔧 Panel Admin'}</button>
+            <button onClick={logout} className="btn-salir">🚪 Salir</button>
           </div>
         ) : <button onClick={() => setMostrarLogin(true)} className="btn-admin">👤 Admin</button>}
       </div>
@@ -1925,7 +2045,7 @@ function App() {
       </div>
 
       <div className="time-banner">
-        <p>️ Tiempo estimado: <strong>20 a 40 minutos</strong></p>
+        <p>⏱️ Tiempo estimado: <strong>20 a 40 minutos</strong></p>
         <p className="horario-info">🕐 {datosActuales.horarios}</p>
         {turnoActual === 'noche' && <p className="horario-info neon-text">🎉 Noche de Tragos & Música en Vivo</p>}
       </div>
@@ -1944,7 +2064,7 @@ function App() {
             <p>Abrimos a las 21:00 hs con la mejor noche de tragos y música</p>
             <div className="prevent-actions">
               <button className="btn-reservar-prevent" onClick={() => setMostrarReservas(true)}>📅 Reservar Mesa</button>
-              <p className="prevent-info"> Consultas: {DATOS_NOCHE.telefono}</p>
+              <p className="prevent-info">📞 Consultas: {DATOS_NOCHE.telefono}</p>
             </div>
           </div>
         </div>
@@ -2001,7 +2121,7 @@ function App() {
           <div className="form-section">
             <h2>📝 Datos del Cliente</h2>
             <div className="form-group">
-              <label htmlFor="nombre-completo"> Nombre: <span className="required">*</span></label>
+              <label htmlFor="nombre-completo">👤 Nombre: <span className="required">*</span></label>
               <input id="nombre-completo" type="text" className="form-input" value={nombreCompleto} onChange={(e) => { setNombreCompleto(e.target.value); setError(''); }} placeholder="Ej: Juan Pérez" />
             </div>
             <div className="form-group">
@@ -2057,7 +2177,7 @@ function App() {
                       </div>
                       <div className="cart-item-total">{formatearPrecio(pedido.precio * pedido.cantidad)}</div>
                     </div>
-                    <input type="text" className="cart-item-note" value={notasPorProducto[pedido.id] || ''} onChange={(e) => actualizarNota(pedido.id, e.target.value)} placeholder=" Nota" />
+                    <input type="text" className="cart-item-note" value={notasPorProducto[pedido.id] || ''} onChange={(e) => actualizarNota(pedido.id, e.target.value)} placeholder="📝 Nota" />
                   </div>
                 ))}
                 <div className="resumen-pedido">
@@ -2102,7 +2222,7 @@ function App() {
               <div className="contacto-card"><div className="contacto-icono">📍</div><h3>Dirección</h3><p>{datosActuales.direccion}</p><button className="btn-contacto" onClick={abrirGoogleMaps}>🗺️ Ver</button></div>
               
               <div className="contacto-card">
-                <div className="contacto-icono"></div>
+                <div className="contacto-icono">📞</div>
                 <h3>Teléfonos</h3>
                 <p><strong>Cel/WhatsApp:</strong> {datosActuales.telefono}</p>
                 {datosActuales.telefonoFijo && (
