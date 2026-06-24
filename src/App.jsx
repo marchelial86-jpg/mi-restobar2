@@ -2046,22 +2046,25 @@ function App() {
   style={{
     color: (turnoActual === 'noche' || turnoActual === 'prevent') ? '#ffffff' : '#333333',
     fontWeight: 'bold',
-    textShadow: turnoActual === 'noche' || turnoActual === 'prevent' ? '0 1px 3px rgba(0,0,0,0.5)' : 'none'
+    textShadow: (turnoActual === 'noche' || turnoActual === 'prevent') ? '0 1px 3px rgba(0,0,0,0.5)' : 'none'
   }}
 >
-  style={{
+  <div className="status-indicator">
+    <span className={`status-dot ${estaAbierto ? 'verde' : 'rojo'}`}></span>
+    <strong style={{ 
+      color: (turnoActual === 'noche' || turnoActual === 'prevent') ? '#ffffff' : '#333333',
+      fontWeight: 'bold'
+    }}>
+      {mensajeHorario}
+    </strong>
+  </div>
+  <div className="status-timer" style={{ 
     color: (turnoActual === 'noche' || turnoActual === 'prevent') ? '#ffffff' : '#333333',
     fontWeight: 'bold'
-  }}
->
-        <div className="status-indicator">
-  <span className={`status-dot ${estaAbierto ? 'verde' : 'rojo'}`}></span>
-  <strong style={{ color: (turnoActual === 'noche' || turnoActual === 'prevent') ? '#ffffff' : '#333333' }}>{mensajeHorario}</strong>
+  }}>
+    <span>⏱️ {tiempoRestante}</span>
+  </div>
 </div>
-        <div className="status-timer" style={{ color: (turnoActual === 'noche' || turnoActual === 'prevent') ? '#ffffff' : '#333333' }}>
-  <span>⏱️ {tiempoRestante}</span>
-</div>
-      </div>
 
       <div className="time-banner">
         <p>⏱️ Tiempo estimado: <strong>20 a 40 minutos</strong></p>
