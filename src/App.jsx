@@ -2045,10 +2045,19 @@ function App() {
   role="status"
   style={{
     color: (turnoActual === 'noche' || turnoActual === 'prevent') ? '#ffffff' : '#333333',
+    fontWeight: 'bold',
+    textShadow: turnoActual === 'noche' || turnoActual === 'prevent' ? '0 1px 3px rgba(0,0,0,0.5)' : 'none'
+  }}
+>
+  style={{
+    color: (turnoActual === 'noche' || turnoActual === 'prevent') ? '#ffffff' : '#333333',
     fontWeight: 'bold'
   }}
 >
-        <div className="status-indicator"><span className={`status-dot ${estaAbierto ? 'verde' : 'rojo'}`}></span><strong>{mensajeHorario}</strong></div>
+        <div className="status-indicator">
+  <span className={`status-dot ${estaAbierto ? 'verde' : 'rojo'}`}></span>
+  <strong style={{ color: (turnoActual === 'noche' || turnoActual === 'prevent') ? '#ffffff' : '#333333' }}>{mensajeHorario}</strong>
+</div>
         <div className="status-timer" style={{ color: (turnoActual === 'noche' || turnoActual === 'prevent') ? '#ffffff' : '#333333' }}>
   <span>⏱️ {tiempoRestante}</span>
 </div>
