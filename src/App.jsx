@@ -280,7 +280,7 @@ function App() {
     deliveryCosto: 0,
     deliveryRadio: 5,
     deliveryTexto: 'Delivery GRATIS',
-    subtitulo: 'Restó & Bar'
+    subtitulo: 'Un Solo Lugar Dos Mundos'
   }
 
   const DATOS_NOCHE = {
@@ -1950,15 +1950,14 @@ function App() {
       )}
 
       {/* 🎨 HEADER MEJORADO CON COLORES VIBRANTES */}
-    <div 
-  className="header"
-  style={{
-  boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
-  padding: '30px 20px',
-  position: 'relative',
-  overflow: 'hidden'
-}}
->
+    <div className="header" style={{
+  background: 'transparent',
+  backgroundImage: 'url(/fachada-ineva.jpg)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  filter: 'none'
+}}>
         <div className="header-title">
           <div className="logo-circle" 
             style={{
@@ -1988,7 +1987,7 @@ function App() {
           </div>
           <div>
             <h1 style={{
-              fontSize: '32px',
+              fontSize: '42px',
               fontWeight: 'bold',
               color: 'white',
               margin: '0 0 8px 0',
