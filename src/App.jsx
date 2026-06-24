@@ -2040,9 +2040,18 @@ function App() {
         </div>
       )}
 
-      <div className={`status-banner ${estaAbierto ? 'abierto' : 'cerrado'} ${turnoActual === 'noche' ? 'banner-noche' : ''}`} role="status">
+      <div 
+  className={`status-banner ${estaAbierto ? 'abierto' : 'cerrado'} ${turnoActual === 'noche' ? 'banner-noche' : ''}`} 
+  role="status"
+  style={{
+    color: (turnoActual === 'noche' || turnoActual === 'prevent') ? '#ffffff' : '#333333',
+    fontWeight: 'bold'
+  }}
+>
         <div className="status-indicator"><span className={`status-dot ${estaAbierto ? 'verde' : 'rojo'}`}></span><strong>{mensajeHorario}</strong></div>
-        <div className="status-timer"><span>⏱️ {tiempoRestante}</span></div>
+        <div className="status-timer" style={{ color: (turnoActual === 'noche' || turnoActual === 'prevent') ? '#ffffff' : '#333333' }}>
+  <span>⏱️ {tiempoRestante}</span>
+</div>
       </div>
 
       <div className="time-banner">
