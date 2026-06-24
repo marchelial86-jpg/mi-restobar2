@@ -280,7 +280,7 @@ function App() {
     deliveryCosto: 0,
     deliveryRadio: 5,
     deliveryTexto: 'Delivery GRATIS',
-    subtitulo: 'Un Solo Lugar Dos Mundos'
+    subtitulo: 'Dos Mundos Un Solo Lugar'
   }
 
   const DATOS_NOCHE = {
