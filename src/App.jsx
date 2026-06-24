@@ -1950,19 +1950,14 @@ function App() {
       )}
 
       {/* 🎨 HEADER MEJORADO CON COLORES VIBRANTES */}
-      <div 
+    <div 
   className="header"
   style={{
-    background: turnoActual === 'noche'
-      ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-      : turnoActual === 'prevent'
-      ? 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
-      : 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
-    padding: '30px 20px',
-    position: 'relative',
-    overflow: 'hidden'
-  }}
+  boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+  padding: '30px 20px',
+  position: 'relative',
+  overflow: 'hidden'
+}}
 >
         <div className="header-title">
           <div className="logo-circle" 
