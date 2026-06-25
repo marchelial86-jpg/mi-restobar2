@@ -1953,27 +1953,17 @@ function App() {
     <div 
   className="header"
   style={{
-    backgroundImage: 'url(/fachada-ineva.jpg)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed',
+    backgroundImage: 'url(/fachada-ineva.jpg) !important',
+    backgroundSize: 'cover !important',
+    backgroundPosition: 'center !important',
+    backgroundRepeat: 'no-repeat !important',
+    backgroundColor: 'transparent !important',
+    background: 'transparent !important',
     padding: '30px 20px',
     position: 'relative',
     minHeight: '300px'
   }}
 >
-  {/* Overlay oscuro suave para que el texto se lea bien */}
-  <div style={{
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: 'rgba(0,0,0,0.2)',
-    zIndex: 1
-  }} />
-  
   <div className="header-title" style={{ position: 'relative', zIndex: 2 }}>
     <div className="logo-circle" 
       style={{
