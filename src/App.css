@@ -6382,4 +6382,160 @@ body.tema-noche,
 .tema-prevent p,
 .tema-prevent span {
   color: #e2e8f0 !important;
+}/* ============================================
+🔧 CORRECCIÓN SECTORES ILEGIBLES - TURNO NOCHE
+============================================ */
+
+/* Botones de tipo de entrega - Texto oscuro sobre fondo blanco */
+.tema-noche .delivery-btn {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  border: 2px solid #cbd5e1 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.tema-noche .delivery-btn.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.5) !important;
+}
+
+/* Título "Tipo de Entrega" */
+.tema-noche .form-section h2 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Checkbox suscripción - Texto blanco */
+.tema-noche .subscribe-text,
+.tema-noche .subscribe-box label {
+  color: #f8fafc !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Card de pedidos - Fondo oscuro */
+.tema-noche .cart-container {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+.tema-noche .cart-section h2 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+}
+
+.tema-noche .empty-cart {
+  color: #e2e8f0 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Sección de reseñas - Fondo oscuro */
+.tema-noche .seccion-resenas {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+.tema-noche .seccion-resenas h2 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Card interna de reseñas - Fondo blanco con texto oscuro */
+.tema-noche .resumen-promedio {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.tema-noche .promedio-numero {
+  color: #6c5ce7 !important;
+  font-weight: 900 !important;
+}
+
+.tema-noche .promedio-texto {
+  color: #1e293b !important;
+  font-weight: 700 !important;
+}
+
+.tema-noche .promedio-total {
+  color: #64748b !important;
+}
+
+/* Botón escribir reseña */
+.tema-noche .btn-escribir-resena {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Estrellas de calificación */
+.tema-noche .estrella {
+  color: #fbbf24 !important;
+}
+
+/* ============================================
+🔧 CORRECCIÓN GENERAL - Todos los textos en turno noche
+============================================ */
+
+/* Labels de formularios */
+.tema-noche .form-group label,
+.tema-noche .form-field label {
+  color: #f8fafc !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Placeholders */
+.tema-noche .form-input::placeholder,
+.tema-noche .input-neumo::placeholder {
+  color: #64748b !important;
+}
+
+/* Textos de horarios */
+.tema-noche .horario-info {
+  color: #cbd5e1 !important;
+}
+
+/* Asterisco requerido */
+.tema-noche .required {
+  color: #ef4444 !important;
+  font-weight: 800 !important;
+}
+
+/* Botón ver zona */
+.tema-noche .btn-ver-zona {
+  background: rgba(139, 92, 246, 0.2) !important;
+  color: #a78bfa !important;
+  border: 2px solid #8b5cf6 !important;
+  font-weight: 700 !important;
+}
+
+/* Alias de transferencia */
+.tema-noche .alias-input {
+  background: rgba(15, 23, 42, 0.8) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  font-weight: 700 !important;
+}
+
+.tema-noche .btn-copy {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* Transfer section */
+.tema-noche .transfer-section {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+.tema-noche .transfer-section h3 {
+  color: #fbbf24 !important;
+  text-shadow: 0 0 15px rgba(251, 191, 36, 0.5) !important;
 }
