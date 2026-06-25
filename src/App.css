@@ -6126,3 +6126,260 @@ body.tema-noche,
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
+/* ============================================
+🔧 TEXTO DEL HEADER - FORZAR BLANCO LEGIBLE
+============================================ */
+
+.header h1 {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9), 
+               0 0 20px rgba(0, 0, 0, 0.7) !important;
+  font-weight: 900 !important;
+  letter-spacing: 2px !important;
+}
+
+.header p,
+.header .subtitulo-turno {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9),
+               0 0 15px rgba(0, 0, 0, 0.7) !important;
+  font-weight: 700 !important;
+}
+
+/* Logo circle más visible */
+.header .logo-circle {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.header .logo-text {
+  color: #6c5ce7 !important;
+  font-weight: 900 !important;
+}/* ============================================
+🎨 DISEÑO EXPERTO - LEGIBILIDAD TOTAL EN TURNO NOCHE
+============================================ */
+
+/* TEMA NOCHE - Texto claro sobre fondo oscuro */
+.tema-noche,
+.tema-noche * {
+  color: #f8fafc !important;
+}
+
+/* Títulos principales - Blancos brillantes */
+.tema-noche h1,
+.tema-noche h2,
+.tema-noche h3,
+.tema-noche h4 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+  font-weight: 800 !important;
+}
+
+/* Párrafos y texto normal - Gris claro */
+.tema-noche p,
+.tema-noche span,
+.tema-noche label,
+.tema-noche li {
+  color: #e2e8f0 !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Textos secundarios - Gris medio */
+.tema-noche .horario-info,
+.tema-noche .product-ingredientes,
+.tema-noche .unit-price {
+  color: #cbd5e1 !important;
+}
+
+/* Precios - Dorado brillante */
+.tema-noche .product-price,
+.tema-noche .cart-item-total,
+.tema-noche .total-amount span {
+  color: #fbbf24 !important;
+  font-weight: 900 !important;
+  text-shadow: 0 0 15px rgba(251, 191, 36, 0.5) !important;
+}
+
+/* Cards y secciones - Fondo oscuro con borde sutil */
+.tema-noche .contacto-card,
+.tema-noche .product-card,
+.tema-noche .cart-item,
+.tema-noche .form-section,
+.tema-noche .menu-section {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Botones primarios - Violeta brillante */
+.tema-noche .btn-primary,
+.tema-noche .btn-contacto,
+.tema-noche .btn-whatsapp {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Footer - Fondo muy oscuro */
+.tema-noche .footer-app {
+  background: rgba(15, 23, 42, 0.98) !important;
+  border-top: 2px solid rgba(139, 92, 246, 0.5) !important;
+}
+
+.tema-noche .footer-info p,
+.tema-noche .footer-legal p {
+  color: #94a3b8 !important;
+}
+
+/* Header - Texto blanco sobre imagen */
+.tema-noche .header h1 {
+  color: #ffffff !important;
+  text-shadow: 0 0 30px rgba(0, 0, 0, 1),
+               0 0 60px rgba(0, 0, 0, 0.8),
+               2px 2px 10px rgba(0, 0, 0, 1) !important;
+  font-size: 2.5rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 3px !important;
+}
+
+.tema-noche .header p,
+.tema-noche .header .subtitulo-turno {
+  color: #ffffff !important;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 1),
+               0 0 40px rgba(0, 0, 0, 0.8),
+               1px 1px 8px rgba(0, 0, 0, 1) !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+}
+
+/* Logo circle - Blanco brillante */
+.tema-noche .logo-circle {
+  background: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5),
+              0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.tema-noche .logo-text {
+  color: #6c5ce7 !important;
+  font-weight: 900 !important;
+}
+
+/* Status banner - Texto oscuro sobre fondo claro */
+.tema-noche .status-banner {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid #10b981 !important;
+}
+
+.tema-noche .status-banner strong,
+.tema-noche .status-banner span {
+  color: #1e293b !important;
+  font-weight: 700 !important;
+}
+
+/* Time banner - Fondo claro */
+.tema-noche .time-banner {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+.tema-noche .time-banner p {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+.tema-noche .time-banner strong {
+  color: #10b981 !important;
+  font-weight: 800 !important;
+}
+
+/* Acordeones - Fondo oscuro */
+.tema-noche .acordeon-item {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+.tema-noche .acordeon-header {
+  color: #f8fafc !important;
+  font-weight: 700 !important;
+}
+
+/* Inputs y formularios */
+.tema-noche .form-input,
+.tema-noche .input-neumo {
+  background: rgba(15, 23, 42, 0.8) !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+.tema-noche .form-input::placeholder,
+.tema-noche .input-neumo::placeholder {
+  color: #64748b !important;
+}
+
+/* Carrito flotante */
+.tema-noche .carrito-flotante {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.6) !important;
+}
+
+/* Botones flotantes */
+.tema-noche .btn-ayuda-flotante,
+.tema-noche .btn-whatsapp-flotante,
+.tema-noche .btn-redes-flotante {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 2px solid rgba(139, 92, 246, 0.5) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Scrollbar personalizada */
+.tema-noche ::-webkit-scrollbar {
+  width: 10px;
+}
+
+.tema-noche ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+.tema-noche ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8b5cf6 0%, #ec4899 100%);
+  border-radius: 5px;
+}
+
+/* ============================================
+🎨 TEMA DÍA - Mantener contraste adecuado
+============================================ */
+
+.tema-dia h1,
+.tema-dia h2,
+.tema-dia h3 {
+  color: #1e293b !important;
+  font-weight: 800 !important;
+}
+
+.tema-dia p,
+.tema-dia span,
+.tema-dia label {
+  color: #334155 !important;
+}
+
+.tema-dia .product-price {
+  color: #10b981 !important;
+  font-weight: 900 !important;
+}
+
+/* ============================================
+🎨 TEMA PREVENT - Contraste medio
+============================================ */
+
+.tema-prevent h1,
+.tema-prevent h2,
+.tema-prevent h3 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.tema-prevent p,
+.tema-prevent span {
+  color: #e2e8f0 !important;
+}
