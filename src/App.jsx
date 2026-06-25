@@ -1950,64 +1950,76 @@ function App() {
       )}
 
       {/* 🎨 HEADER MEJORADO CON COLORES VIBRANTES */}
-    <div className="header" style={{
-  background: 'transparent',
-  backgroundImage: 'url(/fachada-ineva.jpg)',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  filter: 'none'
-}}>
-        <div className="header-title">
-          <div className="logo-circle" 
-            style={{
-              width: '80px',
-              height: '80px',
-              background: 'linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%)',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
-              marginBottom: '15px'
-            }}
-          >
-            <span className="logo-text" 
-              style={{
-                fontSize: '32px',
-                fontWeight: 'bold',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
-            >
-              IN
-            </span>
-          </div>
-          <div>
-            <h1 style={{
-              fontSize: '42px',
-              fontWeight: 'bold',
-              color: 'white',
-              margin: '0 0 8px 0',
-              textShadow: '0 2px 10px rgba(0,0,0,0.2)'
-            }}>
-              {datosActuales.nombre}
-            </h1>
-            <p className="subtitulo-turno" 
-              style={{
-                fontSize: '18px',
-                color: 'rgba(255,255,255,0.95)',
-                margin: '0',
-                fontWeight: '500'
-              }}
-            >
-              {datosActuales.subtitulo}
-            </p>
-          </div>
-        </div>
-      </div>
+    <div 
+  className="header"
+  style={{
+    backgroundImage: 'url(/fachada-ineva.jpg)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
+    padding: '30px 20px',
+    position: 'relative',
+    minHeight: '300px'
+  }}
+>
+  {/* Overlay oscuro suave para que el texto se lea bien */}
+  <div style={{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'rgba(0,0,0,0.2)',
+    zIndex: 1
+  }} />
+  
+  <div className="header-title" style={{ position: 'relative', zIndex: 2 }}>
+    <div className="logo-circle" 
+      style={{
+        width: '80px',
+        height: '80px',
+        background: 'linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%)',
+        borderRadius: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
+        marginBottom: '15px'
+      }}
+    >
+      <span className="logo-text" 
+        style={{
+          fontSize: '32px',
+          fontWeight: 'bold',
+          color: '#667eea'
+        }}
+      >
+        IN
+      </span>
+    </div>
+    <div>
+      <h1 style={{ 
+        fontSize: '42px', 
+        fontWeight: 'bold', 
+        color: 'white', 
+        textShadow: '2px 2px 8px rgba(0,0,0,0.8)', 
+        margin: '0 0 8px 0' 
+      }}>
+        {datosActuales.nombre}
+      </h1>
+      <p style={{ 
+        fontSize: '18px', 
+        color: 'rgba(255,255,255,0.95)', 
+        margin: '0', 
+        fontWeight: '500',
+        textShadow: '1px 1px 4px rgba(0,0,0,0.8)'
+      }}>
+        {datosActuales.subtitulo}
+      </p>
+    </div>
+  </div>
+</div>
 
       <div className="admin-buttons">
         {esAdmin ? (
