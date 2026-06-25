@@ -6109,3 +6109,26 @@ RESPONSIVE MÓVIL - SIN SCROLL HORIZONTAL
   background: transparent !important;
   background-image: none !important;
 }
+/* ============================================
+🎨 FONDOS SÓLIDOS CON COLORES
+============================================ */
+
+.tema-dia {
+  background: #f5f5f5 !important;
+}
+
+.tema-prevent {
+  background: #fff8e1 !important;
+}
+
+.tema-noche {
+  background: #121212 !important;
+}
+
+.modo-oscuro {
+  background: #1e1e1e !important;
+}
+
+.header {
+  background: transparent !important;
+}
