@@ -41,8 +41,8 @@ HEADER CON IMAGEN DE FONDO
   margin-bottom: 30px;
   padding: 45px 20px;
   /* Forzar imagen con !important */
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
-  background-image: url('/fachada-ineva.jpg') !important;
+  background: url('fachada-ineva.jpg.jpeg') center/cover no-repeat !important;
+  background-image: url('fachada-ineva.jpg.jpeg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -4861,9 +4861,9 @@ MODO OSCURO
 /* ============================================
 TEMA DÍA
 ============================================ */
-.tema-dia {
-  background: linear-gradient(135deg, #fefefe 0%, #f8f9fa 100%);
-  color: #2d3436;
+.tema-dia .header {
+  background: transparent !important;
+  border-bottom: 3px solid #00b894;
 }
 
 .tema-dia .header {
@@ -4899,9 +4899,9 @@ TEMA DÍA
 /* ============================================
 TEMA PREVENT
 ============================================ */
-.tema-prevent {
-  background: linear-gradient(135deg, #2d1b69 0%, #1a1a2e 50%, #16213e 100%);
-  color: #e2e8f0;
+.tema-prevent .header {
+  background: transparent !important;
+  border-bottom: 3px solid #ec4899;
 }
 
 .tema-prevent .header {
@@ -4927,9 +4927,10 @@ TEMA PREVENT
 /* ============================================
 TEMA NOCHE
 ============================================ */
-.tema-noche {
-  background: #0a0a0a;
-  color: #f8fafc;
+.tema-noche .header {
+  background: transparent !important;
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(90deg, #8b5cf6, #ec4899, #06b6d4, #f59e0b) 1;
 }
 
 .tema-noche .header {
@@ -5177,8 +5178,9 @@ TEMA NOCHE
   animation: fadeInNeon 0.6s ease forwards;
 }
 
-.modo-oscuro.tema-noche {
-  background: #050505;
+.modo-oscuro .header {
+  background: transparent !important;
+  border-bottom: 2px solid #f59e0b;
 }
 
 .modo-oscuro.tema-noche .menu-section,
