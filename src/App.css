@@ -6131,4 +6131,17 @@ RESPONSIVE MÓVIL - SIN SCROLL HORIZONTAL
 
 .header {
   background: transparent !important;
+}/* ============================================
+🔧 FORZAR IMAGEN DEL HEADER EN TODOS LOS TEMAS
+============================================ */
+
+.tema-dia .header,
+.tema-prevent .header,
+.tema-noche .header,
+.modo-oscuro .header {
+  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
