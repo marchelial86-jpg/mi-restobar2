@@ -41,8 +41,8 @@ HEADER CON IMAGEN DE FONDO
   margin-bottom: 30px;
   padding: 45px 20px;
   /* Forzar imagen con !important */
-  background: url('/fachada-ineva.jpg.jpeg') center/cover no-repeat !important;
-  background-image: url('/fachada-ineva.jpg.jpeg') !important;
+  background: url('/fachada-ineva.jpeg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpeg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -4862,7 +4862,6 @@ MODO OSCURO
 TEMA DÍA
 ============================================ */
 .tema-dia .header {
-  background: transparent !important;
   border-bottom: 3px solid #00b894;
 }
 
@@ -4900,7 +4899,6 @@ TEMA DÍA
 TEMA PREVENT
 ============================================ */
 .tema-prevent .header {
-  background: transparent !important;
   border-bottom: 3px solid #ec4899;
 }
 
@@ -4928,7 +4926,6 @@ TEMA PREVENT
 TEMA NOCHE
 ============================================ */
 .tema-noche .header {
-  background: transparent !important;
   border-bottom: 3px solid transparent;
   border-image: linear-gradient(90deg, #8b5cf6, #ec4899, #06b6d4, #f59e0b) 1;
 }
