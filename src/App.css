@@ -41,8 +41,8 @@ HEADER CON IMAGEN DE FONDO - FORZAR EN TODOS LOS TEMAS
   margin-bottom: 30px;
   padding: 45px 20px;
   /* Imagen de fondo SIEMPRE */
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
-  background-image: url('/fachada-ineva.jpg') !important;
+  background: url('/fachada-ineva.jpeg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpeg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -78,8 +78,8 @@ HEADER CON IMAGEN DE FONDO - FORZAR EN TODOS LOS TEMAS
 .tema-prevent .header,
 .tema-noche .header,
 .modo-oscuro .header {
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
-  background-image: url('/fachada-ineva.jpg') !important;
+  background: url('/fachada-ineva.jpeg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpeg') !important;
   background-color: transparent !important;
 }
 
@@ -6053,8 +6053,8 @@ RESPONSIVE MÓVIL - SIN SCROLL HORIZONTAL
 .tema-prevent .header,
 .tema-noche .header,
 .modo-oscuro .header {
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
-  background-image: url('/fachada-ineva.jpg') !important;
+  background: url('/fachada-ineva.jpeg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpeg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -6076,8 +6076,8 @@ body.tema-noche,
 
 /* Asegurar que el header tenga la imagen SIEMPRE */
 .header {
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
-  background-image: url('/fachada-ineva.jpg') !important;
+  background: url('/fachada-ineva.jpeg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpeg') !important;
   z-index: 100 !important;
 }
 
@@ -6085,7 +6085,7 @@ body.tema-noche,
 .tema-noche .header,
 .tema-noche.header,
 .modo-oscuro.tema-noche .header {
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
+  background: url('/fachada-ineva.jpeg') center/cover no-repeat !important;
   background-color: transparent !important;
 }
 
@@ -6109,8 +6109,8 @@ body.tema-noche,
 ============================================ */
 
 .header {
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
-  background-image: url('/fachada-ineva.jpg') !important;
+  background: url('/fachada-ineva.jpeg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpeg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -6120,8 +6120,8 @@ body.tema-noche,
 .tema-prevent .header,
 .tema-noche .header,
 .modo-oscuro .header {
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
-  background-image: url('/fachada-ineva.jpg') !important;
+  background: url('/fachada-ineva.jpeg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpeg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
