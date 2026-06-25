@@ -4811,17 +4811,6 @@ MODO OSCURO
   background: #fbbf24;
 }
 
-/* ============================================
-TEMA DÍA
-============================================ */
-.tema-dia .header {
-  border-bottom: 3px solid #00b894;
-}
-
-.tema-dia .header {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border-bottom: 3px solid #00b894;
-}
 
 .tema-dia .logo-circle {
   background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
@@ -4848,17 +4837,6 @@ TEMA DÍA
   color: white;
 }
 
-/* ============================================
-TEMA PREVENT
-============================================ */
-.tema-prevent .header {
-  border-bottom: 3px solid #ec4899;
-}
-
-.tema-prevent .header {
-  background: linear-gradient(135deg, #2d1b69 0%, #1a1a2e 100%);
-  border-bottom: 3px solid #ec4899;
-}
 
 .tema-prevent .logo-circle {
   background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
@@ -4875,19 +4853,6 @@ TEMA PREVENT
   border: 2px solid #ec4899;
 }
 
-/* ============================================
-TEMA NOCHE
-============================================ */
-.tema-noche .header {
-  border-bottom: 3px solid transparent;
-  border-image: linear-gradient(90deg, #8b5cf6, #ec4899, #06b6d4, #f59e0b) 1;
-}
-
-.tema-noche .header {
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
-  border-bottom: 3px solid transparent;
-  border-image: linear-gradient(90deg, #8b5cf6, #ec4899, #06b6d4, #f59e0b) 1;
-}
 
 .tema-noche .logo-circle {
   background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #06b6d4 100%);
@@ -5128,10 +5093,6 @@ TEMA NOCHE
   animation: fadeInNeon 0.6s ease forwards;
 }
 
-.modo-oscuro .header {
-  background: transparent !important;
-  border-bottom: 2px solid #f59e0b;
-}
 
 .modo-oscuro.tema-noche .menu-section,
 .modo-oscuro.tema-noche .form-section,
@@ -6142,4 +6103,26 @@ body.tema-noche,
 .tema-noche h3,
 .tema-noche p {
   color: #2d3436 !important;
+}
+/* ============================================
+🔧 FORZAR IMAGEN DEL HEADER EN TODOS LOS TEMAS
+============================================ */
+
+.header {
+  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.tema-dia .header,
+.tema-prevent .header,
+.tema-noche .header,
+.modo-oscuro .header {
+  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
