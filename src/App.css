@@ -41,8 +41,8 @@ HEADER CON IMAGEN DE FONDO
   margin-bottom: 30px;
   padding: 45px 20px;
   /* Forzar imagen con !important */
-  background: url('fachada-ineva.jpg.jpeg') center/cover no-repeat !important;
-  background-image: url('fachada-ineva.jpg.jpeg') !important;
+  background: url('/fachada-ineva.jpg.jpeg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpg.jpeg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
