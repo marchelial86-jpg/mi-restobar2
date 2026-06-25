@@ -6114,3 +6114,48 @@ RESPONSIVE MÓVIL - SIN SCROLL HORIZONTAL
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
+/* ============================================
+🔧 ELIMINAR FONDOS NEGROS DEL TEMA NOCHE
+============================================ */
+
+/* Eliminar fondo negro del body en tema noche */
+body.tema-noche,
+.tema-noche body {
+  background: transparent !important;
+}
+
+/* Eliminar fondo negro del contenedor principal */
+.tema-noche .app-container {
+  background: linear-gradient(135deg, #1a237e 0%, #311b92 50%, #4a148c 100%) !important;
+}
+
+/* Asegurar que el header tenga la imagen SIEMPRE */
+.header {
+  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
+  background-image: url('/fachada-ineva.jpg') !important;
+  z-index: 100 !important;
+}
+
+/* Eliminar TODOS los fondos oscuros del header en tema noche */
+.tema-noche .header,
+.tema-noche.header,
+.modo-oscuro.tema-noche .header {
+  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
+  background-color: transparent !important;
+}
+
+/* Eliminar fondos de secciones oscuras */
+.tema-noche .menu-section,
+.tema-noche .form-section,
+.tema-noche .cart-section {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #2d3436 !important;
+}
+
+/* Asegurar que el texto se lea bien */
+.tema-noche h1,
+.tema-noche h2,
+.tema-noche h3,
+.tema-noche p {
+  color: #2d3436 !important;
+}
