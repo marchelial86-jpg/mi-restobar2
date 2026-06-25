@@ -83,22 +83,6 @@ HEADER CON IMAGEN DE FONDO - FORZAR EN TODOS LOS TEMAS
   background-color: transparent !important;
 }
 
-/* Eliminar cualquier fondo de los temas en el header */
-.tema-dia .header {
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
-}
-
-.tema-prevent .header {
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
-}
-
-.tema-noche .header {
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
-}
-
-.modo-oscuro .header {
-  background: url('/fachada-ineva.jpg') center/cover no-repeat !important;
-}
 /* ============================================
 BUSCADOR INTELIGENTE
 ============================================ */
